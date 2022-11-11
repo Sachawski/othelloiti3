@@ -1,0 +1,17 @@
+\begin{tad}
+\tadNom{Coups}
+\tadDependances{Coup, NNN}
+
+\begin{tadOperations}{obtenirIemeCoup}  
+\tadOperation{coups}{}{\tadUnParam{Pion}}
+\tadOperation{nbCoups}{\tadUnParam{Coups}}{\tadUnParam{NNN}}
+\tadOperation{ajouterCoups}{\tadDeuxParams{Coups}{Coup}}{\tadUnParam{Coups}}
+\tadOperation{obtenirIemeCoup}{\tadDeuxParams{Coups}{NNN}}{\tadUnParam{Coup}}
+\end{tadOperations}
+
+\begin{tadAxiomes}
+  \tadAxiome{nbCoups(ajouterCoups(coups,coup)) = nbCoups(coups)+1}
+  \tadAxiome{obtenirIemeCoup(ajouterCoups(coups,coup),nbCoups(coups)+1) = coup}
+\end{tadAxiomes}
+
+\end{tad}
