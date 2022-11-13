@@ -1,17 +1,33 @@
-\begin{tad}
-\tadNom{Coups}
-\tadDependances{Coup, NNN}
+% Title Page
+\title{TAD Coups}
+\author{Victorin Turnel}
 
-\begin{tadOperations}{obtenirIemeCoup}  
-\tadOperation{coups}{}{\tadUnParam{Pion}}
-\tadOperation{nbCoups}{\tadUnParam{Coups}}{\tadUnParam{NNN}}
-\tadOperation{ajouterCoups}{\tadDeuxParams{Coups}{Coup}}{\tadUnParam{Coups}}
-\tadOperation{obtenirIemeCoup}{\tadDeuxParams{Coups}{NNN}}{\tadUnParam{Coup}}
-\end{tadOperations}
+\documentclass{report}
+\usepackage{algorithmeUTF8}
 
-\begin{tadAxiomes}
-  \tadAxiome{nbCoups(ajouterCoups(coups,coup)) = nbCoups(coups)+1}
-  \tadAxiome{obtenirIemeCoup(ajouterCoups(coups,coup),nbCoups(coups)+1) = coup}
-\end{tadAxiomes}
+\begin{document}
+	
+	\begin{tad}
+		\tadNom{Coups}
+		\tadDependances{Coup, NNN, Naturel}
+		\begin{tadOperations}{Coups}
+			\tadOperation{Coups}{}{\tadUnParam{Coups}}
+			\tadOperation{nbCoups}{Coups}{Naturel}
+			\tadOperation{ajouterCoups}{\tadDeuxParams{Coups}{Coup}}{Coups}
+			\tadOperationAvecPreconditions{iemeCoup}{\tadDeuxParams{Coups}{NNN}}{Coup}
+		\end{tadOperations}
+		\begin{tadPreconditions}{Coups}
+			\tadPrecondition{iemeCoups(coups,position)}{position $\leq$ nbCoups(coups)}
+		\end{tadPreconditions}
+		\begin{tadAxiomes}
+			\tadAxiome{Coups()}
+			\tadAxiome{nbCoups(Coups())=0}
+			\tadAxiome{nbCoups(ajouterCoups(coups,coup)) = nbCoups(coups) +1}
+			\tadAxiome{iemeCoup(ajouterCoups(coups,coup),nbCoups(coups)+1 ) = coup}
+		\end{tadAxiomes}
 
-\end{tad}
+	
+	\end{tad}
+			
+			
+\end{document}          
