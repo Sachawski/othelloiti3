@@ -1,0 +1,16 @@
+\begin{tad}
+	\tadNom{Coup}
+	\tadDependances{Pion,Pion,Position}
+	\begin{tadOperations}{Coup}
+		\tadOperation{coup}{Pion,Position}{\tadUnParam{Coup}}
+		\tadOperationAvecPreconditions{obtenirPionCoup}{Coup}{Pion}
+		\tadOperationAvecPreconditions{obtenirPositionCoup}{\tadUnParam{Coup}}{Position}
+        \end{tadOperations}
+              
+	\begin{tadAxiomes}
+          \tadAxiome{obtenirPionCoup(coup(pion,pos))=pion}
+          \tadAxiome{obtenirPositionCoup(coup(pion,pos))=pos}
+	\end{tadAxiomes}
+
+
+\end{tad}
