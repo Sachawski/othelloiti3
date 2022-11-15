@@ -1,0 +1,38 @@
+
+\end{document}
+\begin{tad}
+
+
+\tadNom{Plateau}
+\tadDependances{Pion, Position, \booleen}
+
+\begin{tadOperations}{retournerPion}
+	\tadOperation{plateau}{}{\tadUnParam{Plateau}}
+	\tadOperationAvecPreconditions{poserPion}{\tadTroisParams{Position}{Pion}{Plateau}}{\tadUnParam{Plateau}}
+	\tadOperationAvecPreconditions{obtenirPion}{\tadDeuxParams{Position}{Plateau}}{\tadUnParam{Pion}}
+	\tadOperation{caseVide}{\tadDeuxParams{Position}{Plateau}}{\tadUnParam{\booleen}}
+	\tadOperationAvecPreconditions{retournerPion}{\tadDeuxParams{Position}{Plateau}}{\tadUnParam{Plateau}}
+	\tadOperationAvecPreconditions{enleverPion}{\tadDeuxParams{Position}{Plateau}}{\tadUnParam{Plateau}}
+\end{tadOperations}
+
+\begin{tadPreconditions}{poserPion(pos,pion,pl)}
+	\tadPrecondition{obtenirPion(pos,pl)}{non (caseVide(pos,pl))}	
+	\tadPrecondition{retournerPion(pos,pl)}{non (caseVide(pos,pl))}
+	\tadPrecondition{poserPion(pos,pion,pl)}{caseVide(pos,pl)}
+	\tadPrecondition{enleverPion(pos,pl)}{non (caseVide(pos,pl))}
+\end{tadPreconditions}
+
+\begin{tadAxiomes}
+	\tadAxiome{caseVide(pos,plateau())}
+	\tadAxiome{obtenirPion(pos,poserPion(pos,pion,plateau()))= pion}
+	\tadAxiome{caseVide(pos,enleverPion(pos,plateau()))}
+	\tadAxiome{non caseVide(pos,poserPion(pos,pion,plateau()))}
+	\tadAxiome{retournerPion(pos,retournerPion(pos,pl))=pl}	
+\end{tadAxiomes}
+\end{tad}
+
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{algorithmeUTF8}
