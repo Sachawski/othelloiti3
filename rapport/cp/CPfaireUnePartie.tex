@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{algorithmeUTF8}
+\begin{document}
+\begin{algorithme}
+	\signaturefonction{faireUnePartie}{couleurJoueur : Couleur , profondeur : Naturel}{Couleur}
+	\signaturefonction{plateauPartie}{}{Plateau}
+	\signaturefonction{resultat}{plateau : Plateau}{Couleur}
+	\signaturefonction{nbPions}{plateau:Plateau}{\naturel,\naturel}
+	\signaturefonction{verifierFini}{plateau:Plateau}{\booleen}
+	\signaturefonction{estTotalementRempli}{plateau:Plateau}{\booleen}
+	\signaturefonction{aucunPosition}{plateau:Plateau}{\booleen}
+	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos : Position , couleur : Couleur , profondeur : \naturel}}
+	
+	\signaturefonction{verifier}{plateau:Plateau , pos : Position}{\booleen}
+	\signatureProcedure{flipCoup}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos : Position}}
+	
+\end{algorithme}
+\end{document}
