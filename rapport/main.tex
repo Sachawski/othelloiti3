@@ -9,6 +9,8 @@
 \begin{document}
 \maketitle
 
+\section{Analyse}
+
 TAD COULEUR :
 
 \input{analyse/TADcouleur.tex}
@@ -25,12 +27,45 @@ TAD COUP :
 
 \input{analyse/TADcoup}
 
+
 TAD COUPS :
 
 \input{analyse/TADcoups}
 
 TAD PLATEAU :
 
-\input{analyse/TADplateau.tex}
+\input{analyse/TADplateau}
+
+\section{Conception détaillé}
+
+\subsection{TAD : Couleur}
+
+\input{cp/couleur/CPTADcouleur}
+
+\subsection{TAD : Pion}
+
+\input{cp/pion/CPTADpion}
+
+\subsection{TAD : Plateau}
+
+\input{cp/plateau/CPTADplateau}
+
+\subsection{TAD : Coup}
+
+\input{cp/coup/CPTADcoup}
+
+
+
+
+\input{cp/faireUnePartie/CPaucunPosition}
+
+\input{cp/faireUnePartie/CPestTotalementRempli}
+
+\input{cp/faierUnePartie/CPnbPions}
+
+\input{cp/faireUnePartie/CPverifierFini}
+
+\input{cp/obtenirCoup/signatureObtenirCoup}
+
 
 \end{document}

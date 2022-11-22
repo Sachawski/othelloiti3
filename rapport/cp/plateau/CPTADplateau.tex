@@ -1,0 +1,12 @@
+\begin{algorithme}
+	\signaturefonction{plateau}{}{Plateau}
+	\signatureprocedure{poserPion}{\paramEntreeSortie{plateau : Plateau},\paramEntree{pos : Position , pion: Pion}}
+	\preconditions{estCaseVide(plateau , pos)}
+	\signaturefonction{obtenirPion}{pos : Position , plateau : Plateau}{Pion}
+	\preconditions{non (estCaseVide(plateau , pos)}
+	\signaturefonction{estCaseVide}{pos : Position , plateau : Plateau}{\booleen}
+	\signaturefonction{retournerPion}{pos : Position , plateau : Plateau}{Plateau}
+	\preconditions{non (estCaseVide(plateau , pos)}
+	\signatureprocedure{enleverPion}{\paramEntreeSortie{plateau : Plateau},\paramEntree{pos : Position}}
+	\preconditions{non (estCaseVide(plateau , pos)}
+\end{algorithme}
