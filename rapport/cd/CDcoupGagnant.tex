@@ -1,0 +1,41 @@
+\begin{algorithme}
+
+  \fonction
+      {coupGagnant}
+      {unPlateau : Plateau, unCoup : Coup}
+      {\booleen}
+      {plateauTemp : Plateau, pos : Position, pion : Pion, couleur :Couleur}
+      {\affecter{pos}{coupObtenirPositionCoup(unCoup)}
+
+          \affecter{pion}{coupObtenirPionCoup(unCoup)}
+
+          \affecter{couleur}{obtenirCouleurSuperieur(pion)}
+
+          \affecter{plateauTemp}{unPlateau}
+          
+          poserPion(plateauTemp,pos,pion)
+   
+          {\sialors{plateauBloque(plateauTemp)}
+            {\sialorssinon{couleur = NOIR}
+              {\sialorssinon{compteurCouleur(plateau,couleur) $\geq$ compteurCouleur(plateau,BLANC)}
+                {\retourner VRAI}
+                {\retourner FAUX}}
+              {\sialorssinon{compteurCouleur(plateau,couleur) $\geq$ compteurCouleur(plateau,NOIR)}
+                {\retourner VRAI}
+                {\retourner FAUX}}
+            }
+          }
+          
+          {\sialors{estTotalementRempli(plateauTemp)}
+            {\sialorssinon{couleur = NOIR}
+              {\sialorssinon{compteurCouleur(plateau,couleur) $\geq$ compteurCouleur(plateau,BLANC)}
+                {\retourner VRAI}
+                {\retourner FAUX}}
+              {\sialorssinon{compteurCouleur(plateau,couleur) $\geq$ compteurCouleur(plateau,NOIR)}
+                {\retourner VRAI}
+                {\retourner FAUX}}
+            }
+          }
+      }
+      
+\end{algorithme}
