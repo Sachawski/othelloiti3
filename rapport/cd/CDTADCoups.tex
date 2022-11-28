@@ -1,0 +1,47 @@
+\begin{algorithme}
+	
+	\begin{enregistrement}{Coups}
+		\champEnregistrement{lesCoups}{\textbf{Tableau[1..LARGEUR\_PLATEAU*HAUTEUR\_PLATEAU] de Coup}}
+		\champEnregistrement{nbTotalCoups}{\naturel}
+	\end{enregistrement}
+	
+	\vspace*{5mm} 
+	
+	\fonction
+	{coups}
+	{}
+	{\textbf{Coups}}
+	{resultat : Coups}
+	{\affecter{resultat.nbTotalCoups}{0}
+		\retourner {resultat}}
+	
+	\vspace*{5mm} 
+	
+	\fonction
+	{nbCoups}
+	{cps : \textbf{Coups}}
+	{\naturel}
+	{}
+	{\retourner {cps.nbTotalCoups}}
+	
+	\vspace*{5mm} 
+	
+	\procedure
+	{ajouterCoups}
+	{\paramEntreeSortie{cps : \textbf{Coups}},\paramEntree{unCoup : \textbf{Coup}}}
+	{}
+	{\affecter{cps.nbTotalCoups}{cps.nbTotalCoups+1}
+		\affecter{cps.lesCoups[cps.nbTotalCoups]}{unCoup}}
+	
+	\vspace*{5mm} 
+	
+	\fonction
+	{iemeCoup}
+	{cps : \textbf{Coups}, place : \textbf{NNN} }
+	{\textbf{Coup}
+		\preconditions{place $\leq$ nbCoups(coups)}}
+	{}
+	{\retourner {cps.lesCoups[place]}}
+	
+	
+\end{algorithme}
