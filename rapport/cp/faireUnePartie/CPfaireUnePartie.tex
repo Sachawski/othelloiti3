@@ -6,10 +6,10 @@
 	\signaturefonction{verifierFini}{plateau:Plateau}{\booleen}
 	\signaturefonction{estTotalementRempli}{plateau:Plateau}{\booleen}
 	\signaturefonction{aucunPosition}{plateau:Plateau}{\booleen}
-	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos : Position , couleur : Couleur , profondeur : \naturel}}
+	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ coup: Coup , profondeur : \naturel}}
 	
-	\signaturefonction{verifier}{plateau:Plateau , pos : Position}{\booleen, Position}
-	\signatureProcedure{flipCoup}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos1 : Position, pos2: Position}}
+	\signaturefonction{verifier}{plateau:Plateau , coup :Coup}{\booleen, Position}
+	\signatureProcedure{flipCoup}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ coup1: Coup, coup2:Coup}}
 
 \end{algorithme}
 
