@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{algorithmeUTF8}
+
+\begin{algorithme}
+	\signaturefonction
+	{coups}
+	{}
+	{\textbf{Coups}}
+	
+	\vspace*{5mm}
+	
+	\signaturefonction
+	{nbCoups}
+	{cps : \textbf{Coups}}
+	{\naturel}
+	
+	\vspace*{5mm}
+	
+	\signatureprocedure
+	{ajouterCoups}
+	{\paramEntreeSortie{cps : \textbf{Coups}},\paramEntree{unCoup : \textbf{Coup}}}
+	
+	\vspace*{5mm}
+	
+	\signaturefonction
+	{iemeCoup}
+	{cps : \textbf{Coups}, place : \textbf{NNN}}
+	{\textbf{Coup}}
+	\preconditions{place $\leq$ nbCoups(coups)}
+	
+	
+	
+\end{algorithme}
