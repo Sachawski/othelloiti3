@@ -2,59 +2,28 @@
   \small
   \fonction
   {verifier}
-  {p:Plateau,pos:Position,c:Couleur}
-  {\booleen, Position}
+  {p: Plateau,coup: Coup}
+  {\booleen}
   {
-    jouer,ia:Couleur\\
-    rowdelta,coldelta:\entier\\
-    row,col:\entier\\
-    temppos:Position\\
-    x,y:entier\\
+    pos: Position
   }
   {
-    \affecter{x}{0}
-    \affecter{y}{0}
-    \affecter{jouer}{c}
-    \affecter{ia}{changeCouleur(c)}
-    \affecter{row}{obtenirX(pos)}
-    \affecter{col}{obtenirY(pos)}
-    \sialorssinon{caseVide}
+
+    \affecter{pos}{obtenirPositionCoup(coup)}
+    \sialorssinon{caseVide(p,pos)}
     {
-      \pour{rowdelta}{-1}{1}{}
+      \sialorssinon{adversairesAdjacent(p,coup)}
       {
-        \pour{coldelta}{-1}{1}{}
+        \sialorssinon{pionMêmeCouleur(p,coup)}
         {
-          \sialors
-          {row + rowdelta $<$ 0 ou row + rowdelta $\geq$ 8 ou col + coldelta $<$ 0 ou col + coldelta $\geq$ 8 ou (rowdelta = 0 et coldelta = 0)}
-          {
-            continue\\
-            \affecter{temppos}{Position(row + rowdelta, col + coldelta)}\\
-            \sialors{obtenirCouleurSuperieure(obtenirPion(temppos,p))=ia}
-            {
-              \affecter{x}{row + rowdelta}
-              \affecter{y}{col + coldelta}
-              \tantque{1}
-              {
-                \affecter{x}{x + rowdelta}
-                \affecter{y}{y + coldelta}
-                \sialors{x $<$ 0 ou x $\geq$ 8 ou y $<$ 0 ou y $\geq$ 8}
-                {
-                  break
-                }
-              \affecter{temppos}{Position(x , y)}
-              \sialors
-              {caseVide(temppos , p)}
-              {
-                break
-              }
-              \sialors{obtenirCouleurSuperieure(obtenirPion(temppos,p)) = jouer}
-              {
-                \retourner{VRAI, temppos}
-              }
-              }
-            }
-          }
+          \retourner{VRAI}
         }
+        {
+          \retourner{FAUX}
+        }
+      }
+      {
+        \retourner{FAUX}
       }
     }
     {
