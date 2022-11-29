@@ -5,16 +5,18 @@
   {p: Plateau,coup: Coup}
   {\booleen}
   {
-    pos: Position
+    pos: Position\\
+    pionLegal: Coups\\
   }
   {
 
     \affecter{pos}{coupObtenirPositionCoup(coup)}
-    \sialorssinon{caseVide(p,pos)}
+    \sialorssinon{caseVide(p, pos)}
     {
-      \sialorssinon{nbCoups(adversairesAdjacent(p,coup))$\neq$ 0}
+      \sialorssinon{nbCoups(adversairesAdjacent(p, coup))$\neq$ 0}
       {
-        \sialorssinon{nbCoups(pionMêmeCouleur(p,coup))$\neq$ 0}
+        \affecter{pionLegal}{adversairesAdjacent(p, coup)}
+        \sialorssinon{nbCoups(pionMêmeCouleur(p, coup, pionLegal))$\neq$ 0}
         {
           \retourner{VRAI}
         }
