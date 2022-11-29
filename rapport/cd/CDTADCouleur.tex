@@ -1,0 +1,37 @@
+\begin{algorithme}
+  \type{Couleur}{\{Blanc,Noir\}}
+\end{algorithme}
+
+\begin{algorithme}
+  \small
+  \fonction{couleurBlanc}{}{Couleur}
+  {}
+    {\retourner{Blanc}}
+
+\end{algorithme}
+
+\begin{algorithme}
+  \small
+  \fonction{couleurNoir}{}{Couleur}
+  {}
+   {\retourner{Noir}}
+
+\end{algorithme}
+
+
+\begin{algorithme}
+  \small
+  \fonction{couleurEstBlanc}{couleur:Couleur}{\booleen}
+  {}
+  {\retourner{couleur=Blanc}}
+
+\end{algorithme}
+
+
+\begin{algorithme}
+  \small
+  \fonction{couleurChangerCouleur}{couleur:Couleur}{Couleur}
+  {}
+  {\sialorssinon{couleurEstBlanc(couleur)}{\affecter{couleur}{Noir} \retourner{couleur}}{\affecter{couleur}{Blanc} \retourner{couleur}}}
+
+\end{algorithme}
