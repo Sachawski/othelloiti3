@@ -12,9 +12,9 @@
     \affecter{pos}{coupObtenirPositionCoup(coup)}
     \sialorssinon{caseVide(p,pos)}
     {
-      \sialorssinon{adversairesAdjacent(p,coup)}
+      \sialorssinon{nbCoups(adversairesAdjacent(p,coup))$\neq$ 0}
       {
-        \sialorssinon{pionMêmeCouleur(p,coup)}
+        \sialorssinon{nbCoups(pionMêmeCouleur(p,coup))$\neq$ 0}
         {
           \retourner{VRAI}
         }
