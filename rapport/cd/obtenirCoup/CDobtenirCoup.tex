@@ -133,26 +133,22 @@
 	}
 	
 	\vspace*{1cm}
-	
-	\small
-	\fonction
-	{coupGagnant}
-	{unPlateau : Plateau, unCoup : Coup}
-	{\booleen}
-	{plateauTemp : Plateau, pos : Position, pion : Pion, couleur, autreCouleur : Couleur}
-	{\affecter{pos}{coupObtenirPositionCoup(unCoup)}
-		\affecter{pion}{coupObtenirPionCoup(unCoup)}
-		\affecter{couleur}{obtenirCouleurSuperieur(pion)}
-		\affecter{plateauTemp}{unPlateau}
-		\affecter{autreCouleur}{couleur}
-		changerCouleur(autreCouleur)  
-		poserPion(plateauTemp,pos,pion)
-		{\sialors{plateauBloque(plateauTemp) ou estTotalementRempli(plateauTemp)}
-			{\sialorssinon{compteurCouleur(plateau,couleur) $\geq$ compteurCouleur(plateau,autreCouleur)}
-				{\retourner VRAI}
-				{\retourner FAUX}}
-		}
-	}
+
+        \small
+        \fonction                                                                                                                                                                                        
+            {coupGagnant}                                                                                                                                                                               
+            {unPlateau : Plateau, unCoup : Coup}     
+            {\booleen}
+            {plateauTemp : Plateau,pion : Pion, pos : Position, couleur, couleurInverse : Couleur, compteurJoueurCourant,compteurJoueurAdv : Entiers}
+            { \affecter{pion}{coupObtenirPionCoup(unCoup)}
+              \affecter{couleur}{obtenirCouleurSuperieur(pion)}
+              \affecter{plateauTemp}{unPlateau}        
+              \affecter{couleurInverse}{couleurChangerCouleur(couleur)}
+              \instruction{jouer(plateauTemp,unCoup)}                    
+              \affecter{compteurJoueurCourant}{compteurCouleur(plateauTemp,couleur)}
+              \affecter{compteurJoueurAdv}{compteurCouleur(plateauTemp,couleurInverse)}
+              \retourner{(compteurJoueurAdv = 0) ou (compteurJoueurCourant = 0)}                                                                                                                        
+           }                               
 	
 	\vspace*{1cm}
 	
