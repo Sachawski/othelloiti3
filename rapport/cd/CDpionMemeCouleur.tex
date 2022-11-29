@@ -1,11 +1,11 @@
 \begin{algorithme}
 \small
 \fonction
-{pionMêmeCouleur}
+{pionMemeCouleur}
 {p: Plateau, coup: Coup, pionLegal: Coups}
 {Coups}
 {
-  pionMêmeCouleur: Coups\\
+  pionMCouleur: Coups\\
   nb, i: \naturel\\
   couptemp: coup\\
   x, y: \naturel\\
@@ -14,7 +14,7 @@
   pos: Position\\
 }
 {
-  \affecter{pionMêmeCouleur}{coups()}
+  \affecter{pionMCouleur}{coups()}
   \affecter{nb}{nbCoups(pionLegal)}
   \pour{i}{1}{nb}{}
   {
@@ -33,12 +33,12 @@
         \affecter{pos}{position(x, y)}
         \sialors{obtenirCouleurSuperieure(obtenirPion(pos, p))= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
         {
-          ajouterCoups(pionMêmeCouleur,coupCoup(obtenirPion(pos, p), pos))\\
+          ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, p), pos))\\
           \affecter{recherche}{VRAI}
         }
       }
     }
   }
-  \retourner{pionMêmeCouleur}
+  \retourner{pionMCouleur}
 }
 \end{algorithme}
