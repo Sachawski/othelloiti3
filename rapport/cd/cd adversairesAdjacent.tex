@@ -3,16 +3,17 @@
   \fonction
   {adversairesAdjacent}
   {p: Plateau, coup: Coup}
-  {\booleen}
+  {Coups}
   {
-  recherche:\booleen\\
-  jouer, ia: Pion\\
+  recherche: \booleen\\
+  coupslegal: Coups\\
   ldelta, cdelta: \entier\\
   minx, miny, maxx, maxy: \entier\\
   pos,postemp: Position\\
   x, y: entier\\}
   {
   \affecter{recherche}{VRAI}
+  \affecter{coupslegal}{coups()}
   \affecter{pos}{coupObtenirPositionCoup(coup)}
   \affecter{minx}{max(1, obtenirX(pos)- 1)}
   \affecter{miny}{max(1, obtenirY(pos)- 1)}
@@ -28,13 +29,13 @@
       {
         \sialors{obtenirCouleurSuperieur(obtenirPion(p,postemp))$\neq$ obtenirCouleurSuperieur(obtenirPionCoup(coup))}
         {
-          \affecter{recherche}{FAUX}
+          ajouterCoups(coupslegal,obtenirPion(p,postemp))
         }
       }
       \affecter{x}{x+1}
     }
     \affecter{y}{y+1}
   }
-  \retourner{recherche}
+  \retourner{coupslegal}
   }
 \end{algorithme}
