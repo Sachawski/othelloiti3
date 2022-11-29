@@ -1,6 +1,8 @@
 \documentclass{article}                                                         
 \usepackage[french]{babel}
-
+\usepackage[final]{pdfpages}
+\usepackage{geometry}
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
 \usepackage[T1]{fontenc}                                                        
 \usepackage[utf8x]{inputenc}                                                    
 \usepackage{algorithmeUTF8}                                                     
@@ -9,6 +11,8 @@
 
 \begin{document}
 \maketitle
+
+
 
 \section{Analyse}
 
@@ -30,11 +34,12 @@
 \subsection{TAD PLATEAU :}
 \input{analyse/TADplateau}
 
-
 \subsection{Analyse descendante de la fonction faireUnePartie}
-
+\includepdf{analyse/ADfaireUnePartie.pdf}
 
 \subsection{Analyse descendante de la fonction obtenirCoup}
+
+
 
 \section{Conception préliminaire}
 
@@ -44,8 +49,14 @@
 \subsection{TAD : Pion}
 \input{cp/pion/CPTADpion}
 
+\subsection{TAD : Position}
+\input{cp/position/CPTADposition}
+
 \subsection{TAD : Coup}
 \input{cp/coup/CPTADcoup}
+
+\subsection{TAD : Coups}
+\input{cp/coups/CPTADcoups}
 
 \subsection{TAD : Plateau}
 \input{cp/plateau/CPTADplateau}
@@ -59,5 +70,47 @@
 
 
 \section{Conception détaillé}
+\subsection{TAD : Couleur}
+\input{cd/couleur/CDTADcouleur}
+
+\subsection{TAD : Pion}
+\input{cd/pion/CDTADpion}
+
+\subsection{TAD : Position}
+\input{cd/position/CDTADposition}
+
+\subsection{TAD : Coup}
+\input{cd/coup/CDTADcoup}   
+
+\subsection{TAD : Coups}                                                                              
+\input{cd/coups/CDTADcoups}                                                                      
+
+
+
+
+
+\section{Repartition des tâches}
+\begin{tabular}{|l|c|c|c|c|c|}
+  \hline
+  Tâches & Ahmed Zarki & Victorin Turnel & Chen Yang & Paul Thulliez & Sacha Wojciechowski \\
+  \hline
+  TAD Couleur  & & & X & X &   \\
+  TAD Pion & & & & & X \\
+  TAD Position & & X & & &   \\ 
+  TAD Coup & & & & X & \\
+  TAD Coups & & X  & & &  \\
+  TAD Plateau & X & & & & \\
+  CP TAD Couleur & & & X & X & \\
+  CP TAD Pion & & & & & X \\
+  CP TAD Postion & & X & & &  \\
+  CP TAD Coup & & & & X & \\
+  CP TAD Coups & & X & & & \\
+  CP TAD Plateau & X & & & & \\
+  Mise en page rapport & & & & & X \\
+  Création Makefile & & & & & X \\
+  \hline
+\end{tabular}
+
+
 
 \end{document}
