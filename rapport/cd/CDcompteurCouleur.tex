@@ -4,15 +4,16 @@
       {compteurCouleur}
       {plateau : Plateau, couleur : Couleur}
       {Naturel}
-      {res : Naturel, i,j : 1..8, pos : Position}
+      {compteur : Naturel, i,j : 1..8, pos : Position}
       {\affecter{res}{0}
         \pour{i}{1}{8}{}
              {\pour{j}{1}{8}{}
                {\affecter{pos}{position(i,j)}
-                \sialors{non(estCaseVide(pos,plateau)) et (obtenirCouleurSuperieur(obtenirPion(pos,plateau)))}
+                \sialors{non(estCaseVide(pos,plateau)) et (obtenirCouleurSuperieur(obtenirPion(pos,plateau)) = couleur)}
                              {\affecter{compteur}{compteur+1}}
                }
              }
+        \retourner{compteur}
       }
          
 \end{algorithme} 
