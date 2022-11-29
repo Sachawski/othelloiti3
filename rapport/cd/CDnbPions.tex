@@ -1,0 +1,12 @@
+\begin{algorithme}
+  \small
+  \fonction{nbPions}{plateau:Plateau}{\naturel,\naturel}
+           {pionsBlancs:\naturel,pionsNoirs:\naturel,i,j :\entier,pos:Position}
+           {\affecter{pionsBlancs}{0}
+             \affecter{pionsNoirs}{0}
+             \pour{i}{1}{8}{}{
+               \pour{j}{1}{8}{}{
+                 \affecter{pos}{position(i,j)}
+                 \sialorssinon{obtenirCouleurSuperieure(obtenirPion(pos,plateau))=Blanc}{\affecter{pionsBlancs}{pionsBlancs+1}}{\affecter{pionsNoirs}{pionsNoirs+1}}}}
+           \retourner{pionsBlancs,pionsNoirs}}
+\end{algorithme}
