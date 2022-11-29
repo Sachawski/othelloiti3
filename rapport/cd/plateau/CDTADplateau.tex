@@ -1,3 +1,4 @@
+
 \begin{algorithme}
 	\begin{enregistrement}{Case}
 		\champEnregistrement{estVide}{\booleen}
@@ -19,14 +20,15 @@
 	\retourner {plateau}
 	}
 	\vspace*{5mm}	
-	\fonction{initialiser}{}{Plateau}{plateau : Plateau , pion : Pion , blanc,noir : Couleur}{
+	\fonction{initialiser}{}{Plateau}{plateau : Plateau , pion : Pion , blanc : Couleur}{
 	\affecter{plateau}{plateau()}
+	\affecter{blanc}{couleurBlanc()}
 	\affecter{pion}{creerPion(blanc)}       
-    	\instruction{poserPion(plateau,Position(4,4),pion)}
-    	\instruction{poserPion(plateau,Position(5,5),pion)}
+    	\instruction{poserPion(plateau,position(4,4),pion)}
+    	\instruction{poserPion(plateau,position(5,5),pion)}
     	\instruction{Pion.retournerPion(pion)}
-    	\instruction{poserPion(plateau,Position(4,5),pion)}
-    	\instruction{poserPion(plateau,Position(5,4),pion)}
+    	\instruction{poserPion(plateau,position(4,5),pion)}
+    	\instruction{poserPion(plateau,position(5,4),pion)}
     	\retourner{p}
     	}
     	\vspace*{5mm}
