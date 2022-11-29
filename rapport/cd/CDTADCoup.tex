@@ -1,0 +1,35 @@
+\begin{algorithme}
+  \begin{enregistrement}{Coup}
+    \champEnregistrement{pion}{Pion}
+    \champEnregistrement{position}{Position}
+  \end{enregistrement}
+\end{algorithme}
+
+\begin{algorithme}
+  \small
+  \fonction{coupCoup}{pion:Pion,pos:Position}{Coup}
+           {}
+           {\affecter{coup.position}{pos}
+            \affecter{coup.pion}{pion}
+            \retourner{coup}
+           }
+ 
+\end{algorithme}
+
+\begin{algorithme}
+  \small
+  \fonction{coupObtenirPionCoup}{coup:Coup}{Pion}
+           {}
+           {\retourner{coup.pion} 
+           }
+  
+\end{algorithme}
+
+\begin{algorithme}
+  \small
+  \fonction{coupObtenirPositionCoup}{coup:Coup}{Position}
+           {}
+           {\retourner{coup.position}
+           }
+  
+\end{algorithme}
