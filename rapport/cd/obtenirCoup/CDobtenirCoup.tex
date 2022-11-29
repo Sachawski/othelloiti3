@@ -1,19 +1,19 @@
-\begin{algorithme}
+	\begin{algorithme}
 	\small
 	\fonction
 	{obtenirCoup}
-	{unPlateau : \textbf{Plateau}, joueur : \textbf{Pion}, profondeur : \naturel}
+	{unPlateau : \textbf{Plateau}, joueur : \textbf{Couleur}, profondeur : \naturel}
 	{\textbf{Coup}}
 	{resultat : \textbf{Coup}, cps : \textbf{Coups}, score, meilleurScore : \entier, i : \naturel}
-	{\affecter{cps}{obtenirCoupsPossibles(unPlateau)}
-		\affecter{resultat}{ieme(cps,1)}
-		\affecter{meilleurScore}{scoreDUnCoup(unPlateau,resultat,joueur,joueur,profondeur)}
-		\pour{i}{2}{nb(cps)}{}
+	{\affecter{cps}{obtenirCoupsPossibles(unPlateau,joueur)}
+		\affecter{resultat}{iemeCoup(cps,1)}
+		\affecter{meilleurScore}{scoreDUnCoup(unPlateau,joueur,joueur,resultat,profondeur, INF\_NEGATIF, INF\_POSITIF)}
+		\pour{i}{2}{nbCoups(cps)}{}
 		{
-			\affecter{score}{scoreDUnCoup(unPlateau,ieme(cps,i),joueur,joueur,profondeur)}
+			\affecter{score}{scoreDUnCoup(unPlateau,joueur,joueur,iemeCoup(cps,i),profondeur, INF\_NEGATIF, INF\_POSITIF))}
 			\sialors{score $>$ meilleurScore}
 			{
-				\affecter{resultat}{ieme(cps,i)}
+				\affecter{resultat}{iemeCoup(cps,i)}
 				\affecter{meilleurScore}{score}
 			}
 		}
@@ -25,18 +25,18 @@
 	\small
 	\fonction
 	{obtenirCoupsPossibles}
-	{unPlateau : \textbf{Plateau}, joueurRef : \textbf{Pion}}
+	{unPlateau : \textbf{Plateau}, joueurRef : \textbf{Couleur}}
 	{\textbf{Coups}}
-	{resultat : \textbf{Coups}, i : \naturel, temp : \textbf{Position}}
+	{resultat : \textbf{Coups}, i : \naturel, coupTemp : \textbf{Coup}}
 	{	\affecter{resultat}{coups()}
 		\pour{i}{1}{HAUTEUR\_PLATEAU}{}
 		{
 			\pour{j}{1}{LARGEUR\_PLATEAU}{}
 			{
-				\affecter{coupTemp}{coup(joueurRef,position(j,i))}
+				\affecter{coupTemp}{coup(creerPion(joueurRef),position(j,i))}
 				\sialors{coupLegal(unPlateau,coupTemp)}
 				{
-					\instruction{ajouterCoups(resultat,temp)}
+					\instruction{ajouterCoups(resultat,couptemp)}
 				}
 			}
 			
@@ -49,11 +49,10 @@
 	\small
 	\fonction
 	{evaluer}
-	{unPlateau : \textbf{Plateau}, joueurRef : \textbf{Pion}}
+	{unPlateau : \textbf{Plateau}, joueurRef : \textbf{Couleur}}
 	{\entier}
 	{}
-	{	\retourner{\instruction{score(unPlateau,joueurRef)-score(unPlateau,joueurRef)}}
-	}
+	{	\retourner{score(unPlateau,joueurRef) - score(unPlateau,couleurChangerCouleur(joueurRef))}}
 	
 	\vspace*{1cm}
 	
@@ -64,14 +63,14 @@
 	{\entier}
 	{}
 	{	\instruction{jouer(unPlateau,unCoup)}
-		\sialorssinon{plateauTotalementRempli(unPlateau) ou coupGagnant(unPlateau,unCoup) ou (plateauBloque(unPlateau,joueurCourant) et plateauBloque(unPlateau,autreCouleur(joueurCourant))) ou profondeur = 0}
+		\sialorssinon{plateauTotalementRempli(unPlateau) ou plateauBloque(unPlateau) ou profondeur = 0}
 		{
 			\retourner{evaluer(unPlateau,joueurRef)}
 		}
 		{
-			\sialors{non(plateauBloque(unPlateau,autreCouleur(joueurCourant)))}
+			\sialors{non(plateauBloquePourUneCouleur(unPlateau,couleurChangerCouleur(joueurCourant)))}
 			{
-				\affecter{joueurCourant}{autreJoueur(joueurCourant)}
+				\affecter{joueurCourant}{couleurChangerCouleur(joueurCourant)}
 			}
 			
 			\retourner{alphaBeta(unPlateau,joueurRef,joueurCourant,profondeur-1,alpha,beta)}
@@ -118,12 +117,12 @@
 	\small
 	\fonction
 	{compteurCouleur}
-	{plateau : Plateau, couleur : Couleur}
-	{Naturel}
-	{compteur : Naturel, i,j : 1..8, pos : Position}
-	{\affecter{res}{0}
-		\pour{i}{1}{8}{}
-		{\pour{j}{1}{8}{}
+	{plateau : \textbf{Plateau}, couleur : \textbf{Couleur}}
+	{\naturel}
+	{compteur : \textbf{Naturel}, i,j : \textbf{1..8}, pos : \textbf{Position}}
+	{\affecter{compteur}{0}
+		\pour{i}{1}{LARGEUR\_PLATEAU}{}
+		{\pour{j}{1}{HAUTEUR\_PLATEAU}{}
 			{\affecter{pos}{position(i,j)}
 				\sialors{non(estCaseVide(pos,plateau)) et (obtenirCouleurSuperieur(obtenirPion(pos,plateau)) = couleur)}
 				{\affecter{compteur}{compteur+1}}
@@ -133,36 +132,27 @@
 	}
 	
 	\vspace*{1cm}
-
-        \small
-        \fonction                                                                                                                                                                                        
-            {coupGagnant}                                                                                                                                                                               
-            {unPlateau : Plateau, unCoup : Coup}     
-            {\booleen}
-            {plateauTemp : Plateau,pion : Pion, pos : Position, couleur, couleurInverse : Couleur, compteurJoueurCourant,compteurJoueurAdv : Entiers}
-            { \affecter{pion}{coupObtenirPionCoup(unCoup)}
-              \affecter{couleur}{obtenirCouleurSuperieur(pion)}
-              \affecter{plateauTemp}{unPlateau}        
-              \affecter{couleurInverse}{couleurChangerCouleur(couleur)}
-              \instruction{jouer(plateauTemp,unCoup)}                    
-              \affecter{compteurJoueurCourant}{compteurCouleur(plateauTemp,couleur)}
-              \affecter{compteurJoueurAdv}{compteurCouleur(plateauTemp,couleurInverse)}
-              \retourner{(compteurJoueurAdv = 0) ou (compteurJoueurCourant = 0)}                                                                                                                        
-           }                               
+	
+	\small
+	\fonction
+	{plateauBloquePourUneCouleur}
+	{unPlateau : \textbf{Plateau}, laCouleur : \textbf{Couleur}}
+	{\booleen}
+	{lesCoups : \textbf{Coups}}
+	{\affecter{lesCoups}{obtenirCoupsPossibles(unPlateau,laCouleur)}
+		\retourner{lesCoups.nbCoups = 0}
+		
+	}
 	
 	\vspace*{1cm}
 	
 	\small
 	\fonction
 	{plateauBloque}
-	{unPlateau : Plateau}
+	{unPlateau : \textbf{Plateau}}
 	{\booleen}
-	{lesCoupsNoirs, lesCoupsBlancs : Coups}
-	{\affecter{lesCoupsBlancs}{obtenirCoupsPossibles(unPlateau,couleurBlanc())}
-		\affecter{lesCoupsNoirs}{obtenirCoupsPossibles(unPlateau,couleurNoir())}
-		\sialorssinon{lesCoupsNoirs.nbCoups = 0 et lesCoupsBlancs.nbCoups = 0}
-		{\retourner{VRAI}}
-		{\retourner{FAUX}}
+	{}
+	{\retourner{plateauBloquePourUneCouleur(unPlateau,couleurNoir()) et plateauBloquePourUneCouleur(unPlateau,couleurBlanc())}
 	}
 	
 	\vspace*{1cm}
@@ -171,7 +161,7 @@
 	\fonction
 	{score}
 	{unPlateau : \textbf{Plateau}, joueur : \textbf{Couleur}}
-	{\entier}
+	{\naturel}
 	{}
 	{	\retourner{compteurCouleur(unPlateau, joueur)}
 	}
