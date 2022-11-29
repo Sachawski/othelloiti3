@@ -1,0 +1,12 @@
+\begin{algorithme}
+  \small
+  \fonction{aucunPosition}{plateau:Plateau}{\booleen}
+           {aucunePositionPossible : \booleen,coup : Coup, i,j : \Naturel,pos : Position}
+           {\affecter{aucunePositionPossible}{Faux}
+             \pour{i}{1}{8}{}{
+               \pour{j}{1}{8}{}{
+                 \affecter{pos}{position(i,j)}
+                 \affecter{coup}{coupCoup(obtenirPion(pos,plateau),pos)}
+             \sialorssinon{cardinalite(prisAuPiege(plateau,coup))=0}{\affecter {aucunePositionPossible}{Vrai} \retourner{aucunePositionPossible}}{\retourner{aucunePositionPossible}}}}}
+           
+\end{algorithme}
