@@ -6,7 +6,7 @@
   {Couleur}
   {pjouer: Pion\\
   pIA: Pion\\
-  coupjouer: Coup\\
+  coupJouer: Coup\\
   coupIA: Coup\\
   auJouee: \booleen\\
   auIA: \booleen\\
@@ -29,13 +29,21 @@
     {
       \sialorssinon{auJouee}
       {
-        \affecter{coupjouer}{obtenirLeCoup()}
-        \affecter{auIA}{non(auIA)}
-        \affecter{auJouee}{non(auJouee)}\\
-        Jouer(p,coupjouer)
+        \affecter{coupJouer}{obtenirLeCoup()}
+        \tantque{non(verifier(p, coupJouer))}
+        {
+          \affecter{coupJouer}{obtenirLeCoup()}
+        }
+          \affecter{auIA}{non(auIA)}
+          \affecter{auJouee}{non(auJouee)}\\
+          Jouer(p,coupJouer)
       }
       {
         \affecter{coupIA}{obtenirCoups(p)}
+        \tantque{non(verifier(p, coupIA))}
+        {
+          \affecter{coupIA}{obtenirLeCoup()}
+        }
         \affecter{auIA}{non(auIA)}
         \affecter{auJouee}{non(auJouee)}\\
         Jouer(p,coupIA)
