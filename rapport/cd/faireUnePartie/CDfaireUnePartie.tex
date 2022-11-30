@@ -2,11 +2,10 @@
   \small
   \fonction
   {FaireUnePartie}
-  {couleurJoueur: Couleur, obtenirChoisi: \typePointeur{fonction}}
+  {couleurJoueur: Couleur, obtenirLeCoup: \typePointeur{fonction}, afficherPlateau: \typePointeur{procedure}, obtenirCoups :\typePointeur{fonction}}
   {Couleur}
   {pjouer: Pion\\
   pIA: Pion\\
-  pgagnant: Pion\\
   coupjouer: Coup\\
   coupIA: Coup\\
   auJouee: \booleen\\
@@ -18,7 +17,6 @@
     \affecter{pIA}{creerPion(changeCouleur(couleur))}
     \affecter{pjouee}{creerPion(couleurJoueur)}
     \affecter{p}{initialiserPlateau()}
-    \affecter{Terminee}{FAUX}
     \sialorssinon{couleurJoueur=noir()}
     { \affecter{auJouee}{VARI}
       \affecter{auIA}{FAUX}
@@ -26,23 +24,23 @@
     { \affecter{auIA}{VRAI}
       \affecter{auJouee}{FAUX}
     }\\
-    afficher(p)
+    afficherPlateau(p)
     \tantque{non(verifierFini(p))}
     {
       \sialorssinon{auJouee}
       {
-        \affecter{coupjouer}{obtenirChoisi()}
+        \affecter{coupjouer}{obtenirLeCoup()}
         \affecter{auIA}{non(auIA)}
         \affecter{auJouee}{non(auJouee)}\\
         Jouer(p,coupjouer)
       }
       {
-        \affecter{coupIA}{ObtenirCoups(p)}
+        \affecter{coupIA}{obtenirCoups(p)}
         \affecter{auIA}{non(auIA)}
         \affecter{auJouee}{non(auJouee)}\\
         Jouer(p,coupIA)
       }\\
-      afficher(p)
+      afficherPlateau(p)
     }
     \retourner {Resultat(p)}
   }
