@@ -2,7 +2,7 @@
 #define __TADCOUP__
 #include "pion.h"
 #include "position.h"
-#include <stdio.lib>
+#include <stdio.h>
 
 struct Coup {
   Pion pion;
