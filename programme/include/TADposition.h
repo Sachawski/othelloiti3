@@ -3,8 +3,8 @@
 #include "definitionTypes.h"
 
 Position position(int t[8] largeur, hauteur );
-int t[8] obtenirX(Position unePosition);
-int t[8] obtenirY(Position unePosition);
+int obtenirX(Position unePosition);
+int obtenirY(Position unePosition);
 
 #endif
 
