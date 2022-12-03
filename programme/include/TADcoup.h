@@ -1,12 +1,6 @@
 #ifndef  __TADCOUP__
 #define __TADCOUP__
-#include "pion.h"
-#include "position.h"
-
-struct Coup {
-  Pion pion;
-  Position pos;
-}
+#include "definitionTypes.h""
 
 Coup coupCoup(Pion pion,Position pos);
 Pion coupObtenirPionCoup(Coup coup);
