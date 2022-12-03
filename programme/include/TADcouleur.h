@@ -1,9 +1,6 @@
 #ifndef  __TADCOULEUR__
 #define __TADCOULEUR__
-
-struct Couleur {
-  typedef enum [couleur] {Blanc,Noir}
-}
+#include "definitionTypes.h"
 
 Couleur noir();
 Couleur blanc();
