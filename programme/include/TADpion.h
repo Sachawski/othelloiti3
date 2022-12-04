@@ -25,7 +25,7 @@ typedef struct
 * \param CLR_Couleur 
 * \return PN_Pion
 */
-PN_Pion creerPion(CLR_Couleur);
+PN_Pion PN_pion(CLR_Couleur);
 
 /**
 * \fn CLR_Couleur obtenirCouleurSuperieure(PN_Pion pion)
