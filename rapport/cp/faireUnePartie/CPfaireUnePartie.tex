@@ -7,6 +7,8 @@
 	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup , profondeur : \naturel}}
 	\signaturefonction{coupLegal}{plateau:Plateau , coup : Coup}{\booleen}
 	\signatureProcedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup, coups : Coups }}
-
+	\signaturefonction{adversairesAdjacents}{plateau:Plateau , coup : Coup}{Coups}
+	\signaturefonction{pionMemeCouleur}{plateau:Plateau , coup : Coup, coups : Coups}{Coups}
+	\signaturefonction{obtenirCoups}{plateau:Plateau , couleur : Couleur, nb: \naturel}{Coup}
 \end{algorithme}
 
