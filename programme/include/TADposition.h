@@ -2,7 +2,9 @@
 #define __TADPOSITION__
 #include "definitionTypes.h"
 
-Position position(int t[8] largeur, hauteur );
+int t[]={1,2,3,4,5,6,7,8}
+
+Position position(int t largeur, hauteur );
 int obtenirX(Position unePosition);
 int obtenirY(Position unePosition);
 
