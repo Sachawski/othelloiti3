@@ -1,14 +1,14 @@
 \begin{algorithme}
 	\signaturefonction{faireUnePartie}{couleurJoueur : Couleur, obtenirLeCoup: \typePointeur{fonction}, obtenirCoups: \typePointeur{fonction}, afficherPlateau: \typePointeur{procedure}}{Couleur}
-	\signaturefonction{plateauPartie}{}{Plateau}
-	\signaturefonction{resultat}{plateau : Plateau}{Couleur}
-	\signaturefonction{nbPions}{plateau:Plateau}{\naturel,\naturel}
-	\signaturefonction{verifierFini}{plateau:Plateau}{\booleen}
+	\signaturefonction{initialiserPlateau}{}{Plateau}
+	\signaturefonction{etatPartie}{plateau:Plateau}{\booleen}
 	\signaturefonction{plateauTotalementRempli}{plateau:Plateau}{\booleen}
-	\signaturefonction{aucunPosition}{plateau:Plateau}{\booleen}
-	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos : Position , couleur : Couleur , profondeur : \naturel}}
-	\signaturefonction{verifier}{plateau:Plateau , pos : Position}{\booleen, Position}
-	\signatureProcedure{flipCoup}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{ pos1 : Position, pos2: Position}}
-
+	\signaturefonction{plateauBloque}{plateau:Plateau}{\booleen}
+	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup , profondeur : \naturel}}
+	\signaturefonction{coupLegal}{plateau:Plateau , coup : Coup}{\booleen}
+	\signatureProcedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup, coups : Coups }}
+	\signaturefonction{adversairesAdjacents}{plateau:Plateau , coup : Coup}{Coups}
+	\signaturefonction{pionMemeCouleur}{plateau:Plateau , coup : Coup, coups : Coups}{Coups}
+	\signaturefonction{obtenirCoups}{plateau:Plateau , couleur : Couleur, nb: \naturel}{Coup}
 \end{algorithme}
 
