@@ -20,25 +20,25 @@ typedef struct
 } PN_Pion;
 
 /**
-* \fn PN_Pion creerPion(CLR_couleur couleur)
-* \brief Création d’un Pion à partir d'un couleur
+* \fn PN_Pion PN_pion(CLR_couleur couleur)
+* \brief Création d’un Pion à partir d'une couleur
 * \param CLR_Couleur 
 * \return PN_Pion
 */
-PN_Pion PN_pion(CLR_Couleur);
+PN_Pion PN_pion(CLR_Couleur couleur);
 
 /**
-* \fn CLR_Couleur obtenirCouleurSuperieure(PN_Pion pion)
-* \brief obtenir le couleur de cette pion
+* \fn CLR_Couleur PN_obtenirCouleurSuperieure(PN_Pion)
+* \brief obtenir la couleur de ce pion
 * \param PN_Pion
 * \return CLR_Couleur
 */
-CLR_Couleur obtenirCouleurSuperieure(PN_Pion);
+CLR_Couleur PN_obtenirCouleurSuperieure(PN_Pion pion);
 
 /**
-* \procedure retournerPion(PN_Pion *pion)
+* \fn PN_retournerPion(PN_Pion *pion)
 * \brief retourner un pion
 * \param PN_Pion
 */
-void retournerPion(PN_Pion *);
+void PN_retournerPion(PN_Pion *pion);
 #endif

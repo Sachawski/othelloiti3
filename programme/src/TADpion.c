@@ -1,16 +1,16 @@
 #include "../include/TADpion.h"
 #include "../include/TADcouleur.h"
 
-PN_Pion PN_pion(CLR_Couleur Couleur){
+PN_Pion PN_pion(CLR_Couleur couleur){
   PN_Pion pion;
-  pion.couleur=Couleur;
+  pion.couleur=couleur;
   return pion;
 }
 
-CLR_Couleur obtenirCouleurSuperieure(PN_Pion pion){
+CLR_Couleur PN_obtenirCouleurSuperieure(PN_Pion pion){
   return pion.couleur;
 }
 
-void retournerPion(PN_Pion *pion){
+void PN_retournerPion(PN_Pion *pion){
   pion->couleur=changerCouleur(pion->couleur);
 }
