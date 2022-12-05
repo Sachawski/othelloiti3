@@ -1,4 +1,18 @@
 \begin{algorithme}
+  \type{EtatPartie}{[TERMINE,ENCOURS]}
+\end{algorithme}
+
+\begin{algorithme}
+\signatureprocedure{afficherPlateau}{\paramSortie{p:Plateau}}
+	\type{AffichagePlateau}{afficherPlateau}
+\end{algorithme}
+
+\begin{algorithme}
+  \signaturefonction{obtenirCoupEnFctDuJoueur}{p : Plateau, joueur : Couleur}{Coup}
+	\type{ObtenirCoupEnFctDuJoueur}{obtenirCoupEnFctDuJoueur}
+\end{algorithme}
+
+\begin{algorithme}
 	\signaturefonction{faireUnePartie}{obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur, plateauAAfficher : AffichagePlateau}{Couleur}
 	\signaturefonction{initialiserPlateau}{}{Plateau}
 	\signaturefonction{etatPartie}{plateau:Plateau}{gagnant : Couleur,etatPartie : EtatPartie}
