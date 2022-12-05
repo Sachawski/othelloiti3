@@ -1,14 +1,29 @@
 \begin{algorithme}
-	\signaturefonction{faireUnePartie}{couleurJoueur : Couleur, obtenirLeCoup: \typePointeur{fonction}, obtenirCoups: \typePointeur{fonction}, afficherPlateau: \typePointeur{procedure}}{Couleur}
+  \type{EtatPartie}{[TERMINE,ENCOURS]}
+\end{algorithme}
+
+\begin{algorithme}
+\signatureprocedure{afficherPlateau}{\paramSortie{p:Plateau}}
+	\type{AffichagePlateau}{afficherPlateau}
+\end{algorithme}
+
+\begin{algorithme}
+  \signaturefonction{obtenirCoupEnFctDuJoueur}{p : Plateau, joueur : Couleur}{Coup}
+	\type{ObtenirCoupEnFctDuJoueur}{obtenirCoupEnFctDuJoueur}
+\end{algorithme}
+
+\begin{algorithme}
+	\signaturefonction{faireUnePartie}{obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur, plateauAAfficher : AffichagePlateau}{Couleur}
 	\signaturefonction{initialiserPlateau}{}{Plateau}
-	\signaturefonction{etatPartie}{plateau:Plateau}{\booleen}
+	\signaturefonction{etatPartie}{plateau:Plateau}{gagnant : Couleur,etatPartie : EtatPartie}
 	\signaturefonction{plateauTotalementRempli}{plateau:Plateau}{\booleen}
 	\signaturefonction{plateauBloque}{plateau:Plateau}{\booleen}
-	\signatureProcedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup , profondeur : \naturel}}
+	\signaturefonction{evaluer}{p:Plateau,couleurAEvaluer:Couleur}{\entier}
+	\signatureprocedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup}}
 	\signaturefonction{coupLegal}{plateau:Plateau , coup : Coup}{\booleen}
-	\signatureProcedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup, coups : Coups }}
+	\signatureprocedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup, coups : Coups }}
 	\signaturefonction{adversairesAdjacents}{plateau:Plateau , coup : Coup}{Coups}
 	\signaturefonction{pionMemeCouleur}{plateau:Plateau , coup : Coup, coups : Coups}{Coups}
-	\signaturefonction{obtenirCoups}{plateau:Plateau , couleur : Couleur, nb: \naturel}{Coup}
+	\signaturefonction{coupEnFctJoueur}{couleurJoueur : Couleur,obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur}{Coup}
 \end{algorithme}
 
