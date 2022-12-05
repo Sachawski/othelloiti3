@@ -3,7 +3,11 @@
 #include <string.h>
 #include "../include/TADpion.h"
 #include "../include/TADcouleur.h"
+/* C_INCLUDE_PATH=/opt/local/include 
+export C_INCLUDE_PATH
 
+c'est l'environement de CUnit pour ma ordinateur
+*/
 int init_suite_success (void) {
   return 0;
 }
