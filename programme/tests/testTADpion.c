@@ -3,11 +3,19 @@
 #include <string.h>
 #include "../include/TADpion.h"
 #include "../include/TADcouleur.h"
-/* C_INCLUDE_PATH=/opt/local/include 
+/* C_INCLUDE_PATH=/opt/homebrew/Cellar/cunit/2.1.-3/include
 export C_INCLUDE_PATH
+
+gcc testTADpion.c -o test /opt/homebrew/Cellar/cunit/2.1-3/lib/libcunit.a
 
 c'est l'environement de CUnit pour ma ordinateur
 */
+
+
+void PN_retournerPion(PN_Pion *pion){
+  pion->couleur=changerCouleur(pion->couleur);
+}
+
 int init_suite_success (void) {
   return 0;
 }
