@@ -1,4 +1,4 @@
-#ifndef  __DEFINTIONTYPES__
+#ifndef __DEFINITIONTYPES__
 #define __DEFINITIONTYPES__
 
 #define HAUTEUR_PLATEAU 8

@@ -2,33 +2,33 @@
 #include <CUnit/Basic.h>
 #include <string.h>
 #include "../include/TADpion.h"
-#include "../include/TADposition.h"
 #include "../include/TADcouleur.h"
 
-int init suite success (void) {
+int init_suite_success (void) {
   return 0;
 }
 
-int clean suite success (void) {
+int clean_suite_success (void) {
   return 0;
 }
 
 void test_PN_obtenirCouleurSuperieure(void) {
-  PN_Pion pion= PN_pion(BLANC)
+  PN_Pion pion= PN_pion(BLANC);
   CLR_Couleur resultatAttendu= BLANC;
   CLR_Couleur resultatObtenu= PN_obtenirCouleurSuperieure(pion);
-  CU_ASSERT_EQUAL(resulatAttendu,resultatObtenu);
+  CU_ASSERT_EQUAL(resultatAttendu,resultatObtenu);
 }
 
 void test_PN_retournerPion(void){
-  PN_pion pion= PN_Pion(BLANC)
+  PN_Pion pion= PN_pion(BLANC);
   CLR_Couleur resultatAttendu= NOIR;
-  CLR_Couleur resultatObtenu= PN_retournerPion(&pion);
-  CU_ASSERT_EQUAL(resulatAttendu,resultatObtenu);
+  PN_retournerPion(&pion);
+  CLR_Couleur resultatObtenu= PN_obtenirCouleurSuperieure(pion);
+  CU_ASSERT_EQUAL(resultatAttendu,resultatObtenu);
 }
 
 int main(int argc , char** argv){
-    CU_pSuite_pSuite = NULL;
+    CU_pSuite pSuite = NULL;
 
     /* initialisation du registre de tests */
     if (CUE_SUCCESS != CU_initialize_registry())
@@ -43,7 +43,7 @@ int main(int argc , char** argv){
     }
 
     /* Ajout des tests à la suite de tests boite noire */
-    if ((NULL == CU_add_test(pSuite, "Test general de PN_obtenirCouleurSuperieur", test_PN_obtenirCouleurSuperieur ))
+    if ((NULL == CU_add_test(pSuite, "Test general de PN_obtenirCouleurSuperieur", test_PN_obtenirCouleurSuperieure ))
         || (NULL == CU_add_test(pSuite, "Test general de PN_retournerPion", test_PN_retournerPion))) {
 
         CU_cleanup_registry();

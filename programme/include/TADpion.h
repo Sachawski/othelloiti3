@@ -9,7 +9,6 @@
 
 #ifndef  __TADPION__
 #define __TADPION__
-#include "definitionTypes.h"
 #include "TADcouleur.h"
 typedef struct
 {
