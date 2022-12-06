@@ -1,13 +1,44 @@
 #ifndef  __TADPOSITION__
 #define __TADPOSITION__
-#include "definitionTypes.h"
 
-int t[]={1,2,3,4,5,6,7,8}
+/**
+2 * \file TADposition.h
+3 * \brief Implantation du TAD Position
+4 * \author P. Thulliez
+5 * \version 1.0
+6 * \date 06/12/2022
+7 *
+8 */
 
-Position position(int t largeur, hauteur );
-int obtenirX(Position unePosition);
-int obtenirY(Position unePosition);
+
+
+typedef struct 
+    {
+        /* Modélisation d'une position par ses coordonnées selon :
+        - la colonne x
+        - la ligne y
+        */
+
+        int x;
+        int y;
+    } POS_Position ;
+
+
+
+/*  fonction qui retourne une position de type Position grâce à une largeur et une hauteur en entrée 
+        */
+
+POS_Position POS_position(int largeur, hauteur );
+
+
+/*  fonction qui permet de retourner la largeur (abscisse X) d'une Position
+        */
+
+int POS_obtenirX(POS_Position unePosition);
+
+
+/*  fonction qui permet de retourner la hauteur (ordonnée Y) d'une Position
+        */
+int POS_obtenirY(POS_Position unePosition);
 
 #endif
-
-/* Je sais plus comment on définit proprement un ensemble d'entiers, c'est juste int t[8] en déclarant t avant ? */

@@ -10,6 +10,46 @@
 #ifndef  __TADPLATEAU__
 #define __TADPLATEAU__
 
+
+#define HAUTEUR_PLATEAU 8
+#define LARGEUR_PLATEAU 8
+
+/**
+ * \struct C_Case
+ * \brief Modélise une case du plateau de jeu
+ *
+ * Une case du plateau de jeu est modélisée par deux caractéristiques : 
+ * - le fait qu'elle soit vide ou non
+ * - la couleur qui y est présente
+ *
+ * \var PN_Pion C_Case::casePion
+ * \brief Pion présent sur la case
+ *
+ * \var int C_Case::estVide
+ * \brief Indique si la case est vide ou non
+ */
+
+/**
+ * \typedef PLT_Plateau
+ * \brief Plateau de jeu
+ *
+ * Plateau de jeu modélisé par un tableau de C_Case de taille LARGEUR_PLATEAU x HAUTEUR_PLATEAU
+ */
+
+typedef struct 
+    {
+        /* Modélisation d'une case par ses deux caractéristiques :
+        - le fait qu'elle soit vide ou non
+        - la couleur qui y serait présente
+        */
+
+        int estVide ;
+        PN_Pion casePion ;
+    } C_Case ;
+
+typedef C_Case PLT_Plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
+
+
 /**
 * \fn PLT_Plateau PLT_plateau()
 * \brief Création d’un Plateau vide de largeur LARGEUR_PLATEAU et hauteur HAUTEUR_PLATEAU
