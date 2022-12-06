@@ -28,7 +28,7 @@ typedef struct
 /*  fonction qui retourne une position de type Position grâce à une largeur et une hauteur en entrée 
         */
 
-POS_Position POS_position(int largeur, hauteur );
+POS_Position POS_position(int largeur, int hauteur );
 
 
 /*  fonction qui permet de retourner la largeur (abscisse X) d'une Position
