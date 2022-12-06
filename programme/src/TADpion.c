@@ -12,5 +12,5 @@ CLR_Couleur PN_obtenirCouleurSuperieure(PN_Pion pion){
 }
 
 void PN_retournerPion(PN_Pion *pion){
-  pion->couleur=changerCouleur(pion->couleur);
+  pion->couleur=CLR_changerCouleur(pion->couleur);
 }
