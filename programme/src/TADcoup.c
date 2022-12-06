@@ -1,4 +1,7 @@
-#include "../include/TADcoup.h"
+#include "TADcoup.h"
+#include "TADpion.h"
+#include "TADcoup.h"
+#include "TADposition.h"
 
 CP_Coup CP_coup(PN_Pion pion, POS_Position position) {
     CP_Coup cp;
