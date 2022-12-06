@@ -9,9 +9,15 @@
 
 #ifndef  __TADPION__
 #define __TADPION__
-#include "definitionTypes.h"
+#include "TADcouleur.h"
 
+typedef struct 
+    {
+        /* Modélisation d'un pion par sa couleur
+        */
 
+        CLR_Couleur couleur ;
+    } PN_Pion ;
 /**
 * \fn PN_Pion PN_pion(CLR_couleur couleur)
 * \brief Création d’un Pion à partir d'une couleur

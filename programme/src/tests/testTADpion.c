@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <CUnit/Basic.h>
 #include <string.h>
-#include "../include/TADpion.h"
-#include "../include/TADcouleur.h"
+#include "TADpion.h"
+#include "TADcouleur.h"
 /* 
 C_INCLUDE_PATH=/opt/local/include
 export C_INCLUDE_PATH
 
-gcc testTADpion.c -o test /opt/homebrew/Cellar/cunit/2.1-3/lib/libcunit.a
-
+gcc -c testTADpion.c  -I ../include -I /opt/homebrew/Cellar/cunit/2.1-3/in
+clude
+gcc testTADpion.o -o test -L /opt/homebrew/Cellar/cunit/2.1-3/lib -lcunit
 c'est l'environement de CUnit pour ma ordinateur
 */
 
