@@ -3,7 +3,8 @@
 #include <string.h>
 #include "../include/TADpion.h"
 #include "../include/TADcouleur.h"
-/* C_INCLUDE_PATH=/opt/homebrew/Cellar/cunit/2.1.-3/include
+/* 
+C_INCLUDE_PATH=/opt/local/include
 export C_INCLUDE_PATH
 
 gcc testTADpion.c -o test /opt/homebrew/Cellar/cunit/2.1-3/lib/libcunit.a
