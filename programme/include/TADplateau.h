@@ -47,7 +47,11 @@ typedef struct
         PN_Pion casePion ;
     } C_Case ;
 
-typedef C_Case PLT_Plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
+/*typedef C_Case PLT_Plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;*/
+
+typedef struct{
+  C_Case plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
+}PLT_Plateau;
 
 
 /**
