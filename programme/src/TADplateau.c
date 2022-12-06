@@ -1,13 +1,6 @@
 #include "../include/TADplateau.h"
 #include "../include/definitionTypes.h"
 
-PLT_Plateau PLT_plateau()
-{   
-    PLT_Plateau plateau ;
-    return plateau ;
-}
-
-
 void PLT_poserPion(PLT_Plateau* plateau, POS_Position pos, PN_Pion pion);
 {
     int x = pos.x ;
