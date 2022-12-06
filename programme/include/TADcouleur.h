@@ -14,22 +14,22 @@
 
  /* Modélisation de la couleur Noir
     */
-CLR_Couleur noir();
+CLR_Couleur CLR_noir();
 
  /* Modélisation de la couleur Blanc
     */
-CLR_Couleur blanc();
+CLR_Couleur CLR_blanc();
 
  /* fonction permettant de savoir si la couleur est Blanc.
     Retourne Vrai (1) si la couleur est Blanc et Faux (0) si la couleur est Noir
     */
-int estBlanc(CLR_Couleur c);
+int CLR_estBlanc(CLR_Couleur c);
 
  /* fonction qui change la couleur d'une couleur donnée
     Si la couleur donnée est Blanc, la fonction changerCouleur retourne Noir
     Si la couleur donnée est Noir, la fonction changerCouleur retourne Blanc
     */
 
-CLR_Couleur changerCouleur(CLR_Couleur c1);
+CLR_Couleur CLR_changerCouleur(CLR_Couleur c1);
 
 #endif
