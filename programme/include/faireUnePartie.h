@@ -55,7 +55,7 @@ void faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau pla
 * \param CP_Coup
 * \return bool
 */
-bool coupLegal(PLT_Plateau plateau, CP_Coup coup);
+int coupLegal(PLT_Plateau plateau, CP_Coup coup);
 
 
 /**
@@ -114,7 +114,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
 * \param PLT_Plateau
 * \return bool
 */
-bool plateauTotalementRempli(PLT_Plateau plateau);
+int plateauTotalementRempli(PLT_Plateau plateau);
 
 
 /**
