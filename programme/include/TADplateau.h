@@ -50,15 +50,7 @@ typedef struct
         PN_Pion casePion ;
     } C_Case ;
 
-<<<<<<< HEAD
-=======
-/*typedef C_Case PLT_Plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;*/
 
-typedef struct{
-  C_Case plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
-}PLT_Plateau;
-
->>>>>>> 1e6169fbd1a9cfccf0aea035150f50761552ceae
 
 typedef struct 
     {
