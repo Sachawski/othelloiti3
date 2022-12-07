@@ -49,7 +49,7 @@ void faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau pla
 
 
 /**
-* \fn bool coupLegal(PLT_Plateau plateau, CP_Coup coup)
+* \fn int coupLegal(PLT_Plateau plateau, CP_Coup coup)
 * \brief détermination de la légalité
 * \param PLT_Plateau
 * \param CP_Coup
@@ -109,7 +109,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
 
 
 /**
-* \fn bool plateauTotalementRempli(PLT_Plateau plateau)
+* \fn int plateauTotalementRempli(PLT_Plateau plateau)
 * \brief 
 * \param PLT_Plateau
 * \return bool
@@ -118,12 +118,12 @@ int plateauTotalementRempli(PLT_Plateau plateau);
 
 
 /**
-* \fn bool plateauBloque(PLT_Plateau plateau)
+* \fn int plateauBloque(PLT_Plateau plateau)
 * \brief 
 * \param PLT_Plateau
 * \return bool
 */
-bool plateauBloque(PLT_Plateau plateau);
+int plateauBloque(PLT_Plateau plateau);
 
 
 /**
