@@ -10,9 +10,12 @@
 #ifndef  __TADPLATEAU__
 #define __TADPLATEAU__
 
-
 #define HAUTEUR_PLATEAU 8
 #define LARGEUR_PLATEAU 8
+#define INF_NEGATIF -1024
+#define INF_POSITIF 1024
+#include "TADposition.h"
+#include "TADpion.h"
 
 /**
  * \struct C_Case
@@ -47,9 +50,11 @@ typedef struct
         PN_Pion casePion ;
     } C_Case ;
 
-typedef C_Case PLT_Plateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
 
-
+typedef struct 
+    {
+        C_Case tabPlateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ;
+    } PLT_Plateau ;
 /**
 * \fn PLT_Plateau PLT_plateau()
 * \brief Création d’un Plateau vide de largeur LARGEUR_PLATEAU et hauteur HAUTEUR_PLATEAU
@@ -87,7 +92,7 @@ PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos);
 * \return bool
 */
 
-bool PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos);
+int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos);
 /**
 * \fn void PLT_retournerPion(PLT_Plateau* plateau, POS_Position pos)
 * \brief Modifie un plateau pour retourner un pion
