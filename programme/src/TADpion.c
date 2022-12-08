@@ -1,5 +1,5 @@
-#include "../include/TADpion.h"
-#include "../include/TADcouleur.h"
+#include "TADpion.h"
+#include "TADcouleur.h"
 
 PN_Pion PN_pion(CLR_Couleur couleur){
   PN_Pion pion;
