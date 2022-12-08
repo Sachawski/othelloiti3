@@ -5,6 +5,7 @@ POS_Position POS_position(int largeur, int hauteur){
 
   pos.x = largeur;
   pos.y = hauteur;
+  return pos;
 }
 
 int POS_obtenirX(POS_Position unePosition){

@@ -37,7 +37,7 @@ typedef enum{Egalisation, gagnant} EtatPartie;/* pas sûr */
 
 
 /**
-* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*affichier)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
+* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
 * \brief 
 * \param obtenirCoupEnFctDuJoueur 
 * \param obtenirCoupEnFctDuJoueur
@@ -45,7 +45,7 @@ typedef enum{Egalisation, gagnant} EtatPartie;/* pas sûr */
 * \param EtatPartie
 * \param CLR_Couleur
 */
-void faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupNoir)(PLT_Plateau plateau), affichagePlateau (*affichier)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur);
+void faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupNoir)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur);
 
 
 /**
