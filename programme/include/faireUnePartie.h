@@ -21,7 +21,7 @@
  * \brief affichier le plateau
  */
 typedef void (*affichagePlateau)(PLT_Plateau plateau);
-affichagePlateau afficherPlateau;
+/*affichagePlateau afficherPlateau;*/
 
 /**
 *
@@ -30,8 +30,8 @@ affichagePlateau afficherPlateau;
 */
 typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
 
-obtenirCoupEnFctDuJoueur obtenirCoupBlanc;
-obtenirCoupEnFctDuJoueur obtenirCoupNoir;
+/*obtenirCoupEnFctDuJoueur obtenirCoupBlanc;*/
+/*obtenirCoupEnFctDuJoueur obtenirCoupNoir;*/
 
 /**
  * \typedef EtatPartie
