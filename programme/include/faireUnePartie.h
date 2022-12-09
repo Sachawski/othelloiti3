@@ -21,7 +21,7 @@
  * \brief affichier le plateau
  */
 typedef void (*affichagePlateau)(PLT_Plateau plateau);
-
+affichagePlateau afficherPlateau;
 
 /**
 *
@@ -30,6 +30,8 @@ typedef void (*affichagePlateau)(PLT_Plateau plateau);
 */
 typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
 
+obtenirCoupEnFctDuJoueur obtenirCoupBlanc;
+obtenirCoupEnFctDuJoueur obtenirCoupNoir;
 
 /**
  * \typedef EtatPartie
@@ -144,4 +146,6 @@ int evaluer(PLT_Plateau plateau, CLR_Couleur couleur);
 * \return PLT_Plateau
 */
 PLT_Plateau initialiserPlateau(void);
+
+void afficherPlateau(PLT_Plateau plateau);
 #endif

@@ -49,3 +49,7 @@ void afficherPlateau(PLT_Plateau plateau){
     printf("  └─────────────────────────┘\n  ");
 
 }
+
+int coupLegal(PLT_Plateau plateau, CP_Coup coup){
+  
+}
