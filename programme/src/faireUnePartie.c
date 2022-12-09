@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "TADplateau.h"
-#include "TADpion.h"
-#include "TADposition.h"
-#include "TADcouleur.h"
+#include "faireUnePartie.h"
 PLT_Plateau initialiserPlateau(void){
   PLT_Plateau plateau;
   PN_Pion pion;

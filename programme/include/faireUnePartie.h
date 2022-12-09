@@ -6,6 +6,8 @@
 6 * \date 06/12/2022
 7 *
 8 */
+#ifndef __FAIREUNEPARITE__
+#define __FAIREUNEPARTIE__
 #include "TADcouleur.h"
 #include "TADcoup.h"
 #include "TADcoups.h"
@@ -142,3 +144,4 @@ int evaluer(PLT_Plateau plateau, CLR_Couleur couleur);
 * \return PLT_Plateau
 */
 PLT_Plateau initialiserPlateau(void);
+#endif
