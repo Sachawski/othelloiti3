@@ -3,6 +3,12 @@
 #include "TADplateau.h"
 #include "TADcouleur.h"
 
+
+/**
+ * \fn PLT_Plateau PLT_plateau()
+ * \brief Fonction qui initialise un plateau de jeu
+ * \return Un plateau initialisé
+ */
 PLT_Plateau PLT_plateau()
 {
     PLT_Plateau plateau ;
@@ -17,14 +23,28 @@ PLT_Plateau PLT_plateau()
     return plateau ;
 }
 
+/**
+ * \fn void PLT_poserPion(PLT_Plateau* plateau, POS_Position pos, PN_Pion pion)
+ * \brief Fonction qui pose un pion sur le plateau
+ * \param plateau Le plateau de jeu
+ * \param pos La position du pion
+ * \param pion Le pion à poser
+ */
 void PLT_poserPion(PLT_Plateau* plateau, POS_Position pos, PN_Pion pion)
 {
     int x = pos.x ;
     int y = pos.y ; 
+    plateau->tabPlateau[x][y].estVide = 0 ;
     plateau->tabPlateau[x][y].casePion = pion ;
 }
 
-
+/**
+ * \fn PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos)
+ * \brief Fonction qui obtient le pion qui se trouve sur le plateau
+ * \param plateau Le plateau de jeu
+ * \param pos La position du pion
+ * \return Le pion trouvé
+ */
 PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos)
 {
     int x = pos.x ;
@@ -33,7 +53,13 @@ PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos)
     return res ;
 }
 
-
+/**
+ * \fn int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos)
+ * \brief Fonction qui indique si la case est vide
+ * \param plateau Le plateau de jeu
+ * \param pos La position de la case
+ * \return Un entier indiquant si la case est vide
+ */
 int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos)
 {
     int x = pos.x ;
@@ -42,7 +68,12 @@ int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos)
     return res ;
 }
 
-
+/**
+ * \fn void PLT_retournerPion(PLT_Plateau* plateau, POS_Position pos)
+ * \brief Fonction qui retourne un pion sur le plateau
+ * \param plateau Le plateau de jeu
+ * \param pos La position du pion
+ */
 void PLT_retournerPion(PLT_Plateau* plateau, POS_Position pos)
 {
     PN_Pion pion = PLT_obtenirPion(*plateau, pos);
@@ -52,6 +83,12 @@ void PLT_retournerPion(PLT_Plateau* plateau, POS_Position pos)
 }
 
 
+/**
+ * \fn void PLT_enleverPion(PLT_Plateau* plateau, POS_Position pos)
+ * \brief Fonction qui enlève un pion du plateau
+ * \param plateau Le plateau de jeu
+ * \param pos La position du pion à enlever
+ */
 void PLT_enleverPion(PLT_Plateau* plateau, POS_Position pos)
 {
     int x = pos.x ; 
