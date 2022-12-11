@@ -35,9 +35,9 @@ typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
 
 /**
  * \typedef EtatPartie
- * \brief il y a deux conditions: Egalisation et Agagnant
+ * \brief il y a trois conditions:En cours, Egalisation et Agagnant
  */
-typedef enum{Egalisation, gagnant} EtatPartie;/* pas sûr */
+typedef enum{enCours,Egalisation, gagnant} EtatPartie;
 
 
 /**

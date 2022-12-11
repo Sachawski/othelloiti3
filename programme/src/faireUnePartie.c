@@ -102,3 +102,16 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     }
     return coupsLegals;
 }
+
+void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
+  if (/*Conditions de départage des égalités*/1){
+    egalite=Egalisation;
+  }
+  if (/*Situation gagnante*/1){
+    egalite=gagnant;
+    couleur=1;/*couleur gagnant*/
+  }
+  if (/*Pas encore fini*/1){
+    egalite=enCours;
+  }
+}
