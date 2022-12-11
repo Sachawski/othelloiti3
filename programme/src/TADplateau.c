@@ -95,3 +95,4 @@ void PLT_enleverPion(PLT_Plateau* plateau, POS_Position pos)
     int y = pos.y ;
     plateau->tabPlateau[x][y].estVide = 1 ;
 }
+

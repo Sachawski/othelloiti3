@@ -14,9 +14,7 @@ c'est l'environement de CUnit pour ma ordinateur
 */
 
 
-void PN_retournerPion(PN_Pion *pion){
-  pion->couleur=CLR_changerCouleur(pion->couleur);
-}
+
 
 int init_suite_success (void) {
   return 0;

@@ -8,6 +8,7 @@ CP_Coup CP_coup(PN_Pion pion, POS_Position position) {
 
     cp.pion = pion;
     cp.position = position;
+    return cp;
 }
 
 PN_Pion CP_pion(CP_Coup coup) {
@@ -17,3 +18,4 @@ PN_Pion CP_pion(CP_Coup coup) {
 POS_Position CP_position(CP_Coup coup) {
     return coup.position;
 }
+

@@ -75,6 +75,8 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
         return 0;
 }
 
+
+
 CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     int recherche, minx, miny, maxx, maxy, x, y;
     POS_Position position, positionTemp;
@@ -109,7 +111,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
   }
   if (/*Situation gagnante*/1){
     egalite=gagnant;
-    couleur=1;/*couleur gagnant*/
+    couleur=NOIR;/*couleur gagnant*/
   }
   if (/*Pas encore fini*/1){
     egalite=enCours;
