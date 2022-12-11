@@ -5,6 +5,7 @@ TESTDIR=$(SRCDIR)/tests
 TESTBINDIR=tests
 INCLUDEDIR=include #-I /opt/homebrew/Cellar/cunit/2.1-3/include #c'est l'environement pour chen
 #LIBTDIR=/opt/homebrew/Cellar/cunit/2.1-3/lib #même c'est pour chen
+#CUNITDIR=/opt/homebrew/Cellar/cunit/2.1-3/include
 CC = gcc
 AR = ar
 CFLAGS=-Wall -pedantic -g -std=gnu99
