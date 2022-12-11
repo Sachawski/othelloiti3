@@ -106,14 +106,20 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
 }
 
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
-  if (/*Conditions de départage des égalités*/1){
-    egalite=Egalisation;
-  }
-  if (/*Situation gagnante*/1){
-    egalite=gagnant;
-    couleur=NOIR;/*couleur gagnant*/
-  }
-  if (/*Pas encore fini*/1){
-    egalite=enCours;
-  }
+    EtatPartie e;
+    CLR_Couleur c;
+    if (/*Conditions de départage des égalités*/1){
+      e=Egalisation;
+      *egalite=e;
+    }
+    if (/*Situation gagnante*/1){
+      e=gagnant;
+      c=NOIR;/*couleur gagnant*/
+      *egalite=gagnant;
+      couleur=c;/*couleur gagnant*/
+    }
+    if (/*Pas encore fini*/1){
+      e=gagnant;
+      *egalite=e;
+    }
 }
