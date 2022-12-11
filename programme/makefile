@@ -13,7 +13,7 @@ CFLAGS=-Wall -pedantic -g -std=gnu99
 EXEC=othello
 
 tests:  $(TESTDIR)/testTADpion.o $(LIBDIR)/libTAD.a #ici si je veux test "testTADcoup.c" il faut ecrire $(TESTDIR)/testTADcoup.o au lieu de $(TESTDIR)/testTADpion.o
-	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTAD $(TESTDIR)/testTADpion.o -lTAD -L$(LIBDIR) -L$(LIBTDIR) -lcunit 
+	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTAD $(TESTDIR)/testTADpion.o -lTAD -L$(LIBDIR)  -lcunit 
   # si je veux test "testTADcoup.c" il faut ecrire $(TESTDIR)/testTADcoup.o au lieu de $(TESTDIR)/testTADpion.o
 $(LIBDIR)/libTAD.a : $(SRCDIR)/TADpion.o $(SRCDIR)/TADcouleur.o $(SRCDIR)/TADcoup.o $(SRCDIR)/TADplateau.o #$(SRCDIR)/faireUnePartie.o $(SRCDIR)/obtenirCoup.o
 	$(AR)  -r $@  $^
@@ -25,7 +25,7 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR)
 
 $(TESTDIR)/%.o : $(TESTDIR)/%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR) -I$(CUNITDIR)
+	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDEDIR) 
 
 clean :
 	rm -rf $(BINDIR)/*
