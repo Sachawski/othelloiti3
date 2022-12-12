@@ -6,10 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-CPS_Coups CPS_coups{
-  CPS_Coups coups;
-  coups.nbTotalCoups=0;
-  return coups;
+CPS_Coups CPS_coups() {
+  CPS_Coups resultat;
+
+  resultat.nbTotalCoups=0;
+  return resultat;
 }
 
 int CPS_nbCoups(CPS_Coups cps){
