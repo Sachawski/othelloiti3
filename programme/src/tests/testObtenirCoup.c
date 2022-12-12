@@ -7,6 +7,8 @@
 #include "TADposition.h"
 #include "TADcouleur.h"
 
+#define PROFONDEUR_THEO 10 
+
 
 int init_suite_success (void) {
     return 0;
@@ -16,9 +18,8 @@ int clean_suite_success (void) {
     return 0;
 }
 
-void test_CP_pion(void) {
+void test_obtenirCoupsPossibles(void) {
     PLT_PLATEAU plateau;
-    CPS_Coups resultatAttendu;
 
     initialiserPlateau(&plateau);
     // Coups jouables dès le début par les noirs
@@ -31,6 +32,51 @@ void test_CP_pion(void) {
     CPS_Coups resultatObtenu = obtenirCoupsPossibles(plateau,NOIR);
     CU_ASSERT_EQUAL(resultatAttendu.nbTotalCoups,resultatObtenu.nbTotalCoups);
     CU_ASSERT_EQUAL(resultatAttendu.lesCoups,resultatObtenu.lesCoups);
+}
+
+void test_obtenirCoup(void) {
+    PLT_PLATEAU plateau;
+
+     initialiserPlateau(&plateau);
+    // Création d'une situation de jeu compliquée
+    PLT_poserPion(&plateau,POS_position(4,0),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(5,0),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(6,0),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(2,1),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(3,1),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(4,1),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(5,1),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,2),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(3,2),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(4,2),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(5,2),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(7,2),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(5,3),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(6,3),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(7,3),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(5,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(6,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(7,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,5),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(3,5),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(4,5),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(5,5),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(6,5),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(7,5),PN_pion(NOIR));
+    PLT_retournerPion(&plateau,POS_position(3,3));
+    PLT_retournerPion(&plateau,POS_position(4,4));
+    PLT_retournerPion(&plateau,POS_position(4,3));
+
+    // Meilleur coup théorique pour les noirs
+    CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0))
+
+    // Meilleur pour les noirs d'après la machine
+    CP_Coup resultatObtenu = obtenirCoup(&plateau,NOIR,PROFONDEUR_THEO);
+    CU_ASSERT_EQUAL(resultatAttendu.pion.couleur,resultatObtenu.pion.couleur);
+    CU_ASSERT_EQUAL(resultatAttendu.position.x,resultatObtenu.position.x);
+    CU_ASSERT_EQUAL(resultatAttendu.position.y,resultatObtenu.position.y);
 }
 
 
