@@ -10,6 +10,7 @@
 #ifndef __TADCOUPS__
 #define __TADCOUPS__
 #include "TADcoup.h"
+#include "TADplateau.h"
 
 typedef struct 
     {   
