@@ -152,3 +152,30 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
       *egalite=e;
     }
 }
+
+int plateauBloque(PLT_Plateau plateau){
+  CP_Coup coup; unsigned short i; unsigned short j; POS_Position pos;
+  for(i=1;LARGEUR_PLATEAU;i++){
+    for(j=1;HAUTEUR_PLATEAU;j++){
+      pos = POS_position(i,j);
+      coup = CP_coup(PLT_obtenirPion(plateau,pos));
+      if(cardinalite(prisAuPiege(plateau,coup)) != 0){
+	return 0;
+      }
+    }
+  }
+  return 1;
+}
+
+int plateauBloque(PLT_Plateau plateau){
+  POS_Position pos; unsigned short i; unsigned short j;
+  for(i=1;LARGEUR_PLATEAU;i++){
+    for(j=1;HAUTEUR_PLATEAU;j++){
+      pos = POS_position(i,j);
+      if(PLT_estCaseVide(plateau,pos)){
+	return 0;
+      }
+    }
+  }
+  return 1;
+}
