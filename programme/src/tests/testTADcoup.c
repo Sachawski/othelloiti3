@@ -1,40 +1,41 @@
 #include <stdio.h>
 #include <CUnit/Basic.h>
 #include <string.h>
-#include "../include/TADcoup.h"
-#include "../include/TADpion.h"
-#include "../include/TADposition.h"
-#include "../include/TADcouleur.h"
+#include "TADcoup.h"
+#include "TADpion.h"
+#include "TADposition.h"
+#include "TADcouleur.h"
 
 
-int init suite success (void) {
+int init_suite_success (void) {
     return 0;
 }
 
-int clean suite success (void) {
+int clean_suite_success (void) {
     return 0;
 }
 
 void test_CP_pion(void) {
-    POS_Position position = POS_position(6,6)
-    PN_Pion pion = PN_pion(BLANC)
-    CP_Coup cp = CP_coup(pion,position)
+    POS_Position position = POS_position(6,6);
+    PN_Pion pion = PN_pion(BLANC);
+    CP_Coup cp = CP_coup(pion,position);
     PN_Pion resultatAttendu = pion;
     PN_Pion resultatObtenu = CP_pion(cp);
-    CU_ASSERT_EQUAL(resulatAttendu,resultatObtenu);
+    CU_ASSERT_EQUAL(resultatAttendu.couleur,resultatObtenu.couleur);
 }
 
 void test_CP_position(void) {
-    POS_Position position = POS_position(6,6)
-    PN_Pion pion = PN_pion(BLANC)
-    CP_Coup cp = CP_coup(pion,position)
+    POS_Position position = POS_position(6,6);
+    PN_Pion pion = PN_pion(BLANC);
+    CP_Coup cp = CP_coup(pion,position);
     POS_Position resultatAttendu = position;
     POS_Position resultatObtenu = CP_position(cp);
-    CU_ASSERT_EQUAL(resulatAttendu,resultatObtenu);
+    CU_ASSERT_EQUAL(resultatAttendu.x,resultatObtenu.x);
+    CU_ASSERT_EQUAL(resultatAttendu.y,resultatObtenu.y);
 }
 
 int main(int argc , char** argv){
-    CU_pSuite_pSuite = NULL;
+    CU_pSuite pSuite = NULL;
 
     /* initialisation du registre de tests */
     if (CUE_SUCCESS != CU_initialize_registry())
