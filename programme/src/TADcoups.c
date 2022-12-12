@@ -7,18 +7,8 @@
 #include <stdlib.h>
 
 CPS_Coups CPS_coups{
-  CPS_Coups coups; unsigned short int i;unsigned short int j; unsigned short int k; POS_Position pos; PN_Pion pion; Plateau plateau;
+  CPS_Coups coups;
   coups.nbTotalCoups=0;
-  k=0;
-  plateau = PLT_plateau();
-    for(i=1,LARGEUR_PLATEAU,i++){
-      for(j=1;HAUTEUR_PLATEAU;j++){
-	  pos = POS_position(i,j);
-	  pion=PLT_obtenirPion(plateau,pos);
-	  coups.lesCoups[k]=CP_coup(pion,pos);
-	  k++;
-	}
-    }
   return coups;
 }
 
