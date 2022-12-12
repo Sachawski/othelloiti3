@@ -50,32 +50,6 @@ void afficherPlateau(PLT_Plateau plateau){
 
 }
 
-int coupLegal(PLT_Plateau plateau, CP_Coup coup){
-    POS_Position position;
-    CPS_Coups pionLegals;
-    position= CP_position(coup);
-    pionLegals= CPS_coups();
-    if (PLT_estCaseVide(plateau, position)){
-        if (CPS_nbCoups(adversairesAdjacents(plateau, coup))!=0){
-            pionLegals= adversairesAdjacents(plateau, coup);
-        
-            if (CPS_nbCoups(pionMemeCouleur(plateau, coup, pionLegals))!=0){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
-        else{
-            return 0;
-        }
-        
-    }
-    else
-        return 0;
-}
-
-
 
 CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     int recherche, minx, miny, maxx, maxy, x, y;
@@ -103,6 +77,61 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
         y+= 1;
     }
     return coupsLegals;
+}
+
+CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal){
+    CPS_Coups lesPionsMemeCouleur;
+    int nb, i, x, y, directionX, directionY;
+    int recherche;
+    POS_Position pos;
+    CP_Coup coupTemp;
+    recherche= 0;
+    lesPionsMemeCouleur= CPS_coups();
+    nb= CPS_nbCoups(pionLegal)- 1;
+    for (i= 0; i<= nb; i++){
+        recherche= 0;
+        coupTemp= CPS_iemeCoup(pionLegal, i);
+        x= POS_obtenirX(CP_position(coupTemp));
+        y= POS_obtenirY(CP_position(coupTemp));
+        directionX= x- POS_obtenirX(CP_position(coupTemp));
+        directionY= y- POS_obtenirY(CP_position(coupTemp));
+        while (!recherche){
+            x+= directionX;
+            y+= directionY;
+            if (x>= 0&& x<=7&& y>= 0&& y<=7){
+                pos= POS_position(x, y);
+                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))){
+                    CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
+                }
+            }
+        }
+    }
+    return lesPionsMemeCouleur;
+}
+
+int coupLegal(PLT_Plateau plateau, CP_Coup coup){
+    POS_Position position;
+    CPS_Coups pionLegals;
+    position= CP_position(coup);
+    pionLegals= CPS_coups();
+    if (PLT_estCaseVide(plateau, position)){
+        if (CPS_nbCoups(adversairesAdjacents(plateau, coup))!=0){
+            pionLegals= adversairesAdjacents(plateau, coup);
+        
+            if (CPS_nbCoups(pionMemeCouleur(plateau, coup, pionLegals))!=0){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return 0;
+        }
+        
+    }
+    else
+        return 0;
 }
 
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
