@@ -5,7 +5,9 @@
  * \date 05/12/2022     
  */
 
-#include "obtenirCoupSacha.h"
+#include "obtenirCoup.h"
+#include "obtenirCoupPrive.h"
+#include "faireUnePartiePrive.h"
 #include "faireUnePartie.h"
 #include "faireUnePartiePrive.h"
 #include "TADposition.h" 
@@ -21,7 +23,7 @@
 #define MAX(i, j) (((i) > (j)) ? (i) : (j))
 
 
-void copierPlateau(PlT_Plateau plateau_src, PlT_Plateau *plateau_dst) {
+void copierPlateau(PLT_Plateau plateau_src, PLT_Plateau *plateau_dst) {
   for (int i = 0; i < LARGEUR_PLATEAU; i++) {
     for (int j = 0; i < HAUTEUR_PLATEAU; j++) {
         *plateau_dst[j][i] = plateau_src[j][i];

@@ -2,10 +2,14 @@
 #include <CUnit/Basic.h>
 #include <string.h>
 #include "faireUnePartiePrive.h"
+#include "faireUnePartie.h"
+#include "obtenirCoup.h"
+#include "obtenirCoupPrive.h"
 #include "TADcoup.h"
 #include "TADpion.h"
 #include "TADposition.h"
 #include "TADcouleur.h"
+#include "TADplateau.h"
 
 #define PROFONDEUR_THEO 10 
 
@@ -19,14 +23,15 @@ int clean_suite_success (void) {
 }
 
 void test_obtenirCoupsPossibles(void) {
-    PLT_PLATEAU plateau;
+    PLT_Plateau plateau;
+    CPS_Coups resultatAttendu;
 
-    initialiserPlateau(&plateau);
+    plateau = initialiserPlateau();
     // Coups jouables dès le début par les noirs
-    CPS_ajouterCoups(resultatAttendu,CU_coup(PN_pion(NOIR),POS_position(2,3)));
-    CPS_ajouterCoups(resultatAttendu,CU_coup(PN_pion(NOIR),POS_position(3,2)));
-    CPS_ajouterCoups(resultatAttendu,CU_coup(PN_pion(NOIR),POS_position(5,4)));
-    CPS_ajouterCoups(resultatAttendu,CU_coup(PN_pion(NOIR),POS_position(4,5)));
+    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(2,3)));
+    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(3,2)));
+    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(5,4)));
+    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(4,5)));
 
     // Coups jouables dès le début par les noirs (d'après la fonction)
     CPS_Coups resultatObtenu = obtenirCoupsPossibles(plateau,NOIR);
@@ -35,9 +40,9 @@ void test_obtenirCoupsPossibles(void) {
 }
 
 void test_obtenirCoup(void) {
-    PLT_PLATEAU plateau;
+    PLT_Plateau plateau;
 
-     initialiserPlateau(&plateau);
+    plateau = initialiserPlateau();
     // Création d'une situation de jeu compliquée
     PLT_poserPion(&plateau,POS_position(4,0),PN_pion(BLANC));
     PLT_poserPion(&plateau,POS_position(5,0),PN_pion(BLANC));
@@ -70,10 +75,10 @@ void test_obtenirCoup(void) {
     PLT_retournerPion(&plateau,POS_position(4,3));
 
     // Meilleur coup théorique pour les noirs
-    CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0))
+    CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0));
 
     // Meilleur pour les noirs d'après la machine
-    CP_Coup resultatObtenu = obtenirCoup(&plateau,NOIR,PROFONDEUR_THEO);
+    CP_Coup resultatObtenu = obtenirCoup(plateau,NOIR,PROFONDEUR_THEO);
     CU_ASSERT_EQUAL(resultatAttendu.pion.couleur,resultatObtenu.pion.couleur);
     CU_ASSERT_EQUAL(resultatAttendu.position.x,resultatObtenu.position.x);
     CU_ASSERT_EQUAL(resultatAttendu.position.y,resultatObtenu.position.y);
@@ -97,8 +102,8 @@ int main(int argc , char** argv){
     }
 
     /* Ajout des tests à la suite de tests boite noire */
-    if ((NULL == CU_add_test(pSuite, "Test general de CP_pion", test_CP_pion ))
-        || (NULL == CU_add_test(pSuite, "Test general de CP_Position", test_CP_position))) {
+    if ((NULL == CU_add_test(pSuite, "Test general de obtenirCoupsPossibles", test_obtenirCoupsPossibles ))
+        || (NULL == CU_add_test(pSuite, "Test general de obtenirCoup", test_obtenirCoup))) {
 
         CU_cleanup_registry();
         return CU_get_error();
