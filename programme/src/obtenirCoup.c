@@ -25,8 +25,8 @@
 
 void copierPlateau(PLT_Plateau plateau_src, PLT_Plateau *plateau_dst) {
   for (int i = 0; i < LARGEUR_PLATEAU; i++) {
-    for (int j = 0; i < HAUTEUR_PLATEAU; j++) {
-        *plateau_dst[j][i] = plateau_src[j][i];
+    for (int j = 0; j < HAUTEUR_PLATEAU; j++) {
+        plateau_dst->tabPlateau[j][i] = plateau_src.tabPlateau[j][i];
     }
   }
 }
@@ -67,7 +67,7 @@ int compteurCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
  */
 int evaluer(PLT_Plateau plateau, CLR_Couleur joueur)
 {
-    return score(plateau,couleur)-score(plateau,CLR_changerCouleur(couleur)) ;
+    return score(plateau,joueur)-score(plateau,CLR_changerCouleur(joueur)) ;
 }
 
 /**
@@ -144,15 +144,7 @@ CPS_Coups obtenirCoupsPossibles(PLT_Plateau unPlateau, CLR_Couleur joueurRef) {
  */
 int  plateauBloque(PLT_Plateau plateau)
 {
-    CPS_Coups lesCoupsNoirs,lesCoupsBlancs;
-    lesCoupsNoirs = obtenirCoupsPossibles(plateau,CLR_blanc());
-    lesCoupsBlancs = obtenirCoupsPossibles(plateau,CLR_noir());
-    if  (( lesCoupsNoirs.nbTotalCoups == 0 ) && ( lesCoupsBlancs.nbTotalCoups == 0 ))
-    {
-        return 1;
-    } else {
-        return 0  ;
-    }
+    return plateauBloquePourUneCouleur(plateau,NOIR) && plateauBloquePourUneCouleur(plateau,BLANC);
 }
 
 /**
@@ -183,7 +175,7 @@ int plateauBloquePourUneCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
 int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCourant, CP_Coup unCoup, int profondeur, int alpha, int beta) {
     PLT_Plateau copieUnPlateau;
 
-    copierPlateau(unPlateau,copieUnPlateau)
+    copierPlateau(unPlateau,&copieUnPlateau);
     jouer(&copieUnPlateau,unCoup);
     if(plateauTotalementRempli(copieUnPlateau) || plateauBloque(copieUnPlateau) || (profondeur == 0)) {
         return evaluer(copieUnPlateau,joueurRef);
