@@ -23,6 +23,10 @@ int plateauEgaux(PLT_Plateau plateau1, PLT_Plateau plateau2) {
   while(sontEgaux && (i<HAUTEUR_PLATEAU)) {
     while(sontEgaux && (j<LARGEUR_PLATEAU)){
         sontEgaux = ((plateau1.tabPlateau[i][j].estVide == plateau2.tabPlateau[i][j].estVide) );
+        if (!(plateau1.tabPlateau[i][j].estVide == plateau2.tabPlateau[i][j].estVide)){
+            sontEgaux = (plateau1.tabPlateau[i][j].casePion.couleur == plateau2.tabPlateau[i][j].casePion.couleur);
+        }
+        
         j++;
     }
     i++;
@@ -30,10 +34,12 @@ int plateauEgaux(PLT_Plateau plateau1, PLT_Plateau plateau2) {
   return sontEgaux; 
 }
 
+
 void test_PLT_plateau(void) {
     C_Case cV ;
     cV.estVide = 1 ;
-    C_Case plateauVide[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
+
+    C_Case tableauVide[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
         { cV, cV, cV, cV, cV, cV, cV, cV},
         { cV, cV, cV, cV, cV, cV, cV, cV},
         { cV, cV, cV, cV, cV, cV, cV, cV},
@@ -43,11 +49,12 @@ void test_PLT_plateau(void) {
         { cV, cV, cV, cV, cV, cV, cV, cV},
         { cV, cV, cV, cV, cV, cV, cV, cV}
     };
-    
-    PLT_Plateau plateauAttendu ;
-    memcpy(plateauAttendu.tabPlateau,plateauVide,sizeof(C_Case)*HAUTEUR_PLATEAU*LARGEUR_PLATEAU);
+    PLT_Plateau plateauAttendu;
 
+    memcpy(plateauAttendu.tabPlateau,tableauVide,sizeof(C_Case)*HAUTEUR_PLATEAU*LARGEUR_PLATEAU);
+    
     PLT_Plateau plateauObtenu = PLT_plateau();
+
     CU_ASSERT_TRUE(plateauEgaux(plateauAttendu,plateauObtenu));
 
 }
