@@ -127,7 +127,7 @@ CPS_Coups obtenirCoupsPossibles(PLT_Plateau unPlateau, CLR_Couleur joueurRef) {
         for(j=1; j <=LARGEUR_PLATEAU; j++){
             coupTemp = CP_coup(PN_pion(joueurRef),POS_position(j,i));
             if(coupLegal(unPlateau,coupTemp)){
-                CPS_ajouterCoups(resultat,coupTemp);
+                CPS_ajouterCoups(&resultat,coupTemp);
             }
         }
     }
