@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "faireUnePartie.h"
+#include "obtenirCoupPrive.h"
 #include <math.h>
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
-    PN_Pion pion;
-    POS_Position position;
     plateau=PLT_plateau();
     PLT_poserPion(&plateau, POS_position(3, 3), PN_pion(CLR_noir()));
     PLT_poserPion(&plateau, POS_position(3, 4), PN_pion(CLR_blanc()));
@@ -13,6 +12,8 @@ PLT_Plateau initialiserPlateau(void){
     PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_noir()));
   return plateau;
 }
+
+
 
 void afficherPlateau(PLT_Plateau plateau){
     system("clear");
@@ -30,7 +31,6 @@ void afficherPlateau(PLT_Plateau plateau){
             case BLANC:
                 printf(" ● ");        //BLANC
                 break;
-
           }
         }
         if( i%8 == 7 ) printf("│\n");
@@ -68,6 +68,8 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     return coupsLegals;
 }
 
+
+
 CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal){
     CPS_Coups lesPionsMemeCouleur;
     int nb, i, x, y, directionX, directionY;
@@ -98,6 +100,8 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
     return lesPionsMemeCouleur;
 }
 
+
+
 int coupLegal(PLT_Plateau plateau, CP_Coup coup){
     POS_Position position;
     CPS_Coups pionLegals;
@@ -123,48 +127,23 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
         return 0;
 }
 
+int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
+  
+}
+
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     EtatPartie e;
     CLR_Couleur c;
-    if (){
-      e=Egalisation;
-      *egalite=e;
+    if (!plateauBloque(plateau)){
+        e=partieNulle;
+        *egalite=e;
     }
-    if (/*Situation gagnante*/1){
-      e=gagnant;
-      c=NOIR;/*couleur gagnant*/
-      *egalite=gagnant;
-      *couleur=c;/*couleur gagnant*/
-    }
-    if (/*Pas encore fini*/1){
-      e=gagnant;
+    if (plateauBloque(plateau) ){
+      e=partieGagnee;
+      c=NOIR;
       *egalite=e;
+      *couleur=c;
     }
 }
 
-int plateauBloque(PLT_Plateau plateau){
-  CP_Coup coup; unsigned short i; unsigned short j; POS_Position pos;
-  for(i=1;LARGEUR_PLATEAU;i++){
-    for(j=1;HAUTEUR_PLATEAU;j++){
-      pos = POS_position(i,j);
-      coup = CP_coup(PLT_obtenirPion(plateau,pos));
-      if(cardinalite(prisAuPiege(plateau,coup)) != 0){
-	return 0;
-      }
-    }
-  }
-  return 1;
-}
 
-int plateauBloque(PLT_Plateau plateau){
-  POS_Position pos; unsigned short i; unsigned short j;
-  for(i=1;LARGEUR_PLATEAU;i++){
-    for(j=1;HAUTEUR_PLATEAU;j++){
-      pos = POS_position(i,j);
-      if(PLT_estCaseVide(plateau,pos)){
-	return 0;
-      }
-    }
-  }
-  return 1;
-}

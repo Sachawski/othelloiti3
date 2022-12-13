@@ -112,22 +112,6 @@ void retournerPionsEmprisonnes(PLT_Plateau plateau, CP_Coup coup);
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite); 
 
 
-/**
-* \fn int plateauTotalementRempli(PLT_Plateau plateau)
-* \brief 
-* \param PLT_Plateau
-* \return bool
-*/
-int plateauTotalementRempli(PLT_Plateau plateau);
-
-
-/**
-* \fn int plateauBloque(PLT_Plateau plateau)
-* \brief 
-* \param PLT_Plateau
-* \return bool
-*/
-int plateauBloque(PLT_Plateau plateau);
 
 
 /**
@@ -137,7 +121,7 @@ int plateauBloque(PLT_Plateau plateau);
 * \param CLR_Couleur
 * \return int
 */
-int evaluer(PLT_Plateau plateau, CLR_Couleur couleur);
+int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 
 
 /**
