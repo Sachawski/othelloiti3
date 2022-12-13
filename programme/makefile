@@ -9,7 +9,7 @@ INCLUDEDIR=include #-I /opt/homebrew/Cellar/cunit/2.1-3/include #c'est l'environ
 CC = gcc
 AR = ar
 CFLAGS=-Wall -pedantic -g -std=gnu99
-#LDFLAGS=-lm c'est pour faireUnePartie
+LDFLAGS=-lm 
 EXEC=othello
 
 tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADposition.o $(TESTDIR)/testTADplateau.o $(TESTDIR)/testTADcoups.o $(TESTDIR)/testsTADcouleur.o $(LIBDIR)/libTAD.a 

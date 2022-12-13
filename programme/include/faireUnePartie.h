@@ -6,7 +6,7 @@
 6 * \date 06/12/2022
 7 *
 8 */
-#ifndef __FAIREUNEPARITE__
+#ifndef __FAIREUNEPARTIE__
 #define __FAIREUNEPARTIE__
 #include "TADcouleur.h"
 #include "TADcoup.h"
@@ -35,7 +35,7 @@ typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
 
 /**
  * \typedef EtatPartie
- * \brief il y a trois conditions:En cours, Egalisation et Agagnant
+ * \brief il y a deux conditions:partieGagnee, partieNulle
  */
 typedef enum{partieGagnee, partieNulle} EtatPartie;
 

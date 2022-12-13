@@ -11,25 +11,8 @@ PLT_Plateau initialiserPlateau(void){
     PLT_poserPion(&plateau, POS_position(3, 4), PN_pion(CLR_blanc()));
     PLT_poserPion(&plateau, POS_position(4, 3), PN_pion(CLR_blanc()));
     PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_noir()));
-    
-  /*for (int i=3; i<=4; i++){
-    for (int j=3; j<=4; j++){
-      if (i==j){
-        pion=PN_pion(CLR_noir());
-        position=POS_position(i, j);
-        PLT_poserPion(&plateau, position, pion);
-      }
-      else{
-        pion=PN_pion(CLR_blanc());
-        position=POS_position(i, j);
-        PLT_poserPion(&plateau, position, pion);
-      }
-    }
-  }*/
   return plateau;
 }
-
-
 
 void afficherPlateau(PLT_Plateau plateau){
     system("clear");
@@ -151,7 +134,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
       e=gagnant;
       c=NOIR;/*couleur gagnant*/
       *egalite=gagnant;
-      couleur=c;/*couleur gagnant*/
+      *couleur=c;/*couleur gagnant*/
     }
     if (/*Pas encore fini*/1){
       e=gagnant;
