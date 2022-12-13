@@ -143,7 +143,7 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     EtatPartie e;
     CLR_Couleur c;
-    if (/*Conditions de départage des égalités*/1){
+    if (){
       e=Egalisation;
       *egalite=e;
     }
