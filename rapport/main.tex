@@ -2,7 +2,9 @@
 \usepackage[french]{babel}
 \usepackage{geometry}
 \geometry{hmargin=2.5cm,vmargin=1.5cm} 
-\usepackage[T1]{fontenc}                                                        
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage[utf8x]{inputenc}                                                    
 \usepackage{algorithmeUTF8}                                                     
 \title{RAPPORT PROJET OTHELLO}                         
@@ -10,6 +12,7 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \section{Analyse}
 
@@ -34,8 +37,19 @@
 
 \subsection{Analyse descendante de la fonction faireUnePartie}
 
+\begin{figure}[H]
+    \rotatebox{90}{\includegraphics[width=23cm,height=15cm]{analyse/ADFaireUnePartieV6.pdf}}
+    \caption{Analyse descendante de faireUnePartie}
+    \label{un-identifiant}
+\end{figure}
 
 \subsection{Analyse descendante de la fonction obtenirCoup}
+
+\begin{figure}[H]                                                                                                                                                                                             
+    \rotatebox{90}{\includegraphics[width=23cm,height=10cm]{analyse/ADobtenirCoup.pdf}}                                                                                                               
+    \caption{Analyse descendante de obtenirCoup}                                                                                                                          
+    \label{un-identifiant}                                                                                                                                                                                 
+\end{figure}       
 
 \section{Conception préliminaire}
 
@@ -130,10 +144,16 @@
   definitionTypes & & & & & X \\
   obtenirCoup & & & & & X \\
   compteurCouleur & & & & & X \\
-  plateauTotalementRempli & & & & & X \\
+  plateauTotalementRempli & & & & X & X \\
+  plateauBloque & & & & X & \\
   scoreDUnCoup & & X & & & \\
   alphaBeta & & X & & & \\
   obtenirCoupsPossibles & & X & & & \\
+  pionMemeCouleur & & & X & & \\
+  adversairesAdjacents & & & X & & \\
+  coupLegal & & & X & & \\
+  etatPartie & & & & X & \\
+  nbPions & & & & X & \\
   \hline                        
 \end{tabular}             
 
