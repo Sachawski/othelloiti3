@@ -16,12 +16,6 @@ int clean_suite_success (void) {
     return 0;
 }
 
-
-void test_CPS_coups(void){
-  
-  
-}
-
 void test_CPS_nbCoups(void){
   CPS_Coups coups;
   coups.nbTotalCoups = 5;
@@ -33,24 +27,30 @@ void test_CPS_nbCoups(void){
 }
 
 void test_CPS_ajouterCoups(void){
-  CPS_Coups coups; CP_Coup coup;
+  CPS_Coups coups=CPS_coups(); CP_Coup coup=CP_coup(PN_pion(BLANC),POS_position(2,2));
   coups.nbTotalCoups = coups.nbTotalCoups + 1;
   coup = CP_coup(PN_pion(BLANC),POS_position(2,2));
   coups.lesCoups[coups.nbTotalCoups]=coup;
 
   CPS_Coups varCoupsTest;
   CPS_ajouterCoups(varCoupsTest, coup);
-  CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups],varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups]);
+  CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].pion.couleur,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].pion.couleur);
+CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].position.x,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].position.x);
+CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].position.y,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].position.y);
+
 }
 
 void test_CPS_iemeCoup(void){
-  CPS_Coups coups; unsigned short int i; CP_Coup cp;
+  CPS_Coups coups = CPS_coups(); unsigned short int i=2; CP_Coup cp ;
+  cp= CP_coup(PN_pion(BLANC), POS_position(2,2));
   coups.lesCoups[i]=cp;
 
-  CPS_Coups varCoupsTest;
+  CPS_Coups varCoupsTest=CPS_coups();
   varCoupsTest.lesCoups[i]=cp;
   CP_Coup resultatObtenu = CPS_iemeCoup(varCoupsTest,i);
-  CU_ASSERT_EQUAL(resultatObtenu,cp);
+  CU_ASSERT_EQUAL(resultatObtenu.pion.couleur,cp.pion.couleur);
+  CU_ASSERT_EQUAL(resultatObtenu.position.x,cp.position.x);
+  CU_ASSERT_EQUAL(resultatObtenu.position.y,cp.position.y);
 }
 
 
@@ -71,8 +71,7 @@ int main(int argc , char** argv){
     }
 
     /* Ajout des tests à la suite de tests boite noire */
-    if ((NULL == CU_add_test(pSuite, "Test general de CPS_coups", test_CPS_coups))
-        || (NULL == CU_add_test(pSuite, "Test general de CPS_nbCoups", test_CPS_nbCoups))
+    if ((NULL == CU_add_test(pSuite, "Test general de CPS_nbCoups", test_CPS_nbCoups))
         || (NULL == CU_add_test(pSuite, "Test general de CPS_ajouterCoups", test_CPS_ajouterCoups))
         || (NULL == CU_add_test(pSuite, "Test general de CPS_iemeCoup", test_CPS_iemeCoup))) {
 
