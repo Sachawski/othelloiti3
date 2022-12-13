@@ -28,10 +28,10 @@ void test_obtenirCoupsPossibles(void) {
 
     plateau = initialiserPlateau();
     // Coups jouables dès le début par les noirs
-    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(2,3)));
-    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(3,2)));
-    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(5,4)));
-    CPS_ajouterCoups(resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(4,5)));
+    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(2,3)));
+    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(3,2)));
+    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(5,4)));
+    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(4,5)));
 
     // Coups jouables dès le début par les noirs (d'après la fonction)
     CPS_Coups resultatObtenu = obtenirCoupsPossibles(plateau,NOIR);

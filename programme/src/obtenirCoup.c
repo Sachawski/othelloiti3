@@ -177,7 +177,7 @@ int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueu
 
     copierPlateau(unPlateau,&copieUnPlateau);
     jouer(&copieUnPlateau,unCoup);
-    if(plateauTotalementRempli(copieUnPlateau) || plateauBloque(copieUnPlateau) || (profondeur == 0)) {
+    if(plateauBloque(copieUnPlateau) || (profondeur == 0)) {
         return evaluer(copieUnPlateau,joueurRef);
     } else {
         if(!(plateauBloquePourUneCouleur(copieUnPlateau,CLR_changerCouleur(joueurCourant)))) {
