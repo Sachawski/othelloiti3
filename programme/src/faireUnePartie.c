@@ -3,11 +3,16 @@
 #include "faireUnePartie.h"
 #include <math.h>
 PLT_Plateau initialiserPlateau(void){
-  PLT_Plateau plateau;
-  PN_Pion pion;
-  POS_Position position;
-  plateau=PLT_plateau();
-  for (int i=3; i<=4; i++){
+    PLT_Plateau plateau;
+    PN_Pion pion;
+    POS_Position position;
+    plateau=PLT_plateau();
+    PLT_poserPion(&plateau, POS_position(3, 3), PN_pion(CLR_noir()));
+    PLT_poserPion(&plateau, POS_position(3, 4), PN_pion(CLR_blanc()));
+    PLT_poserPion(&plateau, POS_position(4, 3), PN_pion(CLR_blanc()));
+    PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_noir()));
+    
+  /*for (int i=3; i<=4; i++){
     for (int j=3; j<=4; j++){
       if (i==j){
         pion=PN_pion(CLR_noir());
@@ -20,9 +25,10 @@ PLT_Plateau initialiserPlateau(void){
         PLT_poserPion(&plateau, position, pion);
       }
     }
-  }
+  }*/
   return plateau;
 }
+
 
 
 void afficherPlateau(PLT_Plateau plateau){
