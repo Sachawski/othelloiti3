@@ -11,6 +11,7 @@
 #define __OBTENIR_COUP__
 #include "TADcouleur.h"
 #include "TADplateau.h"
+#include "TADcoup.h"
 
 
 /**

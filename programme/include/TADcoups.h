@@ -39,7 +39,7 @@ int CPS_nbCoups(CPS_Coups cps);
  /* procédure qui permet de rajouter un Coup à la liste de Coups (de type Coups)
     */
 
-void CPS_ajouterCoups(CPS_Coups cps, CP_Coup unCoup);
+void CPS_ajouterCoups(CPS_Coups *cps, CP_Coup unCoup);
 
  /* fonction qui retourne le ième coup de la liste de Coups (de type Coups)
     */

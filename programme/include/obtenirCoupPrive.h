@@ -49,6 +49,8 @@ int  plateauBloque(PLT_Plateau plateau);
 
 int plateauBloquePourUneCouleur(PLT_Plateau plateau, CLR_Couleur couleur);
 
+int alphaBeta(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCourant, int profondeur, int alpha, int beta);
+
 int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCourant, CP_Coup unCoup, int profondeur, int alpha, int beta);
 
 #endif
