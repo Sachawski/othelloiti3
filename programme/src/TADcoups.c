@@ -17,9 +17,9 @@ int CPS_nbCoups(CPS_Coups cps){
   return cps.nbTotalCoups;
 }
 
-void CPS_ajouterCoups(CPS_Coups cps, CP_Coup unCoup){
-  cps.nbTotalCoups=cps.nbTotalCoups+1;
-  cps.lesCoups[cps.nbTotalCoups]=unCoup;
+void CPS_ajouterCoups(CPS_Coups *cps, CP_Coup unCoup){
+  cps->nbTotalCoups=cps->nbTotalCoups+1;
+  cps->lesCoups[cps->nbTotalCoups]=unCoup;
 }
 
 CP_Coup CPS_iemeCoup(CPS_Coups cps, unsigned short int place){
