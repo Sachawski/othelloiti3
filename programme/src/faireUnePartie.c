@@ -138,11 +138,19 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
         e=partieNulle;
         *egalite=e;
     }
-    if (plateauBloque(plateau) ){
-      e=partieGagnee;
-      c=NOIR;
-      *egalite=e;
-      *couleur=c;
+    if (plateauBloque(plateau)){
+      if (evaluerNb(plateau, CLR_noir()) > evaluerNb(plateau, CLR_blanc())){
+        c=NOIR;
+        e=partieGagnee;
+        *egalite=e;
+        *couleur=c;
+      }
+      if (evaluerNb(plateau, CLR_blanc()) > evaluerNb(plateau, CLR_noir())){
+        c=BLANC;
+        e=partieGagnee;
+        *egalite=e;
+        *couleur=c;
+      }
     }
 }
 void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {

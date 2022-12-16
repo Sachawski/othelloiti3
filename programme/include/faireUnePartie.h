@@ -115,7 +115,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
 
 
 /**
-* \fn int evaluer(PLT_Plateau plateau, CLR_Couleur couleur)
+* \fn int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur)
 * \brief 
 * \param PLT_Plateau
 * \param CLR_Couleur
@@ -131,5 +131,14 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 */
 PLT_Plateau initialiserPlateau(void);
 
+
+/**
+ * \fn void afficherPlateau(PLT_Plateau plateau)
+ * \param PLT_Plateau
+ * \brief 
+ */
+
 void afficherPlateau(PLT_Plateau plateau);
 #endif
+
+
