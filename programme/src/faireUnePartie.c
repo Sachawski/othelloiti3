@@ -128,31 +128,54 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
 }
 
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
-  
-  return 0;
+    int scoreBlanc, scoreNoir;
+    scoreBlanc=0;
+    scoreNoir=0;
+    for (int i=0; i<=LARGEUR_PLATEAU-1; i++){
+        for (int j=0; j<=HAUTEUR_PLATEAU-1; j++){
+            if (plateau.tabPlateau[i][j].estVide==0){
+                switch(PN_obtenirCouleurSuperieure(plateau.tabPlateau[i][j].casePion)){
+                    case BLANC: scoreBlanc+=1;
+                    case NOIR: scoreNoir+=1;
+                }
+            }
+        }
+    }
+    if (couleur==BLANC)
+        return scoreBlanc;
+    else
+        return scoreNoir;
 }
 
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     EtatPartie e;
     CLR_Couleur c;
+    int scoreBlanc, scoreNoir;
     if (!plateauBloque(plateau)){
         e=partieNulle;
         *egalite=e;
     }
-    if (plateauBloque(plateau)){
-      if (evaluerNb(plateau, CLR_noir()) > evaluerNb(plateau, CLR_blanc())){
-        c=NOIR;
-        e=partieGagnee;
-        *egalite=e;
-        *couleur=c;
-      }
-      if (evaluerNb(plateau, CLR_blanc()) > evaluerNb(plateau, CLR_noir())){
-        c=BLANC;
-        e=partieGagnee;
-        *egalite=e;
-        *couleur=c;
-      }
+    if (plateauBloque(plateau) ){
+        scoreBlanc= evaluer(plateau, BLANC);
+        scoreNoir= evaluer(plateau, NOIR);
+        if (scoreBlanc> scoreNoir){
+            e= partieGagnee;
+            c= BLANC;
+            *egalite=e;
+            *couleur=c;
+        }
+        if (scoreNoir> scoreBlanc){
+            e= partieGagnee;
+            c= NOIR;
+            *egalite=e;
+            *couleur=c;
+        }
+        if (scoreNoir== scoreBlanc){
+            e= partieEegal;
+            *egalite=e;
+        }
     }
+}
 }
 void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
     CP_Coup coupTemp;

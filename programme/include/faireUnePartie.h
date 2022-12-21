@@ -37,7 +37,7 @@ typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
  * \typedef EtatPartie
  * \brief il y a deux conditions:partieGagnee, partieNulle
  */
-typedef enum{partieGagnee, partieNulle} EtatPartie;
+typedef enum{partieGagnee, partieNulle, partieEgale} EtatPartie;
 
 
 /**
