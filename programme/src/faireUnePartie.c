@@ -193,3 +193,5 @@ void jouer(PLT_Plateau *plateau, CP_Coup coup){
     assert(coupLegal);
     retournerPionsEmprisonnes(&plateau,coup);
 }
+
+
