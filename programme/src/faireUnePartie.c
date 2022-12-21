@@ -128,6 +128,7 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
 }
 
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
+  
   return 0;
 }
 
