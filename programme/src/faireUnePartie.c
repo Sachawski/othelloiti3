@@ -171,7 +171,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
             *couleur=c;
         }
         if (scoreNoir== scoreBlanc){
-            e= partieEegal;
+            e= partieEegale;
             *egalite=e;
         }
     }
