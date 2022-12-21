@@ -90,7 +90,7 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups coups);
 * \param PLT_Plateau
 * \param CP_Coup
 */
-void jouer(PLT_Plateau *plateau, CP_Coup);
+void jouer(PLT_Plateau *plateau, CP_Coup coup);
 
 
 /**
