@@ -3,6 +3,15 @@
 #include "faireUnePartie.h"
 #include "obtenirCoupPrive.h"
 #include <math.h>
+#include <assert.h>
+#include "TADplateau.h"
+#include "TADpion.h"
+#include "TADposition.h"
+#include "TADcouleur.h"
+#include "TADcoup.h"
+#include "obtenirCoup.h"
+#include "TADcoups.h"
+
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
     plateau=PLT_plateau();
@@ -188,7 +197,7 @@ void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
     }
 }
 
-void jouer(PLT_Plateau *plateau, CP_Coup coup){
+void jouer(PLT_Plateau * plateau, CP_Coup coup){
     assert(coupLegal);
-    retournerPionsEmprisonnes(&plateau,coup);
+    retournerPionsEmprisonnes(*plateau,coup);
 }

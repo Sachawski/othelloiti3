@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "../include/TADcouleur.h"
+#include "TADcouleur.h"
 
 CLR_Couleur CLR_noir(){
 	return NOIR;
