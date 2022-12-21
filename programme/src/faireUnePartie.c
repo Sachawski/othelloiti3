@@ -189,5 +189,6 @@ void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
 }
 
 void jouer(PLT_Plateau *plateau, CP_Coup coup){
-  retournerPionsEmprisonnes(&plateau,coup);
+    assert(coupLegal);
+    retournerPionsEmprisonnes(&plateau,coup);
 }
