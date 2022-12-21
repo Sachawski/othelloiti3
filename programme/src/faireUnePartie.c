@@ -27,13 +27,13 @@ PLT_Plateau initialiserPlateau(void){
 void afficherPlateau(PLT_Plateau plateau){
     system("clear");
     printf("\n      [OTHELLO]\n\n     a  b  c  d  e  f  g  h\n  ┌─────────────────────────┐\n");
-    for( int i=0; i<=63; i++ ){
-        if ( i%8 == 0 )
-          printf(" %d│ ", i/8+ 1 );
-        if (plateau.tabPlateau[i/8][i%8].estVide==1)
+    for( int i=0; i<=LARGEUR_PLATEAU*HAUTEUR_PLATEAU-1; i++ ){
+        if ( i%LARGEUR_PLATEAU == 0 )
+          printf(" %d│ ", i/LARGEUR_PLATEAU+ 1 );
+        if (plateau.tabPlateau[i/LARGEUR_PLATEAU][i%LARGEUR_PLATEAU].estVide==1)
           printf(" ┼ ");        //vide
         else{
-          switch ( plateau.tabPlateau[i/8][i%8].casePion.couleur ){
+          switch ( plateau.tabPlateau[i/LARGEUR_PLATEAU][i%LARGEUR_PLATEAU].casePion.couleur ){
             case NOIR:
                 printf(" ○ ");        //NOIR
                 break;
@@ -42,7 +42,7 @@ void afficherPlateau(PLT_Plateau plateau){
                 break;
           }
         }
-        if( i%8 == 7 ) printf("│\n");
+        if( i%LARGEUR_PLATEAU == 7 ) printf("│\n");
     }
     printf("  └─────────────────────────┘\n  ");
 
@@ -98,7 +98,7 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
         while (!recherche){
             x+= directionX;
             y+= directionY;
-            if (x>= 0&& x<=7&& y>= 0&& y<=7){
+            if (x>= 0&& x<=LARGEUR_PLATEAU-1&& y>= 0&& y<=HAUTEUR_PLATEAU-1){
                 pos= POS_position(x, y);
                 if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))){
                     CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
@@ -137,31 +137,55 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
 }
 
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
-  return 0;
+    int scoreBlanc, scoreNoir;
+    scoreBlanc=0;
+    scoreNoir=0;
+    for (int i=0; i<=LARGEUR_PLATEAU-1; i++){
+        for (int j=0; j<=HAUTEUR_PLATEAU-1; j++){
+            if (plateau.tabPlateau[i][j].estVide==0){
+                switch(PN_obtenirCouleurSuperieure(plateau.tabPlateau[i][j].casePion)){
+                    case BLANC: scoreBlanc+=1;
+                    case NOIR: scoreNoir+=1;
+                }
+            }
+        }
+    }
+    if (couleur==BLANC)
+        return scoreBlanc;
+    else
+        return scoreNoir;
 }
 
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     EtatPartie e;
     CLR_Couleur c;
+    int scoreBlanc, scoreNoir;
     if (!plateauBloque(plateau)){
         e=partieNulle;
         *egalite=e;
     }
-    if (plateauBloque(plateau)){
-      if (evaluerNb(plateau, CLR_noir()) > evaluerNb(plateau, CLR_blanc())){
-        c=NOIR;
-        e=partieGagnee;
-        *egalite=e;
-        *couleur=c;
-      }
-      if (evaluerNb(plateau, CLR_blanc()) > evaluerNb(plateau, CLR_noir())){
-        c=BLANC;
-        e=partieGagnee;
-        *egalite=e;
-        *couleur=c;
-      }
+    if (plateauBloque(plateau) ){
+        scoreBlanc= evaluer(plateau, BLANC);
+        scoreNoir= evaluer(plateau, NOIR);
+        if (scoreBlanc> scoreNoir){
+            e= partieGagnee;
+            c= BLANC;
+            *egalite=e;
+            *couleur=c;
+        }
+        if (scoreNoir> scoreBlanc){
+            e= partieGagnee;
+            c= NOIR;
+            *egalite=e;
+            *couleur=c;
+        }
+        if (scoreNoir== scoreBlanc){
+            e= partieEegal;
+            *egalite=e;
+        }
     }
 }
+
 void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
     CP_Coup coupTemp;
     int x,y,directionX,directionY;
