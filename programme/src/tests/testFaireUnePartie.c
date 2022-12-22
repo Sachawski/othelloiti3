@@ -48,7 +48,7 @@ int main(int argc , char** argv){
     pSuite = CU_add_suite("Tests boite noire",init_suite_success,clean_suite_success );
     if (NULL == pSuite) {
         CU_cleanup_registry();
-      	return CU_get_error();
+      return CU_get_error();
     }
 
     /* Ajout des tests à la suite de tests boite noire */

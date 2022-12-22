@@ -145,7 +145,7 @@ PLT_Plateau initialiserPlateau(void);
 
 void afficherPlateau(PLT_Plateau plateau);
 
-void menu(Mode *mode)，
+void menu(Mode *mode);
 #endif
 
 

@@ -33,7 +33,7 @@ void test_CPS_ajouterCoups(void){
   coups.lesCoups[coups.nbTotalCoups]=coup;
 
   CPS_Coups varCoupsTest;
-  CPS_ajouterCoups(varCoupsTest, coup);
+  CPS_ajouterCoups(&varCoupsTest, coup);
   CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].pion.couleur,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].pion.couleur);
 CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].position.x,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].position.x);
 CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].position.y,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].position.y);
