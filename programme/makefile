@@ -11,7 +11,7 @@ AR = ar
 CFLAGS=-Wall -pedantic -g -std=gnu99
 LDFLAGS=-lm 
 EXEC=othello
-#all: $(BINDIR)/$(EXEC)
+all: $(BINDIR)/$(EXEC)
 
 tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADplateau.o $(TESTDIR)/testTADcoups.o $(TESTDIR)/testTADcouleur.o $(LIBDIR)/libTAD.a $(TESTDIR)/testFaireUnePartie.o $(TESTDIR)/testObtenirCoup.o
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADpion $(TESTDIR)/testTADpion.o -lTAD -L$(LIBDIR)  -lcunit 
@@ -21,8 +21,8 @@ tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADplat
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcouleur $(TESTDIR)/testTADcouleur.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testFaireUnePartie $(TESTDIR)/testFaireUnePartie.o -lOBTFUP -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testObtenirCoup $(TESTDIR)/testObtenirCoup.o -lOBTFUP -L$(LIBDIR)  -lcunit 
-#$(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libTAD.a $(LIBDIR)/libOBT.a $(LIBDIR)/libFUP.a
-#$(CC) $(LDFLAGS) -o $@ $< -lTAD -lOBTFUP -Llib
+$(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libTAD.a $(LIBDIR)/libOBTFUP.a 
+	$(CC) $(LDFLAGS) -o $@ $< -lTAD -lOBTFUP -Llib
 
 $(LIBDIR)/libTAD.a : $(SRCDIR)/TADpion.o $(SRCDIR)/TADcouleur.o $(SRCDIR)/TADcoup.o $(SRCDIR)/TADplateau.o $(SRCDIR)/TADcoups.o $(SRCDIR)/TADposition.o 
 	$(AR)  -r $@  $^

@@ -6,8 +6,8 @@
 6 * \date 06/12/2022
 7 *
 8 */
-#ifndef __FAIREUNEPARTIE__
-#define __FAIREUNEPARTIE__
+#ifndef __FAIREUNEPARITE__
+#define __FAIREUNEPARITE__
 #include "TADcouleur.h"
 #include "TADcoup.h"
 #include "TADcoups.h"
@@ -15,17 +15,17 @@
 #include "TADplateau.h"
 #include "TADposition.h"
 
-/**
- * \typedef Mode
- * \brief les modes
- */
-typedef enum{IAvsIA, IAvsHumain, HumainvsHumain} Mode;
+
+
+typedef enum{IAvsIA=1, IAvsHumain, HumainvsHumain} Mode;
+
+typedef enum{IA=1, Humain} Joueur;
 
 /**
  * \typedef affichagePlateau
  * \brief affichier le plateau
  */
-typedef void (*affichagePlateau)(PLT_Plateau plateau);
+/*typedef void (*affichagePlateau)(PLT_Plateau plateau);*/
 /*affichagePlateau afficherPlateau;*/
 
 /**
@@ -33,28 +33,27 @@ typedef void (*affichagePlateau)(PLT_Plateau plateau);
 * \typedef  CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau)
 * \brief obtenir le coup choisi de joueur
 */
-typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);
-
+/*typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);*/
 /*obtenirCoupEnFctDuJoueur obtenirCoupBlanc;*/
 /*obtenirCoupEnFctDuJoueur obtenirCoupNoir;*/
 
 /**
  * \typedef EtatPartie
- * \brief il y a deux conditions:partieGagnee, partieNulle
+ * \brief il y a deux conditions: Egalisation et Agagnant
  */
-typedef enum{partieGagnee, partieNulle, partieEgale} EtatPartie;
+typedef enum{partieGagnee, partieNulle, partieEegal} EtatPartie;
 
 
 /**
 * \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
-* \brief 
-* \param obtenirCoupEnFctDuJoueur 
+* \brief
+* \param obtenirCoupEnFctDuJoueur
 * \param obtenirCoupEnFctDuJoueur
 * \param affichagePlateau
 * \param EtatPartie
 * \param CLR_Couleur
 */
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur, Mode mode);
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleurGagnant, Mode mode);
 
 
 /**
@@ -92,60 +91,46 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups coups);
 /**
 * \fn jouer(PLT_Plateau *plateau, CP_Coup)
 * \brief mettre un coup
-* \param PLT_Plateau
+* \paramplateau
 * \param CP_Coup
 */
-void jouer(PLT_Plateau *plateau, CP_Coup coup);
+void jouer(PLT_Plateau *plateau, CP_Coup);
 
 
 /**
 * \fn retournerPionsEmprisonnes(PLT_Plateau plateau, CP_Coup coup)
-* \brief 
-* \param PLT_Plateau
-* \param CP_Coup
+* \brief
+* \paramplateau
+* \paramcoup
 */
 void retournerPionsEmprisonnes(PLT_Plateau plateau, CP_Coup coup);
 
 
 /**
 * \fn etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite)
-* \brief 
-* \param PLT_Plateau
-* \param CLR_Couleur
-* \param EtatPartie
+* \brief
+* \paramplateau
+* \paramcouleur
+* \paramegaltie
 */
-void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite); 
+void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
 
 
-
-
-/**
-* \fn int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur)
-* \brief 
-* \param PLT_Plateau
-* \param CLR_Couleur
-* \return int
-*/
-int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 
 
 /**
 * \fn PLT_Plateau initialiserPlateau(void)
-* \brief 
+* \brief
 * \return PLT_Plateau
 */
 PLT_Plateau initialiserPlateau(void);
 
-
-/**
- * \fn void afficherPlateau(PLT_Plateau plateau)
- * \param PLT_Plateau
- * \brief 
- */
-
 void afficherPlateau(PLT_Plateau plateau);
 
-void menu(Mode *mode);
-#endif
+int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 
+void menu(Mode *mode);
+
+CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur);
+#endif
 
