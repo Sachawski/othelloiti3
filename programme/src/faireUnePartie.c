@@ -9,7 +9,6 @@
 #include "TADposition.h"
 #include "TADcouleur.h"
 #include "TADcoup.h"
-#include "obtenirCoup.h"
 #include "TADcoups.h"
 
 PLT_Plateau initialiserPlateau(void){
