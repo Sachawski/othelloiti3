@@ -15,7 +15,6 @@ EXEC=othello
 tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADposition.o $(TESTDIR)/testTADplateau.o $(TESTDIR)/testTADcoups.o $(TESTDIR)/testsTADcouleur.o $(LIBDIR)/libTAD.a 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADpion $(TESTDIR)/testTADpion.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcoup $(TESTDIR)/testTADcoup.o -lTAD -L$(LIBDIR)  -lcunit 
-	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADposition $(TESTDIR)/testTADposition.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADplateau $(TESTDIR)/testTADplateau.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcoups $(TESTDIR)/testTADcoups.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcouleur $(TESTDIR)/testTADcouleur.o -lTAD -L$(LIBDIR)  -lcunit 
