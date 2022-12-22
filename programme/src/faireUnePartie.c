@@ -247,8 +247,11 @@ void menu(Mode *mode){
     }while(i=='1' || i=='2' ||i=='3');
     switch(i){
         case 1: *mode=IAvsIA;
+          break;
         case 2: *mode=IAvsHumain;
+          break;
         case 3: *mode=HumainvsHumain;
+          break;
     }
 }
 void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur){
