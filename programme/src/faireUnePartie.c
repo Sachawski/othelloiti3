@@ -253,7 +253,7 @@ void menu(Mode *mode){
           break;
     }
 }
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur){
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur, Mode mode){
     PLT_Plateau plateau;
     PN_Pion joueurCourant;
     CP_Coup coup;

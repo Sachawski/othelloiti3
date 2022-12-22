@@ -54,7 +54,7 @@ typedef enum{partieGagnee, partieNulle, partieEgale} EtatPartie;
 * \param EtatPartie
 * \param CLR_Couleur
 */
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur);
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur, Mode mode);
 
 
 /**
