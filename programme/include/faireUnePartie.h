@@ -15,6 +15,11 @@
 #include "TADplateau.h"
 #include "TADposition.h"
 
+/**
+ * \typedef Mode
+ * \brief les modes
+ */
+typedef enum{IAvsIA, IAvsHumain, HumainvsHumain} Mode;
 
 /**
  * \typedef affichagePlateau

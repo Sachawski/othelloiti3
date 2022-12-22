@@ -225,3 +225,52 @@ void jouer(PLT_Plateau * plateau, CP_Coup coup){
     assert(coupLegal);
     retournerPionsEmprisonnes(*plateau,coup);
 }
+
+void menu(Mode *mode){
+    char c;
+    int i;
+    printf("\n            [OTHELLO]\n\n   ");
+    printf("          NEW GAME\n");
+    printf("            (press n)\n");
+    do{
+        scanf("%c",&c);
+    }while(c=='n');
+    system("clear");
+    printf("\n        IA vs IA\n");
+    printf("\n        press 1\n");
+    printf("\n        IA vs Humain\n");
+    printf("\n        press 2\n");
+    printf("\n        Humain vs Humain\n");
+    printf("\n        press 3\n");
+    do{
+        scanf("%d",&i);
+    }while(i=='1' || i=='2' ||i=='3');
+    switch(i){
+        case 1: *mode=IAvsIA;
+        case 2: *mode=IAvsHumain;
+        case 3: *mode=HumainvsHumain;
+    }
+}
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleur){
+    PLT_Plateau plateau;
+    PN_Pion joueurCourant;
+    CP_Coup coup;
+    CLR_Couleur couleurGagnant;
+    EtatPartie e;
+    e=partieNulle;
+    couleurGagnant=NOIR;
+    joueurCourant= PN_pion(NOIR);
+    plateau= initialiserPlateau();
+    afficherPlateau(plateau);
+    while (e==partieNulle){
+        if (PN_obtenirCouleurSuperieure(joueurCourant)==NOIR){
+            coup=(*obtenirCoupNoir)(plateau);
+        }
+        else
+            coup=(*obtenirCoupBlanc)(plateau);
+        jouer(&plateau, coup);
+        afficherPlateau(plateau);
+        PN_retournerPion(&joueurCourant);
+        etatPartie(plateau, &couleurGagnant, &e);
+    }
+}
