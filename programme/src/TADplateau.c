@@ -34,8 +34,8 @@ void PLT_poserPion(PLT_Plateau* plateau, POS_Position pos, PN_Pion pion)
 {
     int x = pos.x ;
     int y = pos.y ; 
-    plateau->tabPlateau[x][y].estVide = 0 ;
-    plateau->tabPlateau[x][y].casePion = pion ;
+    plateau->tabPlateau[y][x].estVide = 0 ;
+    plateau->tabPlateau[y][x].casePion = pion ;
 }
 
 /**
