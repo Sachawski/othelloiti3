@@ -59,6 +59,9 @@
 \subsection{TAD : Pion}
 \input{cp/pion/CPTADpion}
 
+\subsection{TAD : Position}
+\input{cp/position/CPTADposition}
+
 \subsection{TAD : Coup}
 \input{cp/coup/CPTADcoup}
 
@@ -94,8 +97,11 @@
 \subsubsection{TAD PLATEAU :}
 \input{cd/plateau/CDTADplateau.tex}
 
-\subsection{Conception détaillée des fonctions de l'analyse descandante}
+\subsection{Conception détaillée des fonctions d'obtenirCoup}
 \input{cd/obtenirCoup/CDobtenirCoup}
+
+\subsection{Conception détaillée des fonctions de faireUnePartie}
+\input{cd/faireUnePartie/CDfaireUnePartie}
 
 \section{Repartition des tâches}
 \begin{tabular}{|l|c|c|c|c|c|}
@@ -126,9 +132,9 @@
   \hline
   CD TAD Couleur & & & X & X & \\                                                                                                                                                                       
   CD TAD Pion & & & & & X \\                                                                                   
-  CD TAD Postion & & X & & &  \\                                                                                                                                                                          
-  CD TAD Coup & & & & X & \\                                                                                                                                                                              
-  CD TAD Coups & & X & & & \\                                                                                                                                                                             
+  CD TAD Postion & & X & & &  \\                                                                                                                                                                         
+  CD TAD Coup & & & & X & \\                                                                                                                                                                             
+  CD TAD Coups & & X & & & \\                                                                                                                                                                            
   CD TAD Plateau & X & & & & \\                              
   Mise en page rapport & & & & & X \\      
   Création Makefile & & & & & X \\
@@ -141,9 +147,10 @@
   TAD Coup & & X & &  & \\                                                                                                                                                                              
   TAD Coups & & & & X & \\                                                                                                                                                                             
   TAD Plateau & & & & & X \\                                                                                                                                                                      
-  definitionTypes & & & & & X \\
-  obtenirCoup & & & & & X \\
+  obtenirCoup & & X & & & X \\
   compteurCouleur & & & & & X \\
+  score & & & & & X \\
+  evaluer & & & & & X \\
   plateauTotalementRempli & & & & X & X \\
   plateauBloque & & & & X & \\
   scoreDUnCoup & & X & & & \\
@@ -154,7 +161,21 @@
   coupLegal & & & X & & \\
   etatPartie & & & & X & \\
   nbPions & & & & X & \\
-  \hline                        
+  retournerPionsEmprisonnes & X & & & & \\
+  afficherPlateau & & & X & & \\
+  joeur & X & & & & \\
+  makefile du programme & & & X & & X \\
+  \hline
+  Tests Unitaires \\
+  \hline
+  TAD Couleur & X & & & & \\                                                                                                                                                                       
+  TAD Pion & & & X & & \\                                                                                                                                                                              
+  TAD Coup & & X & &  & \\                                                                                                                                                                              
+  TAD Coups & & & & X & \\                                                                                                                                                                             
+  TAD Plateau & & & & & X \\
+  obtenirCoup & & X & & & X \\
+  faireUnePartie & X & & & & \\
+  \hline
 \end{tabular}             
 
 \end{document}
