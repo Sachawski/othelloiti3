@@ -18,8 +18,52 @@ int init_suite_success (void) {
 int clean_suite_success (void) {
     return 0;
 }
+int plateauEgaux(PLT_Plateau plateau1, PLT_Plateau plateau2) {
+  long int i = 0;
+  long int j = 0;
+  int sontEgaux = 1;
+  
+  while(sontEgaux && (i<HAUTEUR_PLATEAU)) {
+    while(sontEgaux && (j<LARGEUR_PLATEAU)){
+        sontEgaux = ((plateau1.tabPlateau[i][j].estVide == plateau2.tabPlateau[i][j].estVide) );
+        if (!(plateau1.tabPlateau[i][j].estVide == plateau2.tabPlateau[i][j].estVide)){
+            sontEgaux = (plateau1.tabPlateau[i][j].casePion.couleur == plateau2.tabPlateau[i][j].casePion.couleur);
+        }
+        
+        j++;
+    }
+    j = 0 ;
+    i++;
+  }
+  return sontEgaux; 
+}
 
-void test_coupLegal(void) {
+void test_initialiserPlateau(void) {
+    C_Case cV ;
+    cV.estVide = 1 ;
+    C_Case cB ;
+    C_Case cN ;
+    cB.estVide = 0;
+    cB.casePion = PN_pion(BLANC);
+    cN.estVide = 0;
+    cN.casePion = PN_pion(NOIR);
+    C_Case initialiserTableau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
+        { cV, cV, cV, cV, cV, cV, cV, cV},
+        { cV, cV, cV, cV, cV, cV, cV, cV},
+        { cV, cV, cV, cV, cV, cV, cV, cV},
+        { cV, cV, cV, cB, cN, cV, cV, cV},
+        { cV, cV, cV, cN, cB, cV, cV, cV},
+        { cV, cV, cV, cV, cV, cV, cV, cV},
+        { cV, cV, cV, cV, cV, cV, cV, cV},
+        { cV, cV, cV, cV, cV, cV, cV, cV}
+    };
+    PLT_Plateau plateauAttendu;
+    memcpy(plateauAttendu.tabPlateau,initialiserTableau,sizeof(C_Case)*HAUTEUR_PLATEAU*LARGEUR_PLATEAU);
+    PLT_Plateau plateauObtenu = initialiserPlateau();
+    CU_ASSERT_TRUE(plateauEgaux(plateauAttendu,plateauObtenu));
+
+}
+/*void test_coupLegal(void) {
     PLT_Plateau plateau;
     plateau = initialiserPlateau();
     // Coups légals dès le début par les noirs
@@ -32,9 +76,7 @@ void test_coupLegal(void) {
     CU_ASSERT_TRUE(coupLegal(plateau,coup2));
     CU_ASSERT_TRUE(coupLegal(plateau,coup3));
     CU_ASSERT_TRUE(coupLegal(plateau,coup4));
-}
-
-
+}*/
 
 int main(int argc , char** argv){
     CU_pSuite pSuite = NULL;
@@ -52,8 +94,8 @@ int main(int argc , char** argv){
     }
 
     /* Ajout des tests à la suite de tests boite noire */
-    if ((NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal ))
-        // || (NULL == CU_add_test(pSuite, "Test general de obtenirCoup", test_obtenirCoup))
+    if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
+         //|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
         ) 
         {
 

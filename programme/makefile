@@ -13,16 +13,16 @@ LDFLAGS=-lm
 EXEC=othello
 all: $(BINDIR)/$(EXEC)
 
-tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADplateau.o $(TESTDIR)/testTADcoups.o $(TESTDIR)/testTADcouleur.o $(LIBDIR)/libTAD.a $(TESTDIR)/testFaireUnePartie.o $(TESTDIR)/testObtenirCoup.o
+tests:  $(TESTDIR)/testTADpion.o $(TESTDIR)/testTADcoup.o $(TESTDIR)/testTADplateau.o $(TESTDIR)/testTADcoups.o $(TESTDIR)/testTADcouleur.o $(LIBDIR)/libTAD.a $(TESTDIR)/testFaireUnePartie.o $(TESTDIR)/testObtenirCoup.o $(LIBDIR)/libOBTFUP.a 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADpion $(TESTDIR)/testTADpion.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcoup $(TESTDIR)/testTADcoup.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADplateau $(TESTDIR)/testTADplateau.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcoups $(TESTDIR)/testTADcoups.o -lTAD -L$(LIBDIR)  -lcunit 
 	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testTADcouleur $(TESTDIR)/testTADcouleur.o -lTAD -L$(LIBDIR)  -lcunit 
-	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testFaireUnePartie $(TESTDIR)/testFaireUnePartie.o -lOBTFUP -L$(LIBDIR)  -lcunit 
-	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testObtenirCoup $(TESTDIR)/testObtenirCoup.o -lOBTFUP -L$(LIBDIR)  -lcunit 
+	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testFaireUnePartie $(TESTDIR)/testFaireUnePartie.o -lOBTFUP -lTAD -L$(LIBDIR)  -lcunit -lm
+	$(CC) $(LDFLAGS) -o $(TESTBINDIR)/testObtenirCoup $(TESTDIR)/testObtenirCoup.o -lOBTFUP -lTAD -L$(LIBDIR)  -lcunit -lm
 $(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libTAD.a $(LIBDIR)/libOBTFUP.a 
-	$(CC) $(LDFLAGS) -o $@ $< -lTAD -lOBTFUP -Llib
+	$(CC) $(LDFLAGS) -o $@ $< -lOBTFUP -lTAD -Llib -lm
 
 $(LIBDIR)/libTAD.a : $(SRCDIR)/TADpion.o $(SRCDIR)/TADcouleur.o $(SRCDIR)/TADcoup.o $(SRCDIR)/TADplateau.o $(SRCDIR)/TADcoups.o $(SRCDIR)/TADposition.o 
 	$(AR)  -r $@  $^
