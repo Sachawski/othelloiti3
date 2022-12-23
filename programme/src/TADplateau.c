@@ -78,7 +78,6 @@ void PLT_retournerPion(PLT_Plateau* plateau, POS_Position pos)
 {
     PN_Pion pion = PLT_obtenirPion(*plateau, pos);
     PN_retournerPion(&pion);
-    PLT_enleverPion(plateau,pos);
     PLT_poserPion(plateau,pos,pion);
 }
 
