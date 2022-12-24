@@ -3,8 +3,8 @@
 POS_Position POS_position(int largeur, int hauteur){
   POS_Position pos;
 
-  pos.x = largeur;
-  pos.y = hauteur;
+  pos.x = hauteur;
+  pos.y = largeur;
   return pos;
 }
 
