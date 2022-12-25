@@ -63,20 +63,24 @@ void test_initialiserPlateau(void) {
     CU_ASSERT_TRUE(plateauEgaux(plateauAttendu,plateauObtenu));
 
 }
-/*void test_coupLegal(void) {
+
+void test_jour(void){
+  
+}
+
+
+void test_coupLegal(void) {
     PLT_Plateau plateau;
     plateau = initialiserPlateau();
     // Coups légals dès le début par les noirs
     CP_Coup coup1 = CP_coup(PN_pion(NOIR),POS_position(2,3));
     CP_Coup coup2 = CP_coup(PN_pion(NOIR),POS_position(3,2));
-    CP_Coup coup3 = CP_coup(PN_pion(NOIR),POS_position(5,4));
-    CP_Coup coup4 = CP_coup(PN_pion(NOIR),POS_position(4,5));
+    CP_Coup coup4 = CP_coup(PN_pion(NOIR),POS_position(5,4));
     // Coups jouables dès le début par les noirs (d'après la fonction)
     CU_ASSERT_TRUE(coupLegal(plateau,coup1));
     CU_ASSERT_TRUE(coupLegal(plateau,coup2));
-    CU_ASSERT_TRUE(coupLegal(plateau,coup3));
     CU_ASSERT_TRUE(coupLegal(plateau,coup4));
-}*/
+}
 
 int main(int argc , char** argv){
     CU_pSuite pSuite = NULL;
@@ -95,7 +99,7 @@ int main(int argc , char** argv){
 
     /* Ajout des tests à la suite de tests boite noire */
     if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
-         //|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
+        || (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
         ) 
         {
 

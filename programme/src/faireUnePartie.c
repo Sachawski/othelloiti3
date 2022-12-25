@@ -59,7 +59,7 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
         x=minx;
         while ((x<= maxx)&& recherche== 1){
             positionTemp= POS_position(x, y);
-            if (!(PLT_estCaseVide(plateau, positionTemp)&& POS_obtenirY(position)!=POS_obtenirY(positionTemp)&& POS_obtenirX(position)!= POS_obtenirX(positionTemp))){
+            if (!(PLT_estCaseVide(plateau, positionTemp))&& !(POS_obtenirY(position)==POS_obtenirY(positionTemp)&& POS_obtenirX(position)== POS_obtenirX(positionTemp))){
                 if ((PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, positionTemp)))!= PN_obtenirCouleurSuperieure(CP_pion(coup))){
                     CPS_ajouterCoups(&coupsLegals, CP_coup(PLT_obtenirPion(plateau, positionTemp), positionTemp));
                 }
@@ -72,7 +72,6 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
 }
 
 
-
 CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal){
     CPS_Coups lesPionsMemeCouleur;
     int nb, i, x, y, directionX, directionY;
@@ -81,14 +80,14 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
     CP_Coup coupTemp;
     recherche= 0;
     lesPionsMemeCouleur= CPS_coups();
-    nb= CPS_nbCoups(pionLegal)- 1;
-    for (i= 0; i<= nb; i++){
+    nb= CPS_nbCoups(pionLegal);
+    for (i= 1; i<= nb; i++){
         recherche= 0;
         coupTemp= CPS_iemeCoup(pionLegal, i);
         x= POS_obtenirX(CP_position(coupTemp));
         y= POS_obtenirY(CP_position(coupTemp));
-        directionX= x- POS_obtenirX(CP_position(coupTemp));
-        directionY= y- POS_obtenirY(CP_position(coupTemp));
+        directionX= x- POS_obtenirX(CP_position(coup));
+        directionY= y- POS_obtenirY(CP_position(coup));
         while (!recherche){
             x+= directionX;
             y+= directionY;
@@ -96,7 +95,11 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
                 pos= POS_position(x, y);
                 if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))){
                     CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
+                    break;
                 }
+            }
+            else{
+                break;;
             }
         }
     }
@@ -180,34 +183,34 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     else
         return scoreNoir;
 }
-void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
+void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     CP_Coup coupTemp;
     int x,y,directionX,directionY;
     POS_Position pos;
     int xCoup = POS_obtenirX(CP_position(coup));
-    int yCoup = POS_obtenirX(CP_position(coup));
-    CPS_Coups coupsEmprisonnants = pionMemeCouleur(plateau , coup , adversairesAdjacents(plateau,coup));
-    for(int i=0 ; i<CPS_nbCoups(coupsEmprisonnants) ; i++){
+    int yCoup = POS_obtenirY(CP_position(coup));
+    CPS_Coups coupsEmprisonnants = pionMemeCouleur(*plateau , coup , adversairesAdjacents(*plateau,coup));
+    for(int i=1 ; i<=CPS_nbCoups(coupsEmprisonnants) ; i++){
         coupTemp = CPS_iemeCoup(coupsEmprisonnants, i);
         x = POS_obtenirX(CP_position(coupTemp));
         y = POS_obtenirY(CP_position(coupTemp));
         if(x-xCoup == 0) {
           directionX = 0;
-          directionY = (y-yCoup)/abs(y-yCoup);
+          directionY = (yCoup-y)/abs(y-yCoup);
         }
         else if(y-yCoup == 0){
-            directionX = (x-xCoup)/abs(x-xCoup);
+            directionX = (xCoup-x)/abs(x-xCoup);
             directionY = 0;
         }
         else{
-          directionX = (x-xCoup)/abs(x-xCoup);
-          directionY = (y-yCoup)/abs(y-yCoup);
+          directionX = (xCoup-x)/abs(x-xCoup);
+          directionY = (yCoup-y)/abs(y-yCoup);
         }
         x = x+directionX;
         y = y+directionY;
-        while(x!=xCoup && y!=yCoup){
+        while(x!=xCoup || y!=yCoup){
           pos = POS_position(x,y);
-          PLT_retournerPion(&plateau,pos);
+          PLT_retournerPion(plateau,pos);
           x = x+directionX;
           y = y+directionY;
         }
@@ -217,7 +220,8 @@ void retournerPionsEmprisonnes(PLT_Plateau plateau , CP_Coup coup ) {
 
 void jouer(PLT_Plateau * plateau, CP_Coup coup){
     assert(coupLegal);
-    retournerPionsEmprisonnes(*plateau,coup);
+    PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
+    retournerPionsEmprisonnes(plateau,coup);
 }
 
 void menu(Mode *mode){
