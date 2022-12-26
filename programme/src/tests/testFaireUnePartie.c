@@ -80,9 +80,47 @@ void test_coupLegal(void) {
     CU_ASSERT_FALSE(coupLegal(plateau,coup5));
 
 }
-void test_pionMemeCouleur(void){
+/*void test_pionMemeCouleur(void){
     PLT_Plateau plateau;
     plateau = initialiserPlateau();
+    }*/
+
+void test_adversairesAdjacents(void){
+  PLT_Plateau plateau;
+  CPS_Coups cps;
+  plateau = PLT_plateau();
+  
+  PLT_poserPion(&plateau,POS_position(3,3),PN_pion(BLANC));
+  PLT_poserPion(&plateau,POS_position(4,3),PN_pion(NOIR));
+  PLT_poserPion(&plateau,POS_position(3,4),PN_pion(NOIR));
+  PLT_poserPion(&plateau,POS_position(3,2),PN_pion(NOIR));
+  PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
+
+  CP_Coup coup0 = CP_coup(PN_pion(NOIR),POS_position(3,3));
+  CP_Coup coup1 = CP_coup(PN_pion(NOIR),POS_position(4,3));
+  CP_Coup coup2 = CP_coup(PN_pion(NOIR),POS_position(3,4));
+  CP_Coup coup3 = CP_coup(PN_pion(NOIR),POS_position(3,2));
+  CP_Coup coup4 = CP_coup(PN_pion(NOIR),POS_position(2,3));
+
+  cps = CPS_coups();
+  
+  CPS_ajouterCoups(&cps,coup1);
+  CPS_ajouterCoups(&cps,coup2);
+  CPS_ajouterCoups(&cps,coup3);
+  CPS_ajouterCoups(&cps,coup4);
+
+  CPS_Coups varcps;
+
+  varcps = CPS_coups();
+  
+  varcps = adversairesAdjacents(plateau,coup0);
+  
+  CU_ASSERT_EQUAL(varcps.nbTotalCoups,0);
+  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,1))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,1))));
+}
+
+void test_evaluerNb(void){
+
 }
 
 int main(int argc , char** argv){
@@ -102,7 +140,11 @@ int main(int argc , char** argv){
 
     /* Ajout des tests à la suite de tests boite noire */
     if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
-         || (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
+	|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
+	/*|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))
+	|| (NULL == CU_add_test(pSuite, "Test general de pionMemeCouleur", test_pionMemeCouleur))
+	|| (NULL == CU_add_test(pSuite, "Test general de jouer", test_jouer))*/
+	|| (NULL == CU_add_test(pSuite, "Test general de adversairesAdjacents", test_adversairesAdjacents))
         ) 
         {
 
