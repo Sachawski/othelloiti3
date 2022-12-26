@@ -103,7 +103,7 @@ void jouer(PLT_Plateau *plateau, CP_Coup);
 * \paramplateau
 * \paramcoup
 */
-void retournerPionsEmprisonnes(PLT_Plateau plateau, CP_Coup coup);
+void retournerPionsEmprisonnes(PLT_Plateau *plateau, CP_Coup coup);
 
 
 /**
