@@ -27,12 +27,14 @@ void test_CPS_nbCoups(void){
 }
 
 void test_CPS_ajouterCoups(void){
-  CPS_Coups coups=CPS_coups(); CP_Coup coup=CP_coup(PN_pion(BLANC),POS_position(2,2));
+  CPS_Coups coups; CP_Coup coup;
+  coups=CPS_coups();
   coups.nbTotalCoups = coups.nbTotalCoups + 1;
   coup = CP_coup(PN_pion(BLANC),POS_position(2,2));
   coups.lesCoups[coups.nbTotalCoups]=coup;
 
   CPS_Coups varCoupsTest;
+  varCoupsTest=CPS_coups();
   CPS_ajouterCoups(&varCoupsTest, coup);
   CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].pion.couleur,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].pion.couleur);
 CU_ASSERT_EQUAL(coups.lesCoups[coups.nbTotalCoups].position.x,varCoupsTest.lesCoups[varCoupsTest.nbTotalCoups].position.x);
