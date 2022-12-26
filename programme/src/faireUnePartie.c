@@ -9,10 +9,10 @@
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
     plateau=PLT_plateau();
-    PLT_poserPion(&plateau, POS_position(3, 3), PN_pion(CLR_noir()));
-    PLT_poserPion(&plateau, POS_position(3, 4), PN_pion(CLR_blanc()));
-    PLT_poserPion(&plateau, POS_position(4, 3), PN_pion(CLR_blanc()));
-    PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_noir()));
+    PLT_poserPion(&plateau, POS_position(3, 3), PN_pion(CLR_blanc()));
+    PLT_poserPion(&plateau, POS_position(3, 4), PN_pion(CLR_noir()));
+    PLT_poserPion(&plateau, POS_position(4, 3), PN_pion(CLR_noir()));
+    PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_blanc()));
   return plateau;
 }
 
@@ -306,8 +306,8 @@ CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur
         scanf("%d",&x);
         printf("col?");
         scanf(" %c",&y);
-        coup.position.x=x-1;
-        coup.position.y=y-97;
+        coup.position.x=y-97;
+        coup.position.y=x-1;
         return coup;
     }
         
