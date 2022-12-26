@@ -318,7 +318,10 @@ CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur 
   if (couleur==NOIR){
             printf("Noir\n");
             coup=(*obtenirCoupNoir)(plateau, joueur1, NOIR);
+            return coup;
         }
-  else
+  else{
             coup=(*obtenirCoupBlanc)(plateau, joueur2, BLANC);
+            return coup;
+  }
 }
