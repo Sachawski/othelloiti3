@@ -93,7 +93,7 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
             y+= directionY;
             if (x>= 0&& x<=7&& y>= 0&& y<=7){
                 pos= POS_position(x, y);
-                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))){
+                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))&& !PLT_estCaseVide(plateau, pos)){
                     CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
                     break;
                 }
@@ -220,8 +220,9 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
 
 void jouer(PLT_Plateau * plateau, CP_Coup coup){
     assert(coupLegal);
-    PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
     retournerPionsEmprisonnes(plateau,coup);
+    PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
+    
 }
 
 void menu(Mode *mode){
@@ -281,13 +282,7 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
         joueur2=Humain;
     }
     while (e==partieNulle){
-        if (PN_obtenirCouleurSuperieure(joueurCourant)==NOIR){
-            printf("Noir\n");
-            coup=(*obtenirCoupNoir)(plateau, joueur1, NOIR);
-        }
-        else
-            coup=(*obtenirCoupBlanc)(plateau, joueur2, BLANC);
-        jouer(&plateau, coup);
+        jouer(&plateau, coupEnFctJoueur(obtenirCoupEnFctDuJoueur, obtenirCoupEnFctDuJoueur, PN_obtenirCouleurSuperieure(joueurCourant), plateau, joueur1, joueur2));
         afficherPlateau(plateau);
         PN_retournerPion(&joueurCourant);
         etatPartie(plateau, &couleurGagnant, &e);
@@ -296,32 +291,32 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
 
 CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur){
     CP_Coup coup;
-    int x;
-    char y;
+    char x;
+    int y;
     if (joueur==IA)
         return obtenirCoup(plateau, couleur, profondeur);
     else{
         coup.pion.couleur=couleur;
-        printf("ligne?");
-        scanf("%d",&x);
         printf("col?");
-        scanf(" %c",&y);
-        coup.position.x=y-97;
-        coup.position.y=x-1;
+        scanf(" %c",&x);
+        printf("ligne?");
+        scanf(" %dn",&y);
+        coup.position.x=x-97;
+        coup.position.y=y-1;
         return coup;
     }
         
 }
-
 CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2){
   CP_Coup coup;
   if (couleur==NOIR){
             printf("Noir\n");
             coup=(*obtenirCoupNoir)(plateau, joueur1, NOIR);
-            return coup;
+      return coup;
         }
   else{
+            printf("blanc\n");
             coup=(*obtenirCoupBlanc)(plateau, joueur2, BLANC);
-            return coup;
+      return coup;
   }
 }
