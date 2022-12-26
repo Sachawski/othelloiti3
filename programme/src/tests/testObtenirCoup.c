@@ -24,19 +24,29 @@ int clean_suite_success (void) {
 
 void test_obtenirCoupsPossibles(void) {
     PLT_Plateau plateau;
-    CPS_Coups resultatAttendu;
+    CPS_Coups resultatAttendu = CPS_coups();
 
+    
     plateau = initialiserPlateau();
     // Coups jouables dès le début par les noirs
-    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(2,3)));
     CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(3,2)));
+    CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(2,3)));
     CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(5,4)));
     CPS_ajouterCoups(&resultatAttendu,CP_coup(PN_pion(NOIR),POS_position(4,5)));
-
+    
     // Coups jouables dès le début par les noirs (d'après la fonction)
     CPS_Coups resultatObtenu = obtenirCoupsPossibles(plateau,NOIR);
     CU_ASSERT_EQUAL(resultatAttendu.nbTotalCoups,resultatObtenu.nbTotalCoups);
-    CU_ASSERT_EQUAL(resultatAttendu.lesCoups,resultatObtenu.lesCoups);
+    CU_ASSERT_EQUAL(POS_obtenirX(CP_position(CPS_iemeCoup(resultatObtenu,1))),POS_obtenirX(CP_position(CPS_iemeCoup(resultatAttendu,1))));
+    CU_ASSERT_EQUAL(POS_obtenirX(CP_position(CPS_iemeCoup(resultatObtenu,2))),POS_obtenirX(CP_position(CPS_iemeCoup(resultatAttendu,2))));
+    CU_ASSERT_EQUAL(POS_obtenirX(CP_position(CPS_iemeCoup(resultatObtenu,3))),POS_obtenirX(CP_position(CPS_iemeCoup(resultatAttendu,3))));
+    CU_ASSERT_EQUAL(POS_obtenirX(CP_position(CPS_iemeCoup(resultatObtenu,4))),POS_obtenirX(CP_position(CPS_iemeCoup(resultatAttendu,4))));
+
+    CU_ASSERT_EQUAL(POS_obtenirY(CP_position(CPS_iemeCoup(resultatObtenu,1))),POS_obtenirY(CP_position(CPS_iemeCoup(resultatAttendu,1))));
+    CU_ASSERT_EQUAL(POS_obtenirY(CP_position(CPS_iemeCoup(resultatObtenu,2))),POS_obtenirY(CP_position(CPS_iemeCoup(resultatAttendu,2))));
+    CU_ASSERT_EQUAL(POS_obtenirY(CP_position(CPS_iemeCoup(resultatObtenu,3))),POS_obtenirY(CP_position(CPS_iemeCoup(resultatAttendu,3))));
+    CU_ASSERT_EQUAL(POS_obtenirY(CP_position(CPS_iemeCoup(resultatObtenu,4))),POS_obtenirY(CP_position(CPS_iemeCoup(resultatAttendu,4))));
+
 }
 
 void test_obtenirCoup(void) {
@@ -73,8 +83,8 @@ void test_obtenirCoup(void) {
     PLT_retournerPion(&plateau,POS_position(3,3));
     PLT_retournerPion(&plateau,POS_position(4,4));
     PLT_retournerPion(&plateau,POS_position(4,3));
-
     // Meilleur coup théorique pour les noirs
+    printf("%d   ",111111111);
     CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0));
 
     // Meilleur pour les noirs d'après la machine
