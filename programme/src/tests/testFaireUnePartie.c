@@ -80,23 +80,61 @@ void test_coupLegal(void) {
     CU_ASSERT_FALSE(coupLegal(plateau,coup5));
 
 }
-/*void test_pionMemeCouleur(void){
+
+
+void test_pionMemeCouleur(void){
     PLT_Plateau plateau;
     plateau = initialiserPlateau();
-    }*/
+
+    PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(1,3),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(1,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,5),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,4),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(4,2),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(3,5),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(4,5),PN_pion(BLANC));
+    
+    CP_Coup coupTest = CP_coup(PN_pion(BLANC),POS_position(1,5));
+    
+    CPS_Coups resultatAttendu;
+    resultatAttendu = CPS_coups();
+
+    CP_Coup coup1 = CP_coup(PN_pion(BLANC),POS_position(1,3));
+    CP_Coup coup2 = CP_coup(PN_pion(BLANC),POS_position(4,5));
+
+    CPS_ajouterCoups(&resultatAttendu, coup1);
+    CPS_ajouterCoups(&resultatAttendu, coup2);
+
+    CPS_Coups adversairesAdj;
+    adversairesAdj = CPS_coups();
+    adversairesAdj = adversairesAdjacents(plateau,coupTest);
+    
+    CPS_Coups resultatObtenu;
+    resultatObtenu = CPS_coups();
+    resultatObtenu = pionMemeCouleur(plateau,coupTest,adversairesAdj);
+
+
+    CU_ASSERT_EQUAL(resultatObtenu.nbTotalCoups,0);
+    CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatAttendu,1))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatObtenu,1))));
+    CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatAttendu,2))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatObtenu,2))));
+    
+    }
+
+
+
 
 void test_adversairesAdjacents(void){
   PLT_Plateau plateau;
   CPS_Coups cps;
   plateau = PLT_plateau();
   
-  PLT_poserPion(&plateau,POS_position(3,3),PN_pion(BLANC));
   PLT_poserPion(&plateau,POS_position(4,3),PN_pion(NOIR));
   PLT_poserPion(&plateau,POS_position(3,4),PN_pion(NOIR));
   PLT_poserPion(&plateau,POS_position(3,2),PN_pion(NOIR));
   PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
 
-  CP_Coup coup0 = CP_coup(PN_pion(NOIR),POS_position(3,3));
+  CP_Coup coup0 = CP_coup(PN_pion(BLANC),POS_position(3,3));
   CP_Coup coup1 = CP_coup(PN_pion(NOIR),POS_position(4,3));
   CP_Coup coup2 = CP_coup(PN_pion(NOIR),POS_position(3,4));
   CP_Coup coup3 = CP_coup(PN_pion(NOIR),POS_position(3,2));
@@ -115,8 +153,11 @@ void test_adversairesAdjacents(void){
   
   varcps = adversairesAdjacents(plateau,coup0);
   
-  CU_ASSERT_EQUAL(varcps.nbTotalCoups,0);
+  CU_ASSERT_EQUAL(varcps.nbTotalCoups,cps.nbTotalCoups);
   CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,1))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,1))));
+  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,2))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,2))));
+  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,3))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,3))));
+  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,4))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,4))));
 }
 
 void test_evaluerNb(void){
@@ -141,9 +182,9 @@ int main(int argc , char** argv){
     /* Ajout des tests à la suite de tests boite noire */
     if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
 	|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
-	/*|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))
+	/*|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))*/
 	|| (NULL == CU_add_test(pSuite, "Test general de pionMemeCouleur", test_pionMemeCouleur))
-	|| (NULL == CU_add_test(pSuite, "Test general de jouer", test_jouer))*/
+	/*|| (NULL == CU_add_test(pSuite, "Test general de jouer", test_jouer))*/
 	|| (NULL == CU_add_test(pSuite, "Test general de adversairesAdjacents", test_adversairesAdjacents))
         ) 
         {
