@@ -306,8 +306,8 @@ CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur
         scanf("%d",&x);
         printf("col?");
         scanf(" %c",&y);
-        coup.position.y=x-1;
         coup.position.x=y-97;
+        coup.position.y=x-1;
         return coup;
     }
         
