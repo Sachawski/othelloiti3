@@ -132,5 +132,7 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 void menu(Mode *mode);
 
 CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur);
+
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2);
 #endif
 

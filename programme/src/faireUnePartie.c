@@ -312,3 +312,13 @@ CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur
     }
         
 }
+
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2){
+  CP_Coup coup;
+  if (couleur==NOIR){
+            printf("Noir\n");
+            coup=(*obtenirCoupNoir)(plateau, joueur1, NOIR);
+        }
+  else
+            coup=(*obtenirCoupBlanc)(plateau, joueur2, BLANC);
+}
