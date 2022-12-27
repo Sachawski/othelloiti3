@@ -49,7 +49,7 @@ PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos)
 {
     int x = pos.x ;
     int y = pos.y ; 
-    PN_Pion res = plateau.tabPlateau[x][y].casePion ; 
+    PN_Pion res = plateau.tabPlateau[y][x].casePion ; 
     return res ;
 }
 
@@ -64,7 +64,7 @@ int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos)
 {
     int x = pos.x ;
     int y = pos.y ;
-    int res = plateau.tabPlateau[x][y].estVide ;
+    int res = plateau.tabPlateau[y][x].estVide ;
     return res ;
 }
 
@@ -92,6 +92,6 @@ void PLT_enleverPion(PLT_Plateau* plateau, POS_Position pos)
 {
     int x = pos.x ; 
     int y = pos.y ;
-    plateau->tabPlateau[x][y].estVide = 1 ;
+    plateau->tabPlateau[y][x].estVide = 1 ;
 }
 
