@@ -95,8 +95,10 @@ void test_pionMemeCouleur(void){
     PLT_poserPion(&plateau,POS_position(3,5),PN_pion(NOIR));
     PLT_poserPion(&plateau,POS_position(4,5),PN_pion(BLANC));
     
-    CP_Coup coupTest = CP_coup(PN_pion(BLANC),POS_position(1,5));
     
+    
+    CP_Coup coupTest = CP_coup(PN_pion(BLANC),POS_position(1,5));
+    afficherPlateau(plateau);
     CPS_Coups resultatAttendu;
     resultatAttendu = CPS_coups();
 
@@ -115,7 +117,7 @@ void test_pionMemeCouleur(void){
     resultatObtenu = pionMemeCouleur(plateau,coupTest,adversairesAdj);
 
 
-    CU_ASSERT_EQUAL(resultatObtenu.nbTotalCoups,0);
+    CU_ASSERT_EQUAL(resultatObtenu.nbTotalCoups,resultatAttendu.nbTotalCoups);
     CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatAttendu,1))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatObtenu,1))));
     CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatAttendu,2))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(resultatObtenu,2))));
     
@@ -128,40 +130,62 @@ void test_adversairesAdjacents(void){
   PLT_Plateau plateau;
   CPS_Coups cps;
   plateau = PLT_plateau();
+  plateau = initialiserPlateau();
   
-  PLT_poserPion(&plateau,POS_position(4,3),PN_pion(NOIR));
-  PLT_poserPion(&plateau,POS_position(3,4),PN_pion(NOIR));
-  PLT_poserPion(&plateau,POS_position(3,2),PN_pion(NOIR));
-  PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,3),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(1,3),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(1,4),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,5),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(2,4),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(4,2),PN_pion(BLANC));
+    PLT_poserPion(&plateau,POS_position(3,5),PN_pion(NOIR));
+    PLT_poserPion(&plateau,POS_position(4,5),PN_pion(BLANC));
 
-  CP_Coup coup0 = CP_coup(PN_pion(BLANC),POS_position(3,3));
-  CP_Coup coup1 = CP_coup(PN_pion(NOIR),POS_position(4,3));
-  CP_Coup coup2 = CP_coup(PN_pion(NOIR),POS_position(3,4));
-  CP_Coup coup3 = CP_coup(PN_pion(NOIR),POS_position(3,2));
-  CP_Coup coup4 = CP_coup(PN_pion(NOIR),POS_position(2,3));
+    afficherPlateau(plateau);
+    
+
+  CP_Coup coup0 = CP_coup(PN_pion(BLANC),POS_position(1,5));
+  CP_Coup coup1 = CP_coup(PN_pion(NOIR),POS_position(1,4));
+  CP_Coup coup2 = CP_coup(PN_pion(NOIR),POS_position(2,5));
 
   cps = CPS_coups();
   
   CPS_ajouterCoups(&cps,coup1);
   CPS_ajouterCoups(&cps,coup2);
-  CPS_ajouterCoups(&cps,coup3);
-  CPS_ajouterCoups(&cps,coup4);
 
   CPS_Coups varcps;
-
-  varcps = CPS_coups();
-  
   varcps = adversairesAdjacents(plateau,coup0);
   
   CU_ASSERT_EQUAL(varcps.nbTotalCoups,cps.nbTotalCoups);
   CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,1))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,1))));
   CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,2))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,2))));
-  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,3))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,3))));
-  CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,4))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,4))));
 }
 
 void test_evaluerNb(void){
-
+    C_Case cV ;
+    cV.estVide = 1 ;
+    C_Case cB ;
+    C_Case cN ;
+    cB.estVide = 0;
+    cB.casePion = PN_pion(BLANC);
+    cN.estVide = 0;
+    cN.casePion = PN_pion(NOIR);
+    C_Case initialiserTableau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
+        { cN, cB, cB, cB, cN, cB, cN, cB},
+        { cN, cB, cN, cB, cB, cN, cB, cN},
+        { cB, cN, cB, cN, cB, cN, cB, cN},
+        { cB, cN, cB, cV, cN, cN, cB, cB},
+        { cN, cB, cN, cV, cN, cB, cN, cB},
+        { cB, cB, cN, cN, cN, cB, cN, cB},
+        { cN, cB, cN, cN, cN, cB, cN, cB},
+        { cN, cB, cN, cN, cN, cB, cN, cB}
+    };
+    PLT_Plateau plateauAttendu;
+    memcpy(plateauAttendu.tabPlateau,initialiserTableau,sizeof(C_Case)*HAUTEUR_PLATEAU*LARGEUR_PLATEAU);
+    int resultatBlanc = evaluerNb(plateauAttendu,BLANC);
+    int resultatNoir = evaluerNb(plateauAttendu,NOIR);
+    CU_ASSERT_EQUAL(resultatBlanc,30);
+    CU_ASSERT_EQUAL(resultatNoir,32);
 }
 
 int main(int argc , char** argv){
@@ -182,9 +206,8 @@ int main(int argc , char** argv){
     /* Ajout des tests à la suite de tests boite noire */
     if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
 	|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
-	/*|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))*/
+	|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))
 	|| (NULL == CU_add_test(pSuite, "Test general de pionMemeCouleur", test_pionMemeCouleur))
-	/*|| (NULL == CU_add_test(pSuite, "Test general de jouer", test_jouer))*/
 	|| (NULL == CU_add_test(pSuite, "Test general de adversairesAdjacents", test_adversairesAdjacents))
         ) 
         {
