@@ -11,7 +11,7 @@
 #include "TADcouleur.h"
 #include "TADplateau.h"
 
-#define PROFONDEUR_THEO 10 
+#define PROFONDEUR_THEO 5
 
 
 int init_suite_success (void) {
@@ -84,11 +84,11 @@ void test_obtenirCoup(void) {
     PLT_retournerPion(&plateau,POS_position(4,4));
     PLT_retournerPion(&plateau,POS_position(4,3));
     // Meilleur coup théorique pour les noirs
-    printf("%d   ",111111111);
     CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0));
-
+    afficherPlateau(plateau);
     // Meilleur pour les noirs d'après la machine
     CP_Coup resultatObtenu = obtenirCoup(plateau,NOIR,PROFONDEUR_THEO);
+    printf("%d %d",resultatObtenu.position.x,resultatObtenu.position.y);
     CU_ASSERT_EQUAL(resultatAttendu.pion.couleur,resultatObtenu.pion.couleur);
     CU_ASSERT_EQUAL(resultatAttendu.position.x,resultatObtenu.position.x);
     CU_ASSERT_EQUAL(resultatAttendu.position.y,resultatObtenu.position.y);

@@ -42,9 +42,9 @@ int compteurCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
     int compteur,i,j;
     POS_Position pos ;
     compteur = 0 ;
-    for (i=1;i<=8;i++) 
+    for (i=0;i<=7;i++) 
     {
-        for (j=1;i<=8;j++) 
+        for (j=0;j<=7;j++) 
         {
             pos = POS_position(i,j);
             if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
@@ -82,6 +82,7 @@ int evaluer(PLT_Plateau plateau, CLR_Couleur joueur)
  */
 int score(PLT_Plateau plateau, CLR_Couleur joueur)
 {
+    
     int score, sommePonderation, i,j ;
     POS_Position tempPos ;
     int ponderation[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
@@ -94,18 +95,19 @@ int score(PLT_Plateau plateau, CLR_Couleur joueur)
         {-20, -50, -2, -2, -2, -2, -50, -20},
         {100, -20, 10, 5, 5, 10, -20, 100}
     };
-        for (i=1;i<=8;i++) 
-        {
-            for (j=1;i<=8;j++) 
-            {
-                tempPos = POS_position(i,j) ;
-                if ((!PLT_estCaseVide(plateau,tempPos)) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,tempPos)) == joueur ))
-                {
-                    sommePonderation = sommePonderation + ponderation[i][j];
-                }
 
+    for (i=0;i<8;i++) 
+    {
+        for (j=0;j<8;j++) 
+        {
+            tempPos = POS_position(i,j) ;
+            if ((!PLT_estCaseVide(plateau,tempPos)) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,tempPos)) == joueur ))
+            {
+                sommePonderation = sommePonderation + ponderation[j][i];
             }
+
         }
+    }
     score = compteurCouleur(plateau,joueur) + sommePonderation ;
     return score ;
 }
@@ -123,8 +125,8 @@ CPS_Coups obtenirCoupsPossibles(PLT_Plateau unPlateau, CLR_Couleur joueurRef) {
     CP_Coup coupTemp;
 
     resultat = CPS_coups();
-    for(i=1; i<=HAUTEUR_PLATEAU; i++){
-        for(j=1; j <=LARGEUR_PLATEAU; j++){
+    for(i=0; i<HAUTEUR_PLATEAU; i++){
+        for(j=0; j <LARGEUR_PLATEAU; j++){
             coupTemp = CP_coup(PN_pion(joueurRef),POS_position(j,i));
             if(coupLegal(unPlateau,coupTemp)){
                 CPS_ajouterCoups(&resultat,coupTemp);
@@ -174,7 +176,6 @@ int plateauBloquePourUneCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
  */
 int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCourant, CP_Coup unCoup, int profondeur, int alpha, int beta) {
     PLT_Plateau copieUnPlateau;
-
     copierPlateau(unPlateau,&copieUnPlateau);
     jouer(&copieUnPlateau,unCoup);
     if(plateauBloque(copieUnPlateau) || (profondeur == 0)) {
