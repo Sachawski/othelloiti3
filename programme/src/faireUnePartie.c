@@ -93,12 +93,12 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
             y+= directionY;
             if (x>= 0&& x<=7&& y>= 0&& y<=7){
                 pos= POS_position(x, y);
-                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup))&& !PLT_estCaseVide(plateau, pos)){
+                if (PLT_estCaseVide(plateau, pos))
+                    break;
+                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup)) ){
                     CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
                     break;
                 }
-                else
-                    break;
             }
             else{
                 break;;
@@ -107,7 +107,6 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
     }
     return lesPionsMemeCouleur;
 }
-
 
 
 int coupLegal(PLT_Plateau plateau, CP_Coup coup){
