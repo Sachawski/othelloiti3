@@ -6,6 +6,7 @@
 #include <math.h>
 #include <assert.h>
 #include <unistd.h>
+#include <time.h>
 #define profondeur 5
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
@@ -259,6 +260,7 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
     PN_Pion joueurCourant;
     EtatPartie e;
     Joueur joueur1, joueur2;
+    time_t start,end;
     e=partieEncours;
     joueurCourant= PN_pion(NOIR);
     plateau= initialiserPlateau();
@@ -282,8 +284,11 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
         joueur2=Humain;
     }
     do{
+        start=time(NULL);
         jouer(&plateau, coupEnFctJoueur(obtenirCoupEnFctDuJoueur, obtenirCoupEnFctDuJoueur, PN_obtenirCouleurSuperieure(joueurCourant), plateau, joueur1, joueur2));
-        sleep(1);
+        end=time(NULL);
+        if (difftime(start, end)<1)
+          sleep(1);
         afficherPlateau(plateau);
         PN_retournerPion(&joueurCourant);
         etatPartie(plateau, &couleurGagnant, &e);
