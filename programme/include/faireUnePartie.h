@@ -41,7 +41,7 @@ typedef enum{IA=1, Humain} Joueur;
  * \typedef EtatPartie
  * \brief il y a deux conditions: Egalisation et Agagnant
  */
-typedef enum{partieGagnee, partieNulle, partieEegal} EtatPartie;
+typedef enum{partieGagnee, partieEncours, partieEegal} EtatPartie;
 
 
 /**

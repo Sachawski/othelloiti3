@@ -5,7 +5,8 @@
 #include "obtenirCoup.h"
 #include <math.h>
 #include <assert.h>
-#define profondeur 2
+#include <unistd.h>
+#define profondeur 5
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
     plateau=PLT_plateau();
@@ -109,6 +110,7 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
 }
 
 
+
 int coupLegal(PLT_Plateau plateau, CP_Coup coup){
     POS_Position position;
     CPS_Coups pionLegals;
@@ -141,7 +143,7 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     CLR_Couleur c;
     int scoreBlanc, scoreNoir;
     if (!plateauBloque(plateau)){
-        e=partieNulle;
+        e=partieEncours;
         *egalite=e;
     }
     if (plateauBloque(plateau) ){
@@ -169,9 +171,9 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     int compteur,i,j;
     POS_Position pos ;
     compteur = 0 ;
-    for (i=0;i<=7;i++) 
+    for (i=0;i<=7;i++)
     {
-        for (j=0;j<=7;j++) 
+        for (j=0;j<=7;j++)
         {
             pos = POS_position(i,j);
             if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
@@ -255,10 +257,9 @@ void menu(Mode *mode){
 void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleurGagnant, Mode mode){
     PLT_Plateau plateau;
     PN_Pion joueurCourant;
-    CP_Coup coup;
     EtatPartie e;
     Joueur joueur1, joueur2;
-    e=partieNulle;
+    e=partieEncours;
     joueurCourant= PN_pion(NOIR);
     plateau= initialiserPlateau();
     afficher(plateau);
@@ -280,12 +281,19 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
         printf("Humain2 est Blanc\n");
         joueur2=Humain;
     }
-    while (e==partieNulle){
+    do{
         jouer(&plateau, coupEnFctJoueur(obtenirCoupEnFctDuJoueur, obtenirCoupEnFctDuJoueur, PN_obtenirCouleurSuperieure(joueurCourant), plateau, joueur1, joueur2));
+        sleep(1);
         afficherPlateau(plateau);
         PN_retournerPion(&joueurCourant);
         etatPartie(plateau, &couleurGagnant, &e);
-    }
+    }while (e==partieEncours);
+    if ((couleurGagnant==BLANC)&&(e==partieGagnee))
+        printf("bravo BLANC");
+    if (couleurGagnant==NOIR&&(e==partieGagnee))
+        printf("bravo NOIR");
+    if (e==partieEegal)
+        printf("bravo les deux");
 }
 
 CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur){
