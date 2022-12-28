@@ -218,7 +218,7 @@ int alphaBeta(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCo
             }
             beta = MIN(beta,resultat);
         } else {
-            resultat = MAX(resultat,score);
+            resultat = MIN(resultat,score);
             if(beta<=resultat) {
                 return resultat;
             }
