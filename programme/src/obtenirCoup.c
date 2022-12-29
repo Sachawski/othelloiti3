@@ -1,5 +1,5 @@
 /** \file
- * \brief Fichier contenant la fonction compteurCouleur()
+ * \brief Fichier contenant les fonctions de l'IA
  * \author S. Wojciechowski, V. Turnel
  * \version 1.0
  * \date 05/12/2022     
@@ -146,7 +146,7 @@ CPS_Coups obtenirCoupsPossibles(PLT_Plateau unPlateau, CLR_Couleur joueurRef) {
  */
 int  plateauBloque(PLT_Plateau plateau)
 {
-    return plateauBloquePourUneCouleur(plateau,NOIR) && plateauBloquePourUneCouleur(plateau,BLANC);
+    return plateauBloquePourUneCouleur(plateau,NOIR) || plateauBloquePourUneCouleur(plateau,BLANC);
 }
 
 /**
@@ -242,7 +242,7 @@ CP_Coup obtenirCoup(PLT_Plateau plateau, CLR_Couleur joueur, int profondeur)
     CP_Coup resultat ;
     CPS_Coups cps ;
     int score, meilleurScore, i ;
-
+    
     cps = obtenirCoupsPossibles(plateau,joueur);
     resultat = CPS_iemeCoup(cps,1) ;
     meilleurScore = scoreDUnCoup(plateau,joueur,joueur,resultat,profondeur,INF_NEGATIF,INF_POSITIF) ;

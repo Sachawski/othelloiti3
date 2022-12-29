@@ -1,3 +1,11 @@
+/** \file TADcoups.c
+ * \brief Fichier du developpement du TAD Coups
+ * \author P. Thulliez
+ * \version 1.0
+ * \date 05/12/2022     
+ */
+
+
 #include "TADcoups.h"
 #include "TADcoup.h"
 #include "TADcoups.h"
