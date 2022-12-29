@@ -10,8 +10,8 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "Projet Othello"
 PROJECT_NUMBER         = 1
-PROJECT_BRIEF          = Conception d'un jeu d'othello qui permet à un joueur de jouer contre une IA ou de faire jouer l'IA contre l'IA d'un autre groupe 
-PROJECT_LOGO           = NO
+PROJECT_BRIEF          = 	
+PROJECT_LOGO           = 
 OUTPUT_DIRECTORY       = ./doc
 CREATE_SUBDIRS         = YES
 ALLOW_UNICODE_NAMES    = NO
@@ -80,9 +80,9 @@ HIDE_UNDOC_MEMBERS     = NO
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 
-INPUT                  = ./src
+INPUT                  = ./include
 INPUT_ENCODING         = UTF-8
-FILE_PATTERNS          = *.c
+FILE_PATTERNS          = *.h
 RECURSIVE              = YES
 
 
