@@ -1,3 +1,11 @@
+/** \file
+ * \brief Developpement du TAD Couleur
+ * \author P. Thulliez
+ * \version 1.0
+ * \date 06/12/2022     
+ */
+
+
 #include <stdlib.h>
 #include "TADcouleur.h"
 
