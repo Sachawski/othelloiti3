@@ -1,4 +1,4 @@
-/** \file
+/** \file TADcoups.c
  * \brief Fichier du developpement du TAD Coups
  * \author P. Thulliez
  * \version 1.0
