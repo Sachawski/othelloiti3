@@ -1,4 +1,4 @@
-/** \file
+/** \file TADcouleur.c
  * \brief Developpement du TAD Couleur
  * \author P. Thulliez
  * \version 1.0
