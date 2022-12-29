@@ -1,51 +1,50 @@
 /**
-2 * \file TADcouleur.h
-3 * \brief Implantation du TAD Couleur
-4 * \author P. Thulliez
-5 * \version 1.0
-6 * \date 06/12/2022
-7 *
-8 */
+ * \file TADcouleur.h
+ * \brief Implementation du TAD Couleur 
+ * \author P. Thulliez
+ * \version 1.0
+ * \date 06/12/2022
+*/
 
 #ifndef  __TADCOULEUR__
 #define __TADCOULEUR__
 
 
-/* Modélisation d'une couleur qui est soit noir, soit blanche
-    */
-typedef enum {BLANC,NOIR} CLR_Couleur ;
-
-
+/**
+ * \enum CLR_Couleur
+ * \brief Modélise les couleurs blanc et noir
+*/
+typedef enum {
+    BLANC, /**< Couleur blanche*/
+    NOIR /**< Couleur noire*/
+} CLR_Couleur ;
 
 /**
  * \fn CLR_Couleur CLR_noir()
  * \brief Fonction qui retourne la couleur NOIR
- * \return CLR_Couleur
+ * \return CLR_Couleur (couleur NOIR)
  */
 CLR_Couleur CLR_noir();
 
 /**
  * \fn CLR_Couleur CLR_blanc()
  * \brief Fonction qui retourne la couleur BLANC
- * \return CLR_Couleur
+ * \return CLR_Couleur (couleur BLANC)
  */
-
 CLR_Couleur CLR_blanc();
 
 /**
- * \fn int  CLR_estBlanc(CLR_Couleur c)
+ * \fn int CLR_estBlanc(CLR_Couleur couleur)
  * \brief Fonction qui retourne un booleen. Si la couleur est BLANC alors le booleen retourne Vrai, sinon il retourne Faux.
- * \return bool
+ * \return bool (1 si est BLANC, 0 sinon)
  */
-
-int CLR_estBlanc(CLR_Couleur c);
+int CLR_estBlanc(CLR_Couleur couleur);
 
 /**
- * \fn CLR_Couleur CLR_changerCouleur(CLR_Couleur c1)
- * \brief Fonction qui retourne la couleur adverse à celle donnée en entrée.
- * \return CLR_Couleur
+ * \fn CLR_Couleur CLR_changerCouleur(CLR_Couleur couleur)
+ * \brief Fonction qui retourne la couleur inverse à celle donnée en entrée.
+ * \return CLR_Couleur (couleur inverse de la couleur donnée en paramètre)
  */
-
-CLR_Couleur CLR_changerCouleur(CLR_Couleur c1);
+CLR_Couleur CLR_changerCouleur(CLR_Couleur couleur);
 
 #endif

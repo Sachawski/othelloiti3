@@ -1,44 +1,47 @@
+/**
+ * \file TADposition.h
+ * \brief Implementation du TAD Position
+ * \author P. Thulliez
+ * \version 1.0
+ * \date 06/12/2022
+*/
+
 #ifndef  __TADPOSITION__
 #define __TADPOSITION__
 
 /**
-2 * \file TADposition.h
-3 * \brief Implantation du TAD Position
-4 * \author P. Thulliez
-5 * \version 1.0
-6 * \date 06/12/2022
-7 *
-8 */
+ * \struct POS_Position
+ * \brief Modélise une position sur le plateau
+ * POS_Position est un type qui permet de modéliser ce qu'est une position sur un plateau
+*/
+typedef struct {
+    int x ; /**< Représente la colonne x*/     
+    int y ; /**< Représente la ligne y */
+} POS_Position ;
 
-
-
-typedef struct 
-    {
-        /* Modélisation d'une position par ses coordonnées selon :
-        - la colonne x
-        - la ligne y
-        */
-
-        int x;
-        int y;
-    } POS_Position ;
-
-
-
-/*  fonction qui retourne une position de type Position grâce à une largeur et une hauteur en entrée 
-        */
-
+/**
+* \fn POS_Position POS_position(int largeur, int hauteur )
+* \brief Fonction qui retourne une position sachant la colonne et la ligne
+* \param largeur Colonne de la position voulu
+* \param hauteur Hauteur de la position voulu
+* \return POS_Position (Position voulu)
+*/
 POS_Position POS_position(int largeur, int hauteur );
 
+/**
+* \fn int POS_obtenirX(POS_Position unePosition)
+* \brief Fonction qui retourne l'entier correspondant à la la colonne à partir d'une position
+* \param pos Position dont on souhaite connaitre la colonne
+* \return int (Ligne de la position donnée)
+*/
+int POS_obtenirX(POS_Position pos);
 
-/*  fonction qui permet de retourner la largeur (abscisse X) d'une Position
-        */
-
-int POS_obtenirX(POS_Position unePosition);
-
-
-/*  fonction qui permet de retourner la hauteur (ordonnée Y) d'une Position
-        */
-int POS_obtenirY(POS_Position unePosition);
+/**
+* \fn int POS_obtenirY(POS_Position unePosition)
+* \brief Fonction qui retourne l'entier correspondant à la ligne à partir d'une position
+* \param pos Position dont on souhaite connaitre la ligne
+* \return int (Colonne de la position donnée)
+*/
+int POS_obtenirY(POS_Position pos);
 
 #endif
