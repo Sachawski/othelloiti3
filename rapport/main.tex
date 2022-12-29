@@ -8,9 +8,9 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage[utf8x]{inputenc}                                                    
+\usepackage[utf8]{inputenc}                                                    
 \usepackage{algorithmeUTF8}
-
+\usepackage{verbatim}
 \lstset{
 language=C,
 literate=
@@ -19,6 +19,9 @@ literate=
 {⁶}{{\textsuperscript{6}}}1
 {⁸}{{\textsuperscript{8}}}1
 {€}{{\euro{}}}1
+{’}{'}1
+{○}{{$ \circ $}}1
+{●}{{$ \bullet $}}1
 {é}{{\'e}}1
 {è}{{\`{e}}}1
 {ê}{{\^{e}}}1
@@ -177,6 +180,9 @@ breakable
 \subsection{Conception détaillée des fonctions de faireUnePartie}
 \input{cd/faireUnePartie/CDfaireUnePartie}
 
+
+
+
 \section{Code}
 
 \subsection{Header}
@@ -197,7 +203,7 @@ breakable
 \lstinputlisting[language = C]{../programme/include/TADcoups.h}
 
 \subsubsection{Plateau}
-\lstinputlisting[language = C}]{../programme/include/TADplateau.h}
+\lstinputlisting[language = C]{../programme/include/TADplateau.h}
 
 \subsubsection{faireUnePartie}
 \lstinputlisting[language = C]{../programme/include/faireUnePartie.h}
@@ -226,7 +232,7 @@ breakable
 \lstinputlisting[language = C]{../programme/src/TADcoups.c}
 
 \subsubsection{Plateau}
-\lstinputlisting[language = C}]{../programme/src/TADplateau.c}
+\lstinputlisting[language = C]{../programme/src/TADplateau.c}
 
 \subsubsection{faireUnePartie}
 \lstinputlisting[language = C]{../programme/src/faireUnePartie.c}
@@ -234,8 +240,6 @@ breakable
 \subsubsection{obtenirCoup}
 \lstinputlisting[language = C]{../programme/src/obtenirCoup.c}
 
-\subsubsection{obtenirCoupPrive}
-\lstinputlisting[language = C]{../programme/src/obtenirCoupPrive.c}
 
 
 \section{Repartition des tâches}
@@ -263,7 +267,7 @@ breakable
   CP TAD Coups & & X & & & \\             
   CP TAD Plateau & X & & & & \\
   \hline
-  Concéption détaillé \\
+  Conception détaillé \\
   \hline
   CD TAD Couleur & & & X & X & \\                                                                                                                                                                       
   CD TAD Pion & & & & & X \\                                                                                   
@@ -298,10 +302,12 @@ breakable
   nbPions & & & & X & \\
   retournerPionsEmprisonnes & X & & & & \\
   afficherPlateau & & & X & & \\
-  joeur & X & & & & \\
+  jouer & X & & & & \\
   makefile du programme & & & X & & X \\
-  \hline
-  Tests Unitaires \\
+ \end{tabular}   
+ \vspace{3cm}
+ \begin{tabular}{|l|c|c|c|c|c|}
+  Tests Unitaires & Ahmed Zarki & Victorin Turnel & Chen Yang & Paul Thulliez & Sacha Wojciechowski\\
   \hline
   TAD Couleur & X & & & & \\                                                                                                                                                                       
   TAD Pion & & & X & & \\                                                                                                                                                                              
@@ -311,6 +317,7 @@ breakable
   obtenirCoup & & X & & & X \\
   faireUnePartie & X & & & & \\
   \hline
+  
 \end{tabular}             
 
 \end{document}
