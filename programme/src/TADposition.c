@@ -1,17 +1,48 @@
-#include "TADposition.h"
+#include <stdlib.h>
+#include "TADcouleur.h"
 
-POS_Position POS_position(int largeur, int hauteur){
-  POS_Position pos;
+/**
+ * \fn CLR_Couleur CLR_noir()
+ * \brief Fonction qui retourne la couleur NOIR
+ * \return CLR_Couleur
+ */
 
-  pos.x = largeur;
-  pos.y = hauteur;
-  return pos;
+CLR_Couleur CLR_noir(){
+	return NOIR;
 }
 
-int POS_obtenirX(POS_Position unePosition){
-  return unePosition.x;
+/**
+ * \fn CLR_Couleur CLR_blanc()
+ * \brief Fonction qui retourne la couleur BLANC
+ * \return CLR_Couleur
+ */
+
+CLR_Couleur CLR_blanc(){
+	return BLANC;
 }
 
-int POS_obtenirY(POS_Position unePosition){
-  return unePosition.y;
+/**
+ * \fn int  CLR_estBlanc(CLR_Couleur c)
+ * \brief Fonction qui retourne un booleen. Si la couleur est BLANC alors le booleen retourne Vrai, sinon il retourne Faux.
+ * \return bool
+ */
+
+int CLR_estBlanc(CLR_Couleur c){
+	return c==BLANC;
 }
+
+/**
+ * \fn CLR_Couleur CLR_changerCouleur(CLR_Couleur c1)
+ * \brief Fonction qui retourne la couleur adverse à celle donnée en entrée.
+ * \return CLR_Couleur
+ */
+
+CLR_Couleur CLR_changerCouleur(CLR_Couleur c1){
+	if(CLR_estBlanc(c1)){
+		return NOIR;
+	}
+	else{
+		return BLANC;
+	}
+}
+
