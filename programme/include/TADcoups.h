@@ -25,24 +25,37 @@ typedef struct
 
 
 
- /* fonction qui génère une liste de Coups (de type Coups) vide
-    */
+/**
+ * \fn CPS_Coups CPS_coups()
+ * \brief Fonction qui retourne une liste de Coups vide
+ * \return CPS_Coups
+ */
 
 CPS_Coups CPS_coups();
 
 
- /* fonction qui retourne le nombre de coups d'une liste de Coups (de type Coups)
-    */
+/**
+ * \fn int CPS_nbCoups(CPS_Coups cps)
+ * \brief Fonction qui retourne le nombre de Coups d'une liste de Coups
+ * \return int
+ */
 
 int CPS_nbCoups(CPS_Coups cps);
 
- /* procédure qui permet de rajouter un Coup à la liste de Coups (de type Coups)
-    */
+/**
+ * \fn CPS_ajouterCoups(CPS_Coups *cps, CP_Coup unCoup)
+ * \brief Ajoute un Coup dans une liste de Coups
+ * \param CPS_Coups
+ * \param CP_Coup
+ */
 
 void CPS_ajouterCoups(CPS_Coups *cps, CP_Coup unCoup);
 
- /* fonction qui retourne le ième coup de la liste de Coups (de type Coups)
-    */
+/**
+ * \fn CP_Coup CPS_iemeCoup(CPS_Coups cps, unsigned short int place)
+ * \brief Fonction qui retourne le Coup à la place i d'une liste de Coups
+ * \return CP_Coup
+ */
 
 CP_Coup CPS_iemeCoup(CPS_Coups cps, unsigned short int place);
 
