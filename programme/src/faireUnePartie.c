@@ -1,3 +1,12 @@
+/**
+2 * \file faireUneParite.c
+3 * \brief Developpement de faireUneParite
+4 * \author C. Yang, P. Thulliez, A. Zarki
+5 * \version 1.0
+6 * \date 06/12/2022
+7 *
+8 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "faireUnePartie.h"
@@ -8,6 +17,13 @@
 #include <unistd.h>
 #include <time.h>
 #define profondeur 5
+
+/**
+* \fn PLT_Plateau initialiserPlateau(void)
+* \brief initialise un plateau d'Othello avec les 4 pions du début au centre du plateau.
+* \return PLT_Plateau
+*/
+
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
     plateau=PLT_plateau();
@@ -18,6 +34,12 @@ PLT_Plateau initialiserPlateau(void){
   return plateau;
 }
 
+
+/**
+* \fn afficherPlateau(PLT_Plateau plateau)
+* \brief Affiche le plateau actuel dans le terminal.
+* \param PLT_Plateau
+*/
 
 
 void afficherPlateau(PLT_Plateau plateau){
@@ -44,6 +66,14 @@ void afficherPlateau(PLT_Plateau plateau){
 
 }
 
+
+/**
+* \fn CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup)
+* \brief Trouve les pions (les stocke dans une liste de Coups) dans le carré autour du pion (Coup) joué. Adapte le carré lorsque le pion est  aux bords du plateau.
+* \param PLT_Plateau
+* \param CP_Coup
+* \return CPS_Coups
+*/
 
 CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     int recherche, minx, miny, maxx, maxy, x, y;
@@ -73,6 +103,15 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     return coupsLegals;
 }
 
+
+/**
+* \fn CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups coups)
+* \brief Parcourt les directions horizontale, verticale et diagonale au pion (Coup) joué et renvoie le premier pion de la même couleur dans chaque direction (en les stockant dans la liste de Coups).
+* \param PLT_Plateau
+* \param CP_Coup
+* \param CPS_Coups
+* \return CPS_Coups
+*/
 
 CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal){
     CPS_Coups lesPionsMemeCouleur;
@@ -110,7 +149,13 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
     return lesPionsMemeCouleur;
 }
 
-
+/**
+* \fn int coupLegal(PLT_Plateau plateau, CP_Coup coup)
+* \brief Cette fonction détermine si un Coup est légal ou non
+* \param PLT_Plateau
+* \param CP_Coup
+* \return bool
+*/
 
 int coupLegal(PLT_Plateau plateau, CP_Coup coup){
     POS_Position position;
@@ -138,6 +183,13 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
 }
 
 
+/**
+* \fn etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite)
+* \brief Permet de définir l'état de la partie (EtatPartie) et la couleur gagnante si il y en a une.
+* \param PLT_Plateau
+* \param CLR_Couleur
+* \param EtatPartie
+*/
 
 void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
     EtatPartie e;
@@ -168,6 +220,16 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
         }
     }
 }
+
+
+/**
+* \fn int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur)
+* \brief Compte le nombre de pions pour une couleur (un joueur)
+* \param PLT_Plateau
+* \param CLR_Couleur
+* \return int
+*/
+
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     int compteur,i,j;
     POS_Position pos ;
@@ -185,6 +247,15 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     }
     return compteur ;
 }
+
+
+/**
+* \fn retournerPionsEmprisonnes(PLT_Plateau *plateau, CP_Coup coup)
+* \brief Retourne les pions d'une couleur emprisonnés par deux autres pions de la couleur adverse.
+* \param PLT_Plateau
+* \param CP_Coup
+*/
+
 void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     CP_Coup coupTemp;
     int x,y,directionX,directionY;
@@ -220,12 +291,22 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     }
 }
 
+
+/**
+* \fn jouer(PLT_Plateau *plateau, CP_Coup)
+* \brief Joue un coup sur le plateau.
+* \param PLT_Plateau
+* \param CP_Coup
+*/
+
 void jouer(PLT_Plateau * plateau, CP_Coup coup){
     assert(coupLegal);
     retournerPionsEmprisonnes(plateau,coup);
     PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
     
 }
+
+
 
 void menu(Mode *mode){
     char c;
@@ -255,6 +336,18 @@ void menu(Mode *mode){
           break;
     }
 }
+
+
+/**
+* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
+* \brief Procédure permettant de faire une partie du jeu d'Othello
+* \param obtenirCoupEnFctDuJoueur
+* \param obtenirCoupEnFctDuJoueur
+* \param affichagePlateau
+* \param EtatPartie
+* \param CLR_Couleur
+*/
+
 void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleurGagnant, Mode mode){
     PLT_Plateau plateau;
     PN_Pion joueurCourant;
@@ -301,6 +394,16 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joue
         printf("bravo les deux");
 }
 
+
+/**
+* \fn CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur)
+* \brief Selon le mode et selon le joueur qui joue, on obtient le coup du joueur. Si le joueur est l'IA, on appelle obtenirCoup, sinon on demande au joueur le coup qu'il veut jouer.
+* \param PLT_Plateau
+* \param Joueur
+* \param CLR_Couleur
+* \return CP_Coup
+*/
+
 CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur){
     CP_Coup coup;
     char x;
@@ -319,6 +422,19 @@ CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur
     }
         
 }
+
+/**
+* \fn CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2)
+* \brief Retourne le coup de "obtenirCoupEnFctDuJoueur" en fonction de la couleur donnée en entrée.
+* \param obtenirCoupEnFctDuJoueur
+* \param obtenirCoupEnFctDuJoueur
+* \param CLR_Couleur
+* \param PLT_Plateau
+* \param Joueur
+* \param Joueur
+* \return CP_Coup
+*/
+
 CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2){
   CP_Coup coup;
   if (couleur==NOIR){
