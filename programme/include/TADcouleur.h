@@ -17,23 +17,34 @@ typedef enum {BLANC,NOIR} CLR_Couleur ;
 
 
 
- /* Modélisation de la couleur NOIR
-    */
+/**
+ * \fn CLR_Couleur CLR_noir()
+ * \brief Fonction qui retourne la couleur NOIR
+ * \return CLR_Couleur
+ */
 CLR_Couleur CLR_noir();
 
- /* Modélisation de la couleur BLANC
-    */
+/**
+ * \fn CLR_Couleur CLR_blanc()
+ * \brief Fonction qui retourne la couleur BLANC
+ * \return CLR_Couleur
+ */
+
 CLR_Couleur CLR_blanc();
 
- /* fonction permettant de savoir si la couleur est BLANC.
-    Retourne Vrai (1) si la couleur est BLANC et Faux (0) si la couleur est NOIR
-    */
+/**
+ * \fn int  CLR_estBlanc(CLR_Couleur c)
+ * \brief Fonction qui retourne un booleen. Si la couleur est BLANC alors le booleen retourne Vrai, sinon il retourne Faux.
+ * \return bool
+ */
+
 int CLR_estBlanc(CLR_Couleur c);
 
- /* fonction qui change la couleur d'une couleur donnée
-    Si la couleur donnée est BLANC, la fonction changerCouleur retourne NOIR
-    Si la couleur donnée est NOIR, la fonction changerCouleur retourne BLANC
-    */
+/**
+ * \fn CLR_Couleur CLR_changerCouleur(CLR_Couleur c1)
+ * \brief Fonction qui retourne la couleur adverse à celle donnée en entrée.
+ * \return CLR_Couleur
+ */
 
 CLR_Couleur CLR_changerCouleur(CLR_Couleur c1);
 
