@@ -42,9 +42,9 @@ int compteurCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
     int compteur,i,j;
     POS_Position pos ;
     compteur = 0 ;
-    for (i=0;i<=7;i++) 
+    for (i=0;i<LARGEUR_PLATEAU;i++) 
     {
-        for (j=0;j<=7;j++) 
+        for (j=0;j<HAUTEUR_PLATEAU;j++) 
         {
             pos = POS_position(i,j);
             if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
@@ -96,9 +96,9 @@ int score(PLT_Plateau plateau, CLR_Couleur joueur)
         {100, -20, 10, 5, 5, 10, -20, 100}
     };
 
-    for (i=0;i<8;i++) 
+    for (i=0;i<LARGEUR_PLATEAU;i++) 
     {
-        for (j=0;j<8;j++) 
+        for (j=0;j<HAUTEUR_PLATEAU;j++) 
         {
             tempPos = POS_position(i,j) ;
             if ((!PLT_estCaseVide(plateau,tempPos)) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,tempPos)) == joueur ))
@@ -246,7 +246,7 @@ CP_Coup obtenirCoup(PLT_Plateau plateau, CLR_Couleur joueur, int profondeur)
     cps = obtenirCoupsPossibles(plateau,joueur);
     resultat = CPS_iemeCoup(cps,1) ;
     meilleurScore = scoreDUnCoup(plateau,joueur,joueur,resultat,profondeur,INF_NEGATIF,INF_POSITIF) ;
-    for (i=2; i<cps.nbTotalCoups;i++)
+    for (i=2; i<=cps.nbTotalCoups;i++)
     {
         score = scoreDUnCoup(plateau,joueur,joueur,CPS_iemeCoup(cps,i),profondeur,INF_NEGATIF,INF_POSITIF) ;
         if ( score > meilleurScore ) 
