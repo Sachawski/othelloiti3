@@ -33,13 +33,16 @@ doc : $(DOCDIR)/$(DOCU)
 $(DOCDIR)/$(DOCU) : $(DOCDIR)/Doxyfile $(SRCDIR)/TADpion.c $(SRCDIR)/TADcouleur.c $(SRCDIR)/TADcoup.c $(SRCDIR)/TADplateau.c $(SRCDIR)/TADcoups.c $(SRCDIR)/TADposition.c $(SRCDIR)/obtenirCoup.c $(SRCDIR)/faireUnePartie.c
 	@doxygen $(DOCDIR)/Doxyfile
 
-$(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libTAD.a $(LIBDIR)/libOBTFUP.a 
-	$(CC) $(LDFLAGS) -o $@ $< -lOBTFUP -lTAD -Llib -lm 
+$(BINDIR)/$(EXEC) : $(SRCDIR)/main.o $(LIBDIR)/libTAD.a $(LIBDIR)/libOBTFUP.a  $(LIBDIR)/libINTER.a
+	$(CC) $(LDFLAGS) -o $@ $< -lOBTFUP -lTAD -lINTER -Llib -lm 
 
 $(LIBDIR)/libTAD.a : $(SRCDIR)/TADpion.o $(SRCDIR)/TADcouleur.o $(SRCDIR)/TADcoup.o $(SRCDIR)/TADplateau.o $(SRCDIR)/TADcoups.o $(SRCDIR)/TADposition.o 
 	$(AR)  -r $@  $^
 
-$(LIBDIR)/libOBTFUP.a : $(SRCDIR)/obtenirCoup.o $(SRCDIR)/faireUnePartie.o
+$(LIBDIR)/libOBTFUP.a : $(SRCDIR)/obtenirCoup.o $(SRCDIR)/faireUnePartie.o 
+	$(AR)  -r $@  $^
+	
+$(LIBDIR)/libINTER.a : $(SRCDIR)/IMB.o $(SRCDIR)/IHM.o 
 	$(AR)  -r $@  $^
 
 $(SRCDIR)/%.o : $(SRCDIR)/%.c
