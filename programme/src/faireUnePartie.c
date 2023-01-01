@@ -1,12 +1,3 @@
-/**
-2 * \file faireUneParite.c
-3 * \brief Developpement de faireUneParite
-4 * \author C. Yang, P. Thulliez, A. Zarki
-5 * \version 1.0
-6 * \date 06/12/2022
-7 *
-8 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "faireUnePartie.h"
@@ -16,13 +7,7 @@
 #include <assert.h>
 #include <unistd.h>
 #include <time.h>
-#define profondeur 5
 
-/**
-* \fn PLT_Plateau initialiserPlateau(void)
-* \brief initialise un plateau d'Othello avec les 4 pions du début au centre du plateau.
-* \return PLT_Plateau
-*/
 
 PLT_Plateau initialiserPlateau(void){
     PLT_Plateau plateau;
@@ -33,47 +18,6 @@ PLT_Plateau initialiserPlateau(void){
     PLT_poserPion(&plateau, POS_position(4, 4), PN_pion(CLR_blanc()));
   return plateau;
 }
-
-
-/**
-* \fn afficherPlateau(PLT_Plateau plateau)
-* \brief Affiche le plateau actuel dans le terminal.
-* \param PLT_Plateau
-*/
-
-
-void afficherPlateau(PLT_Plateau plateau){
-    system("clear");
-    printf("\n      [OTHELLO]\n\n     a  b  c  d  e  f  g  h\n  ┌─────────────────────────┐\n");
-    for( int i=0; i<=63; i++ ){
-        if ( i%8 == 0 )
-          printf(" %d│ ", i/8+ 1 );
-        if (plateau.tabPlateau[i/8][i%8].estVide==1)
-          printf(" ┼ ");        //vide
-        else{
-          switch ( plateau.tabPlateau[i/8][i%8].casePion.couleur ){
-            case NOIR:
-                printf(" ○ ");        //NOIR
-                break;
-            case BLANC:
-                printf(" ● ");        //BLANC
-                break;
-          }
-        }
-        if( i%8 == 7 ) printf("│\n");
-    }
-    printf("  └─────────────────────────┘\n  ");
-
-}
-
-
-/**
-* \fn CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup)
-* \brief Trouve les pions (les stocke dans une liste de Coups) dans le carré autour du pion (Coup) joué. Adapte le carré lorsque le pion est  aux bords du plateau.
-* \param PLT_Plateau
-* \param CP_Coup
-* \return CPS_Coups
-*/
 
 CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     int recherche, minx, miny, maxx, maxy, x, y;
@@ -103,17 +47,7 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     return coupsLegals;
 }
 
-
-/**
-* \fn CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups coups)
-* \brief Parcourt les directions horizontale, verticale et diagonale au pion (Coup) joué et renvoie le premier pion de la même couleur dans chaque direction (en les stockant dans la liste de Coups).
-* \param PLT_Plateau
-* \param CP_Coup
-* \param CPS_Coups
-* \return CPS_Coups
-*/
-
-CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal){
+CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal) {
     CPS_Coups lesPionsMemeCouleur;
     int nb, i, x, y, directionX, directionY;
     int recherche;
@@ -142,22 +76,14 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
                 }
             }
             else{
-                break;;
+                break;
             }
         }
     }
     return lesPionsMemeCouleur;
 }
 
-/**
-* \fn int coupLegal(PLT_Plateau plateau, CP_Coup coup)
-* \brief Cette fonction détermine si un Coup est légal ou non
-* \param PLT_Plateau
-* \param CP_Coup
-* \return bool
-*/
-
-int coupLegal(PLT_Plateau plateau, CP_Coup coup){
+int coupLegal(PLT_Plateau plateau, CP_Coup coup) {
     POS_Position position;
     CPS_Coups pionLegals;
     position= CP_position(coup);
@@ -178,69 +104,44 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup){
         }
         
     }
-    else
+    else {
         return 0;
+    }
 }
 
 
-/**
-* \fn etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite)
-* \brief Permet de définir l'état de la partie (EtatPartie) et la couleur gagnante si il y en a une.
-* \param PLT_Plateau
-* \param CLR_Couleur
-* \param EtatPartie
-*/
-
-void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite){
-    EtatPartie e;
-    CLR_Couleur c;
+void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *etat){
     int scoreBlanc, scoreNoir;
     if (!plateauBloque(plateau)){
-        e=partieEncours;
-        *egalite=e;
+        *etat=partieEnCours;
     }
     if (plateauBloque(plateau) ){
         scoreBlanc= evaluerNb(plateau, BLANC);
         scoreNoir= evaluerNb(plateau, NOIR);
         if (scoreBlanc> scoreNoir){
-            e= partieGagnee;
-            c= BLANC;
-            *egalite=e;
-            *couleur=c;
-        }
-        if (scoreNoir> scoreBlanc){
-            e= partieGagnee;
-            c= NOIR;
-            *egalite=e;
-            *couleur=c;
-        }
-        if (scoreNoir== scoreBlanc){
-            e= partieEegal;
-            *egalite=e;
+            *etat=partieGagnee;
+            *couleur=BLANC;
+        } 
+        else {
+            if (scoreNoir> scoreBlanc){
+                *etat=partieGagnee;
+                *couleur=NOIR;
+            } 
+            else {
+                *etat=partieEgal;
+            }
         }
     }
 }
-
-
-/**
-* \fn int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur)
-* \brief Compte le nombre de pions pour une couleur (un joueur)
-* \param PLT_Plateau
-* \param CLR_Couleur
-* \return int
-*/
 
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     int compteur,i,j;
     POS_Position pos ;
     compteur = 0 ;
-    for (i=0;i<=7;i++)
-    {
-        for (j=0;j<=7;j++)
-        {
+    for (i=0;i<=7;i++) {
+        for (j=0;j<=7;j++) {
             pos = POS_position(i,j);
-            if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
-            {
+            if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur)){
                 compteur = compteur + 1 ;
             }
         }
@@ -248,13 +149,6 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     return compteur ;
 }
 
-
-/**
-* \fn retournerPionsEmprisonnes(PLT_Plateau *plateau, CP_Coup coup)
-* \brief Retourne les pions d'une couleur emprisonnés par deux autres pions de la couleur adverse.
-* \param PLT_Plateau
-* \param CP_Coup
-*/
 
 void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     CP_Coup coupTemp;
@@ -287,164 +181,63 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
           x = x+directionX;
           y = y+directionY;
         }
-
     }
 }
 
 
-/**
-* \fn jouer(PLT_Plateau *plateau, CP_Coup)
-* \brief Joue un coup sur le plateau.
-* \param PLT_Plateau
-* \param CP_Coup
-*/
-
 void jouer(PLT_Plateau * plateau, CP_Coup coup){
-    assert(coupLegal);
     retournerPionsEmprisonnes(plateau,coup);
     PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
     
 }
 
-
-
-void menu(Mode *mode){
-    char c;
-    int i;
-    printf("\n            [OTHELLO]\n\n   ");
-    printf("          NEW GAME\n");
-    printf("            (press n)\n");
-    do{
-        scanf("%c",&c);
-    }while(c=='n');
-    system("clear");
-    printf("\n        IA vs IA\n");
-    printf("\n        press 1\n");
-    printf("\n        IA vs Humain\n");
-    printf("\n        press 2\n");
-    printf("\n        Humain vs Humain\n");
-    printf("\n        press 3\n");
-    do{
-        scanf("%d",&i);
-    }while(i=='1' || i=='2' ||i=='3');
-    switch(i){
-        case 1: *mode=IAvsIA;
-          break;
-        case 2: *mode=IAvsHumain;
-          break;
-        case 3: *mode=HumainvsHumain;
-          break;
-    }
-}
-
-
-/**
-* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
-* \brief Procédure permettant de faire une partie du jeu d'Othello
-* \param obtenirCoupEnFctDuJoueur
-* \param obtenirCoupEnFctDuJoueur
-* \param affichagePlateau
-* \param EtatPartie
-* \param CLR_Couleur
-*/
-
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleurGagnant, Mode mode){
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), void (*sortie)(PLT_Plateau plateau, CP_Coup coup, int possibilite), EtatPartie *etat, CLR_Couleur *couleurGagnant){
     PLT_Plateau plateau;
     PN_Pion joueurCourant;
-    EtatPartie e;
-    Joueur joueur1, joueur2;
+    CP_Coup prochainCoup;
+    *etat = partieEnCours;
     time_t start,end;
-    e=partieEncours;
-    joueurCourant= PN_pion(NOIR);
+
+    joueurCourant= PN_pion(BLANC);
     plateau= initialiserPlateau();
-    afficher(plateau);
-    if (mode==IAvsIA){
-        printf("IA1 est Noir\n");
-        joueur1=IA;
-        printf("IA2 est Blanc\n");
-        joueur2=IA;
-    }
-    if (mode==IAvsHumain){
-        printf("IA est Noir\n");
-        joueur1=IA;
-        printf("Humain est Blanc\n");
-        joueur2=Humain;
-    }
-    if (mode==HumainvsHumain){
-        printf("Humain1 est Noir\n");
-        joueur1=Humain;
-        printf("Humain2 est Blanc\n");
-        joueur2=Humain;
-    }
-    do{
+
+    do {
+        //Initialisation chronomètre
         start=time(NULL);
-        jouer(&plateau, coupEnFctJoueur(obtenirCoupEnFctDuJoueur, obtenirCoupEnFctDuJoueur, PN_obtenirCouleurSuperieure(joueurCourant), plateau, joueur1, joueur2));
+
+        do {
+            prochainCoup = coupEnFctJoueur(obtenirCoupBlanc, obtenirCoupNoir, PN_obtenirCouleurSuperieure(joueurCourant), plateau);
+        } while (!(coupLegal(plateau,prochainCoup)));
+        jouer(&plateau, prochainCoup);
+
+        //Chronomètre
         end=time(NULL);
         if (difftime(start, end)<1)
-          sleep(1);
-        afficherPlateau(plateau);
+            sleep(1);
+
+        //Affichage
+        sortie(plateau,prochainCoup,1);
+
+        //Changement de joueur
         PN_retournerPion(&joueurCourant);
-        etatPartie(plateau, &couleurGagnant, &e);
-    }while (e==partieEncours);
-    if ((couleurGagnant==BLANC)&&(e==partieGagnee))
-        printf("bravo BLANC");
-    if (couleurGagnant==NOIR&&(e==partieGagnee))
-        printf("bravo NOIR");
-    if (e==partieEegal)
-        printf("bravo les deux");
-}
-
-
-/**
-* \fn CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur)
-* \brief Selon le mode et selon le joueur qui joue, on obtient le coup du joueur. Si le joueur est l'IA, on appelle obtenirCoup, sinon on demande au joueur le coup qu'il veut jouer.
-* \param PLT_Plateau
-* \param Joueur
-* \param CLR_Couleur
-* \return CP_Coup
-*/
-
-CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur){
-    CP_Coup coup;
-    char x;
-    int y;
-    if (joueur==IA)
-        return obtenirCoup(plateau, couleur, profondeur);
-    else{
-        coup.pion.couleur=couleur;
-        printf("col?");
-        scanf(" %c",&x);
-        printf("ligne?");
-        scanf(" %dn",&y);
-        coup.position.x=x-97;
-        coup.position.y=y-1;
-        return coup;
-    }
-        
-}
-
-/**
-* \fn CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2)
-* \brief Retourne le coup de "obtenirCoupEnFctDuJoueur" en fonction de la couleur donnée en entrée.
-* \param obtenirCoupEnFctDuJoueur
-* \param obtenirCoupEnFctDuJoueur
-* \param CLR_Couleur
-* \param PLT_Plateau
-* \param Joueur
-* \param Joueur
-* \return CP_Coup
-*/
-
-CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2){
-  CP_Coup coup;
-  if (couleur==NOIR){
-            printf("Noir\n");
-            coup=(*obtenirCoupNoir)(plateau, joueur1, NOIR);
-      return coup;
+        if (plateauBloquePourUneCouleur(plateau,PN_obtenirCouleurSuperieure(joueurCourant))){
+            PN_retournerPion(&joueurCourant);
+            sortie(plateau,prochainCoup,0);
         }
-  else{
-            printf("blanc\n");
-            coup=(*obtenirCoupBlanc)(plateau, joueur2, BLANC);
-      return coup;
-  }
+
+        //Actualisation de l'état de la partie
+        etatPartie(plateau, couleurGagnant, etat);
+    } while (*etat==partieEnCours);
+}
+
+
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CLR_Couleur couleur, PLT_Plateau plateau){
+    CP_Coup coup;
+    if (couleur==NOIR) {
+        coup = (*obtenirCoupNoir)(plateau, NOIR, PROFONDEUR);
+    }
+    else {
+        coup = (*obtenirCoupBlanc)(plateau, BLANC, PROFONDEUR);
+    }
+    return coup;
 }

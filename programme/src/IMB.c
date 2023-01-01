@@ -6,7 +6,11 @@
 #include "TADcoups.h"
 #include "faireUnePartie.h"
 #include "IMB.h"
+#include <unistd.h>
+#include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 CP_Coup interactionBroker(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur) {
     CP_Coup coupBroker ;
@@ -15,9 +19,8 @@ CP_Coup interactionBroker(PLT_Plateau plateau, CLR_Couleur couleur, int profonde
     char buffer[LONGUEUR_COUP] ;
     char x ;
     int y ;
-
-    FILE* fichier =  fopen("nomFlux","r");
-    fgets(buffer,LONGUEUR_COUP,fichier);
+    //read(STDIN_FILENO,buffer,LONGUEUR_COUP);
+    fgets(buffer,sizeof(buffer),stdin);
     
     x = buffer[0] ;
     y = buffer[1] ;
@@ -30,13 +33,42 @@ CP_Coup interactionBroker(PLT_Plateau plateau, CLR_Couleur couleur, int profonde
     return coupBroker ;
 }
 
-void envoiBroker(PLT_Plateau plateau, CP_Coup coup) {
+void envoiBroker(PLT_Plateau plateau, CP_Coup coup, int possibilite) {
     int x,y ;
-    char xChar ;
-    x = POS_obtenirX(CP_position(coup));
-    y = POS_obtenirY(CP_position(coup));
-    xChar = x+'a'; 
+    char xChar,yChar;
+    char buffer[LONGUEUR_COUP];
 
-    printf("%c",x) ;
-    printf("%d",y+1) ;
+    if(possibilite){
+        x = POS_obtenirX(CP_position(coup));
+        y = POS_obtenirY(CP_position(coup));
+
+        xChar = x+'a'; 
+        yChar = y+'1';
+
+        buffer[0] = xChar ;
+        buffer[1] = yChar ;
+        buffer[2] = '\n' ;
+
+        int w = write(STDOUT_FILENO, buffer, strlen(buffer));
+        if (w < 0)
+            perror (" Erreur lors de l’ecriture : ");
+    }
+    else {
+        int w = write(STDOUT_FILENO, "passe\n", strlen("passe\n"));
+        if (w < 0)
+            perror (" Erreur lors de l’ecriture : ");
+        
+    }
+
+}
+
+void finDePartieBroker(CLR_Couleur couleurGagnante, EtatPartie etat){
+  if(etat==partieGagnee){
+    if(couleurGagnante == NOIR)
+      printf("noir\n");
+    else
+      printf("blanc\n");
+  } else {
+    printf("nulle\n");
+  }
 }
