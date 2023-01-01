@@ -11,7 +11,6 @@
 		\tadPrecondition{iemeCoups(coups,position)}{position $\leq$ nbCoups(coups)}
 	\end{tadPreconditions}
 	\begin{tadAxiomes}
-		\tadAxiome{Coups()}
 		\tadAxiome{nbCoups(Coups())=0}
 		\tadAxiome{nbCoups(ajouterCoups(coups,coup)) = nbCoups(coups) +1}
 		\tadAxiome{iemeCoup(ajouterCoups(coups,coup),nbCoups(coups)+1 ) = coup}
