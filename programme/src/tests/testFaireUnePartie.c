@@ -98,7 +98,6 @@ void test_pionMemeCouleur(void){
     
     
     CP_Coup coupTest = CP_coup(PN_pion(BLANC),POS_position(1,5));
-    afficherPlateau(plateau);
     CPS_Coups resultatAttendu;
     resultatAttendu = CPS_coups();
 
@@ -141,7 +140,6 @@ void test_adversairesAdjacents(void){
     PLT_poserPion(&plateau,POS_position(3,5),PN_pion(NOIR));
     PLT_poserPion(&plateau,POS_position(4,5),PN_pion(BLANC));
 
-    afficherPlateau(plateau);
     
 
   CP_Coup coup0 = CP_coup(PN_pion(BLANC),POS_position(1,5));

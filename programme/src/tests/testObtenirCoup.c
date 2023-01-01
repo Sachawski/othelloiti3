@@ -85,7 +85,6 @@ void test_obtenirCoup(void) {
     PLT_retournerPion(&plateau,POS_position(4,3));
     // Meilleur coup théorique pour les noirs
     CP_Coup resultatAttendu = CP_coup(PN_pion(NOIR),POS_position(3,0));
-    afficherPlateau(plateau);
     // Meilleur pour les noirs d'après la machine
     CP_Coup resultatObtenu = obtenirCoup(plateau,NOIR,PROFONDEUR_THEO);
     printf("%d %d",resultatObtenu.position.x,resultatObtenu.position.y);
