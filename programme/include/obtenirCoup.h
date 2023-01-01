@@ -1,10 +1,11 @@
 /**
-* \file obtenirCoup.h
-* \brief Implementation de la fonction obtenirCoup
-* \author V. Turnel
-* \version 1.0
-* \date 04/12/2022
-*/
+2 * \file obtenirCoup.h
+3 * \brief Implantation de la fonction obtenirCoup
+4 * \author V. Turnel
+5 * \version 1.0
+6 * \date 04/12/2022
+7 *
+8 */
 
 #ifndef __OBTENIR_COUP__
 #define __OBTENIR_COUP__
@@ -12,12 +13,13 @@
 #include "TADplateau.h"
 #include "TADcoup.h"
 
+
 /**
 * \fn CP_Coup obtenirCoup(PLT_Plateau unPlateau, CLR_Couleur joueur, int profondeur)
 * \brief Obtention d'un coup par l'IA
-* \param unPlateau Plateau de jeu
-* \param joueur Couleur pour laquelle l'IA doit chercher le meilleur coup
-* \param profondeur Nombre d'étape que l'IA doit anticiper pour chercher le meilleur coup
+* \param unPlateau représente le plateau de jeu
+* \param joueur représente la couleur pour laquelle l'IA doit chercher le meilleur coup
+* \param profondeur représente le nombre d'étape que l'IA doit anticiper pour chercher le meilleur coup
 * \return CP_Coup
 */
 CP_Coup obtenirCoup(PLT_Plateau unPlateau, CLR_Couleur joueur, int profondeur);

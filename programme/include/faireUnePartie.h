@@ -8,6 +8,8 @@
 8 */
 #ifndef __FAIREUNEPARITE__
 #define __FAIREUNEPARITE__
+
+#include <stdio.h>
 #include "TADcouleur.h"
 #include "TADcoup.h"
 #include "TADcoups.h"
@@ -15,33 +17,13 @@
 #include "TADplateau.h"
 #include "TADposition.h"
 
-
-
-typedef enum{IAvsIA=1, IAvsHumain, HumainvsHumain} Mode;
-
-typedef enum{IA=1, Humain} Joueur;
-
-/**
- * \typedef affichagePlateau
- * \brief afficher le plateau
- */
-/*typedef void (*affichagePlateau)(PLT_Plateau plateau);*/
-/*affichagePlateau afficherPlateau;*/
-
-/**
-*
-* \typedef  CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau)
-* \brief Obtient le coup choisi de joueur
-*/
-/*typedef CP_Coup (*obtenirCoupEnFctDuJoueur)(PLT_Plateau plateau);*/
-/*obtenirCoupEnFctDuJoueur obtenirCoupBlanc;*/
-/*obtenirCoupEnFctDuJoueur obtenirCoupNoir;*/
+#define PROFONDEUR 3
 
 /**
  * \typedef EtatPartie
  * \brief il y a deux conditions: Egalisation et Agagnant
  */
-typedef enum{partieGagnee, partieEncours, partieEegal} EtatPartie;
+typedef enum{partieGagnee, partieEnCours, partieEgal} EtatPartie;
 
 
 /**
@@ -53,7 +35,7 @@ typedef enum{partieGagnee, partieEncours, partieEegal} EtatPartie;
 * \param EtatPartie
 * \param CLR_Couleur
 */
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), void (*afficher)(PLT_Plateau plateau), EtatPartie *egalite, CLR_Couleur couleurGagnant, Mode mode);
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), void (*sortie)(PLT_Plateau plateau,CP_Coup coup, int possibilite), EtatPartie *etat, CLR_Couleur *couleurGagnant);
 
 
 /**
@@ -113,7 +95,7 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau, CP_Coup coup);
 * \param CLR_Couleur
 * \param EtatPartie
 */
-void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
+void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *etat);
 
 /**
 * \fn PLT_Plateau initialiserPlateau(void)
@@ -122,13 +104,6 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite);
 */
 PLT_Plateau initialiserPlateau(void);
 
-/**
-* \fn afficherPlateau(PLT_Plateau plateau)
-* \brief Affiche le plateau actuel dans le terminal.
-* \param PLT_Plateau
-*/
-
-void afficherPlateau(PLT_Plateau plateau);
 
 /**
 * \fn int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur)
@@ -139,19 +114,6 @@ void afficherPlateau(PLT_Plateau plateau);
 */
 
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
-
-void menu(Mode *mode);
-
-/**
-* \fn CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur)
-* \brief Selon le mode et selon le joueur qui joue, on obtient le coup du joueur. Si le joueur est l'IA, on appelle obtenirCoup, sinon on demande au joueur le coup qu'il veut jouer.
-* \param PLT_Plateau
-* \param Joueur
-* \param CLR_Couleur
-* \return CP_Coup
-*/
-
-CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur);
 
 /**
 * \fn CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2)
@@ -165,6 +127,6 @@ CP_Coup obtenirCoupEnFctDuJoueur(PLT_Plateau plateau, Joueur joueur, CLR_Couleur
 * \return CP_Coup
 */
 
-CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2);
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CLR_Couleur couleur, PLT_Plateau plateau);
 #endif
 

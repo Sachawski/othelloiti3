@@ -20,6 +20,8 @@ CP_Coup interactionBroker(PLT_Plateau plateau, CLR_Couleur couleur, int profonde
 * \param coup Coup joué par l'IA
 * \return void
 */
-void envoiBroker(PLT_Plateau plateau, CP_Coup coup);
+void envoiBroker(PLT_Plateau plateau, CP_Coup coup, int possibilite);
+
+void finDePartieBroker(CLR_Couleur couleurGagnante, EtatPartie etat);
 
 #endif
