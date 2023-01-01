@@ -1,6 +1,30 @@
 \begin{algorithme}
   \small
-  \fonction{etatPartie}{plateau:Plateau}{\booleen}
-           {}
-           {\sialorssinon{estTotalementRempli(plateau) ou aucunPosition(plateau)}{\retourner{Vrai}}{\retourner{Faux}}}
+  \procedure{etatPartie}{\paramEntree{plateau:Plateau}, \paramEntreeSortie{couleur: Couleur}, \paramEntreeSortie{etat: EtatPartie}}
+  {
+    scoreBlanc: \entier
+    scoreNoir: \entier
+  }
+  {
+    \sialors{non(plateauBloque(plateau))}{
+      \affecter{etat}{partieEnCours}
+    }
+    \sialors{plateauBloque(plateau)}{
+      \affecter{scoreBlanc}{evaluerNb(plateau, BLANC)}
+      \affecter{scoreNoir}{evaluerNb(plateau, NOIR)}
+      \sialorssinon{scoreBlanc$>$scoreNoir}{
+        \affecter{etat}{partieGagnee}
+        \affecter{couleur}{BLANC}
+      }
+      {
+        \sialorssinon{scoreNoir$>$scoreBlanc}{
+          \affecter{etat}{partieGagnee}
+          \affecter{couleur}{NOIR}
+        }
+        {
+          \affecter{etat}{partieEgal}
+        }
+      }
+    }
+  }
 \end{algorithme}

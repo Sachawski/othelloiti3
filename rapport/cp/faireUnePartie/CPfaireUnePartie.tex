@@ -13,9 +13,9 @@
 \end{algorithme}
 
 \begin{algorithme}
-	\signaturefonction{faireUnePartie}{obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur, plateauAAfficher : AffichagePlateau}{Couleur}
+	\signatureprocedure{faireUnePartie}{\paramEntree{obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramEntreeSortie{couleurGagnant: Couleur} }
 	\signaturefonction{initialiserPlateau}{}{Plateau}
-	\signaturefonction{etatPartie}{plateau:Plateau}{gagnant : Couleur,etatPartie : EtatPartie}
+	\signatureprocedure{etatPartie}{\paramEntree{plateau:Plateau}, \paramEntreeSortie{couleur: Couleur}, \paramEntreeSortie{etat: EtatPartie}}
 	\signaturefonction{plateauTotalementRempli}{plateau:Plateau}{\booleen}
 	\signaturefonction{plateauBloque}{plateau:Plateau}{\booleen}
 	\signaturefonction{evaluer}{p:Plateau,couleurAEvaluer:Couleur}{\entier}

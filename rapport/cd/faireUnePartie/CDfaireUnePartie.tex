@@ -1,55 +1,38 @@
 \begin{algorithme}
   \small
-  \fonction
+  \procedure
   {FaireUnePartie}
-  {couleurJoueur: Couleur, obtenirLeCoup: \typePointeur{fonction}, afficherPlateau: \typePointeur{procedure}, obtenirCoups :\typePointeur{fonction}}
-  {Couleur}
-  {pjouer: Pion\\
-  pIA: Pion\\
-  coupJouer: Coup\\
-  coupIA: Coup\\
-  auJouee: \booleen\\
-  auIA: \booleen\\
-  pos:Position\\
-  x,y:[1..8][1..8]\\
+  {\paramEntree{coupEnFctJoueur: \typePointeur{fonction}},\paramEntree{coupEnFctJoueur: \typePointeur{fonction}}, \paramEntree{ afficherPlateau: \typePointeur{procedure}},\paramEntreeSortie{etat: EtatPartie}, \paramEntreeSortie{couleurGagnant: Couleur}}
+  {
+  plateau: Plateau;
+  joueurCourant: Pion;
+  prochainCoup: Coup;
+  partieEnCours: etat;
+  start,end: time_t;
   }
   { 
-    \affecter{pIA}{creerPion(changeCouleur(couleur))}
-    \affecter{pjouee}{creerPion(couleurJoueur)}
-    \affecter{p}{initialiserPlateau()}
-    \sialorssinon{couleurJoueur=noir()}
-    { \affecter{auJouee}{VARI}
-      \affecter{auIA}{FAUX}
-    }
-    { \affecter{auIA}{VRAI}
-      \affecter{auJouee}{FAUX}
-    }\\
-    afficherPlateau(p)
-    \tantque{non(verifierFini(p))}
-    {
-      \sialorssinon{auJouee}
-      {
-        \affecter{coupJouer}{obtenirLeCoup()}
-        \tantque{non(verifier(p, coupJouer))}
-        {
-          \affecter{coupJouer}{obtenirLeCoup()}
-        }
-          \affecter{auIA}{non(auIA)}
-          \affecter{auJouee}{non(auJouee)}\\
-          Jouer(p,coupJouer)
+    \affecter{joueurCourant}{creerPion(BLANC)}
+    \affecter{plateau}{initialiserPlateau()}
+    \repeter{
+      \affecter{time(NULL)}{start}
+      \repeter{
+        \affecter{prochainCoup}{coupEnFctJoueur(obtenirCouleurSuperieure(joueurCourant), plateau)}
       }
+      {non(coupLegal(plateau,prochainCoup))}
+      jouer(plateau, prochainCoup)\\
+      \affecter{end}{time(NULL)}
+      \sialors{difftime(start, end)$<$1}
       {
-        \affecter{coupIA}{obtenirCoups(p)}
-        \tantque{non(verifier(p, coupIA))}
-        {
-          \affecter{coupIA}{obtenirLeCoup()}
-        }
-        \affecter{auIA}{non(auIA)}
-        \affecter{auJouee}{non(auJouee)}\\
-        Jouer(p,coupIA)
-      }\\
-      afficherPlateau(p)
-    }
-    \retourner {Resultat(p)}
+        sleep(1)
+      }
+      afficherPlateau(plateau,prochainCoup,1)\\
+      retournerPion(joueurCourant)\\
+      \sialors{plateauBloquePourUneCouleur(plateau,obtenirCouleurSuperieure(joueurCourant))}
+      {
+        retournerPion(joueurCourant)
+        afficherPlateau(plateau,prochainCoup,0)
+      }
+      etatPartie(plateau, couleurGagnant, etat)
+    }{etat=partieEnCours}
   }
 \end{algorithme}

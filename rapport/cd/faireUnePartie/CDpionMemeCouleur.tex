@@ -1,44 +1,51 @@
 \begin{algorithme}
-\small
-\fonction
-{pionMemeCouleur}
-{p: Plateau, coup: Coup, pionLegal: Coups}
-{Coups}
-{
-  pionMCouleur: Coups\\
-  nb, i: \naturel\\
-  couptemp: coup\\
-  x, y: \naturel\\
-  directionX,directionY: \naturel\\
-  recherche: \booleen
-  pos: Position\\
-}
-{
-  \affecter{pionMCouleur}{coups()}
-  \affecter{nb}{nbCoups(pionLegal)}
-  \pour{i}{1}{nb}{}
+  \small
+  \fonction
+  {pionMemeCouleur}
+  {p: Plateau, coup: Coup, pionLegal: Coups}
+  {Coups}
   {
-    \affecter{recherche}{FAUX}
-    \affecter{couptemp}{iemeCoup(pionLegal, i)}
-    \affecter{x}{obtenirX(obtenirPositionCoup(couptemp))}
-    \affecter{y}{obtenirY(obtenirPositionCoup(couptemp))}
-    \affecter{directionX}{x-obtenirX(coup)}
-    \affecter{directionY}{y-obtenirY(coup)}
-    \tantque{non(recherche)}
+    pionMCouleur: Coups\\
+    nb, i: \naturel\\
+    couptemp: coup\\
+    x, y: \naturel\\
+    directionX,directionY: \naturel\\
+    recherche: \booleen
+    pos: Position\\
+  }
+  {
+    \affecter{pionMCouleur}{coups()}
+    \affecter{nb}{nbCoups(pionLegal)}
+    \pour{i}{1}{nb}{}
     {
-      \affecter{x}{x+ directionX}
-      \affecter{y}{y+ directionY}
-      \sialors{x$\geq$ 1 et x$\leq$ 8 et y$\geq$ 1 et y$\leq$ 8}
+      \affecter{recherche}{FAUX}
+      \affecter{couptemp}{iemeCoup(pionLegal, i)}
+      \affecter{x}{obtenirX(obtenirPositionCoup(couptemp))}
+      \affecter{y}{obtenirY(obtenirPositionCoup(couptemp))}
+      \affecter{directionX}{x-obtenirX(coup)}
+      \affecter{directionY}{y-obtenirY(coup)}
+      \tantque{non(recherche)}
       {
-        \affecter{pos}{position(x, y)}
-        \sialors{obtenirCouleurSuperieure(obtenirPion(pos, p))= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
+        \affecter{x}{x+ directionX}
+        \affecter{y}{y+ directionY}
+        \sialorssinon{x$\geq$ 1 et x$\leq$ 8 et y$\geq$ 1 et y$\leq$ 8}
         {
-          ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, p), pos))\\
-          \affecter{recherche}{VRAI}
+          \affecter{pos}{position(x, y)}
+          \sialors{estCaseVide(p, pos)}{
+            \affecter{recherche}{1}
+          }
+          \sialors{obtenirCouleurSuperieure(obtenirPion(pos, p))= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
+          {
+            ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, p), pos))\\
+            \affecter{recherche}{1}
+          }
+        }
+        {
+          \affecter{recherche}{1}
         }
       }
     }
+    \retourner{pionMCouleur}
   }
-  \retourner{pionMCouleur}
-}
-\end{algorithme}
+  \end{algorithme}
+  
