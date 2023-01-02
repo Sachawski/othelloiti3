@@ -101,7 +101,7 @@ int score(PLT_Plateau plateau, CLR_Couleur joueur)
         {-20, -50, -2, -2, -2, -2, -50, -20},
         {100, -20, 10, 5, 5, 10, -20, 100}
     };
-
+    sommePonderation = 0;
     for (i=0;i<LARGEUR_PLATEAU;i++) 
     {
         for (j=0;j<HAUTEUR_PLATEAU;j++) 
@@ -112,9 +112,10 @@ int score(PLT_Plateau plateau, CLR_Couleur joueur)
             {
                 sommePonderation = sommePonderation + ponderation[j][i];
             }
-
+            
         }
     }
+    
     score = compteurCouleur(plateau,joueur) + sommePonderation ;
     return score ;
 }

@@ -63,7 +63,6 @@ PLT_Plateau initPlateauTest()
     PLT_poserPion(&plateau,POS_position(5,3),PN_pion(BLANC));
     PLT_poserPion(&plateau,POS_position(6,3),PN_pion(BLANC));
     PLT_poserPion(&plateau,POS_position(7,3),PN_pion(NOIR));
-    PLT_retournerPion(&plateau,POS_position(3,4));
     PLT_poserPion(&plateau,POS_position(2,4),PN_pion(NOIR));
     PLT_poserPion(&plateau,POS_position(5,4),PN_pion(NOIR));
     PLT_poserPion(&plateau,POS_position(6,4),PN_pion(NOIR));
@@ -74,7 +73,10 @@ PLT_Plateau initPlateauTest()
     PLT_poserPion(&plateau,POS_position(5,5),PN_pion(BLANC));
     PLT_poserPion(&plateau,POS_position(6,5),PN_pion(BLANC));
     PLT_poserPion(&plateau,POS_position(7,5),PN_pion(NOIR));
-
+    PLT_retournerPion(&plateau,POS_position(3,3));
+    PLT_retournerPion(&plateau,POS_position(4,4));
+    PLT_retournerPion(&plateau,POS_position(4,3)); 
+    
 
     return plateau;
 }
@@ -130,6 +132,7 @@ void test_compteurCouleur(void)
 {
 
     PLT_Plateau plateau = initPlateauTest();
+
     int compteurAttenduBlanc = 13 ;
     int compteurObtenuBlanc = compteurCouleur(plateau,CLR_blanc()) ;
     int compteurAttenduNoir = 17 ;
@@ -140,7 +143,6 @@ void test_compteurCouleur(void)
 
 void test_score(void) 
 {
-
     PLT_Plateau plateau = initPlateauTest();
 
     int scoreAttenduBlanc = -6; 
