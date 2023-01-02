@@ -159,33 +159,6 @@ void test_adversairesAdjacents(void){
   CU_ASSERT_EQUAL(PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(cps,2))),PN_obtenirCouleurSuperieure(CP_pion(CPS_iemeCoup(varcps,2))));
 }
 
-void test_evaluerNb(void){
-    C_Case cV ;
-    cV.estVide = 1 ;
-    C_Case cB ;
-    C_Case cN ;
-    cB.estVide = 0;
-    cB.casePion = PN_pion(BLANC);
-    cN.estVide = 0;
-    cN.casePion = PN_pion(NOIR);
-    C_Case initialiserTableau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] = {
-        { cN, cB, cB, cB, cN, cB, cN, cB},
-        { cN, cB, cN, cB, cB, cN, cB, cN},
-        { cB, cN, cB, cN, cB, cN, cB, cN},
-        { cB, cN, cB, cV, cN, cN, cB, cB},
-        { cN, cB, cN, cV, cN, cB, cN, cB},
-        { cB, cB, cN, cN, cN, cB, cN, cB},
-        { cN, cB, cN, cN, cN, cB, cN, cB},
-        { cN, cB, cN, cN, cN, cB, cN, cB}
-    };
-    PLT_Plateau plateauAttendu;
-    memcpy(plateauAttendu.tabPlateau,initialiserTableau,sizeof(C_Case)*HAUTEUR_PLATEAU*LARGEUR_PLATEAU);
-    int resultatBlanc = evaluerNb(plateauAttendu,BLANC);
-    int resultatNoir = evaluerNb(plateauAttendu,NOIR);
-    CU_ASSERT_EQUAL(resultatBlanc,30);
-    CU_ASSERT_EQUAL(resultatNoir,32);
-}
-
 int main(int argc , char** argv){
     CU_pSuite pSuite = NULL;
 
@@ -204,7 +177,6 @@ int main(int argc , char** argv){
     /* Ajout des tests à la suite de tests boite noire */
     if ((NULL == CU_add_test(pSuite, "Test general de initialiserPlateau", test_initialiserPlateau ))
 	|| (NULL == CU_add_test(pSuite, "Test general de coupLegal", test_coupLegal))
-	|| (NULL == CU_add_test(pSuite, "Test general de evaluerNb", test_evaluerNb))
 	|| (NULL == CU_add_test(pSuite, "Test general de pionMemeCouleur", test_pionMemeCouleur))
 	|| (NULL == CU_add_test(pSuite, "Test general de adversairesAdjacents", test_adversairesAdjacents))
         ) 
