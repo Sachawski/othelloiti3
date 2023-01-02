@@ -5,3 +5,8 @@ all :  main.tex $(ANADIR)/TADcouleur.tex $(ANADIR)/TADpion.tex $(ANADIR)/TADposi
 	pdflatex main.tex --shell-escape
 	pdflatex main.tex --shell-escape
 
+clean :
+	rm -rf main.toc
+	rm -rf main.aux
+	rm -rf main.pdf
+	rm -rf main.log
