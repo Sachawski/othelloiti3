@@ -1,7 +1,7 @@
 \documentclass{article}                                                         
 \usepackage[french]{babel}
 \usepackage{geometry}
-\geometry{hmargin=2.5cm,vmargin=1.5cm} 
+\geometry{hmargin=2.5cm,vmargin=1cm} 
 \usepackage[T1]{fontenc}
 \usepackage{tcolorbox,listings}
 \usepackage{fullpage}
@@ -330,9 +330,9 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
   \hline
   faireUnePartie & & & X & & \\
   obtenirCoup & & X & & & \\
-  TAD Couleur  & & & X & X &   \\
+  TAD Couleur  & & & X & X & \\
   TAD Pion & & & & & X \\
-  TAD Position & & X & & &   \\
+  TAD Position & & X & & & \\
   TAD Coup & & & & X & \\
   TAD Coups & & X  & & &  \\
   TAD Plateau & X & & & & \\
@@ -341,7 +341,7 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
   \hline
   CP TAD Couleur & & & X & X & \\
   CP TAD Pion & & & & & X \\
-  CP TAD Postion & & X & & &  \\
+  CP TAD Postion & & X & & & \\
   CP TAD Coup & & & & X & \\              
   CP TAD Coups & & X & & & \\             
   CP TAD Plateau & X & & & & \\
@@ -354,8 +354,8 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
   CD TAD Coup & & & & X & \\                                                                                                                                                                             
   CD TAD Coups & & X & & & \\                                                                                                                                                                            
   CD TAD Plateau & X & & & & \\                              
-  Mise en page rapport & & & & & X \\      
-  Création Makefile & & & & & X \\
+  Mise en page rapport & X & & & & X \\      
+  Makefile rapport & & & & & X \\
   \hline
   Developpement \\
   \hline
@@ -369,8 +369,8 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
   compteurCouleur & & & & & X \\
   score & & & & & X \\
   evaluer & & & & & X \\
-  plateauTotalementRempli & & & & X & X \\
-  plateauBloque & & & & X & \\
+  plateauBloque & & & & X & X \\
+  pltBlqPrUneClr* & & & & & X \\
   scoreDUnCoup & & X & & & \\
   alphaBeta & & X & & & \\
   obtenirCoupsPossibles & & X & & & \\
@@ -378,11 +378,12 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
   adversairesAdjacents & & & X & & \\
   coupLegal & & & X & & \\
   etatPartie & & & & X & \\
-  nbPions & & & & X & \\
   retournerPionsEmprisonnes & X & & & & \\
-  afficherPlateau & & & X & & \\
   jouer & X & & & & \\
-  makefile du programme & & & X & & X \\
+  faireUnePartie & & X & X & & X \\
+  IHM & & X & & & X \\
+  IMB & & X & & & X \\
+  makefile programme & & & X & & X \\
   \hline
  \end{tabular}   
  \vspace{3cm}
@@ -394,12 +395,16 @@ En fin de compte, ce projet a été une expérience très enrichissante qui nous
    \hline
    TAD Couleur & X & & & & \\                                                                                                                                                                       
    TAD Pion & & & X & & \\                                                                                                                                                                              
-   TAD Coup & & X & &  & \\                                                                                                                                                                              
+   TAD Coup & & X & & & \\                                                                                                                                                                              
    TAD Coups & & & & X & \\                                                                                                                                                                             
    TAD Plateau & & & & & X \\
    obtenirCoup & & X & & & X \\
    faireUnePartie & X & & & & \\
    \hline
- \end{tabular}             
+   *PlateauBloquePourUneCouleur
+   \hline
+ \end{tabular}
+
+ 
 
 \end{document}
