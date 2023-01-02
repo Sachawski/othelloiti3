@@ -1,12 +1,36 @@
 \begin{algorithme}
-	\signaturefonction{plateau}{}{Plateau}
-	\signatureprocedure{poserPion}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position , pion: Pion}}
-	\preconditions{estCaseVide(plateau , pos)}
-	\signaturefonction{obtenirPion}{plateau : Plateau , pos : Position}{Pion}
-	\preconditions{non (estCaseVide(plateau , pos)}
-	\signaturefonction{estCaseVide}{plateau : Plateau , pos : Position}{\booleen}
-	\signatureprocedure{retournerPion}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position}}
-	\preconditions{non (estCaseVide(plateau , pos)}
-	\signatureprocedure{enleverPion}{\paramEntreeSortie{plateau : Plateau},\paramEntree{pos : Position}}
-	\preconditions{non (estCaseVide(plateau , pos)}
+  \signaturefonction{plateau}{}{Plateau}
+  \signatureprocedure{poserPion}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position , pion: Pion}}
+
+  \vspace*{5mm}
+  
+  \preconditions{estCaseVide(plateau , pos)}
+
+  \vspace*{5mm}
+  
+  \signaturefonction{obtenirPion}{plateau : Plateau , pos : Position}{Pion}
+
+  \vspace*{5mm}
+
+  \preconditions{non (estCaseVide(plateau , pos)}
+
+  \vspace*{5mm}
+  
+  \signaturefonction{estCaseVide}{plateau : Plateau , pos : Position}{\booleen}
+
+  \vspace*{5mm}
+  
+  \signatureprocedure{retournerPion}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position}}
+
+  \vspace*{5mm}
+  
+  \preconditions{non (estCaseVide(plateau , pos)}
+
+  \vspace*{5mm}
+  
+  \signatureprocedure{enleverPion}{\paramEntreeSortie{plateau : Plateau},\paramEntree{pos : Position}}
+
+  \vspace*{5mm}
+  
+  \preconditions{non (estCaseVide(plateau , pos)}
 \end{algorithme}
