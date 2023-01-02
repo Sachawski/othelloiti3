@@ -35,9 +35,15 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
         x=minx;
         while ((x<= maxx)&& recherche== 1){
             positionTemp= POS_position(x, y);
-            if (!(PLT_estCaseVide(plateau, positionTemp))&& !(POS_obtenirY(position)==POS_obtenirY(positionTemp)&& POS_obtenirX(position)== POS_obtenirX(positionTemp))){
-                if ((PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, positionTemp)))!= PN_obtenirCouleurSuperieure(CP_pion(coup))){
-                    CPS_ajouterCoups(&coupsLegals, CP_coup(PLT_obtenirPion(plateau, positionTemp), positionTemp));
+            if (!(PLT_estCaseVide(plateau, positionTemp))&& 
+            !(POS_obtenirY(position)==POS_obtenirY(positionTemp)&&
+             POS_obtenirX(position)==
+             POS_obtenirX(positionTemp))){
+                if ((PN_obtenirCouleurSuperieure
+                (PLT_obtenirPion(plateau, positionTemp)))!=
+                 PN_obtenirCouleurSuperieure(CP_pion(coup))){
+                    CPS_ajouterCoups(&coupsLegals, CP_coup
+                    (PLT_obtenirPion(plateau, positionTemp), positionTemp));
                 }
             }
             x+= 1;
@@ -70,8 +76,10 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
                 pos= POS_position(x, y);
                 if (PLT_estCaseVide(plateau, pos))
                     break;
-                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))== PN_obtenirCouleurSuperieure(CP_pion(coup)) ){
-                    CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion(plateau, pos), pos));
+                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))==
+                 PN_obtenirCouleurSuperieure(CP_pion(coup)) ){
+                    CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion
+                    (plateau, pos), pos));
                     break;
                 }
             }
@@ -141,7 +149,8 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
     for (i=0;i<=7;i++) {
         for (j=0;j<=7;j++) {
             pos = POS_position(i,j);
-            if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur)){
+            if (!PLT_estCaseVide(plateau,pos) &&
+             (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur)){
                 compteur = compteur + 1 ;
             }
         }
@@ -156,7 +165,8 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     POS_Position pos;
     int xCoup = POS_obtenirX(CP_position(coup));
     int yCoup = POS_obtenirY(CP_position(coup));
-    CPS_Coups coupsEmprisonnants = pionMemeCouleur(*plateau , coup , adversairesAdjacents(*plateau,coup));
+    CPS_Coups coupsEmprisonnants = pionMemeCouleur(*plateau , coup ,
+     adversairesAdjacents(*plateau,coup));
     for(int i=1 ; i<=CPS_nbCoups(coupsEmprisonnants) ; i++){
         coupTemp = CPS_iemeCoup(coupsEmprisonnants, i);
         x = POS_obtenirX(CP_position(coupTemp));
@@ -188,10 +198,14 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
 void jouer(PLT_Plateau * plateau, CP_Coup coup){
     retournerPionsEmprisonnes(plateau,coup);
     PLT_poserPion(plateau, CP_position(coup), CP_pion(coup));
-    
+   
 }
 
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), void (*sortie)(PLT_Plateau plateau, CP_Coup coup, int possibilite), EtatPartie *etat, CLR_Couleur *couleurGagnant){
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau,
+ CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)
+ (PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), void (*sortie)
+ (PLT_Plateau plateau, CP_Coup coup, int possibilite), EtatPartie *etat,
+  CLR_Couleur *couleurGagnant){
     PLT_Plateau plateau;
     PN_Pion joueurCourant;
     CP_Coup prochainCoup;
@@ -206,7 +220,8 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur
         start=time(NULL);
 
         do {
-            prochainCoup = coupEnFctJoueur(obtenirCoupBlanc, obtenirCoupNoir, PN_obtenirCouleurSuperieure(joueurCourant), plateau);
+            prochainCoup = coupEnFctJoueur(obtenirCoupBlanc, obtenirCoupNoir,
+             PN_obtenirCouleurSuperieure(joueurCourant), plateau);
         } while (!(coupLegal(plateau,prochainCoup)));
         jouer(&plateau, prochainCoup);
 
@@ -220,7 +235,8 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur
 
         //Changement de joueur
         PN_retournerPion(&joueurCourant);
-        if (plateauBloquePourUneCouleur(plateau,PN_obtenirCouleurSuperieure(joueurCourant))){
+        if (plateauBloquePourUneCouleur(plateau,
+        PN_obtenirCouleurSuperieure(joueurCourant))){
             PN_retournerPion(&joueurCourant);
             sortie(plateau,prochainCoup,0);
         }
@@ -231,7 +247,9 @@ void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur
 }
 
 
-CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CLR_Couleur couleur, PLT_Plateau plateau){
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur,
+ int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur,
+  int profondeur), CLR_Couleur couleur, PLT_Plateau plateau){
     CP_Coup coup;
     if (couleur==NOIR) {
         coup = (*obtenirCoupNoir)(plateau, NOIR, PROFONDEUR);

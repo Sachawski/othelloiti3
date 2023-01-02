@@ -29,10 +29,12 @@ typedef struct {
 /**
  * \struct PLT_Plateau
  * \brief Modélise un plateau de jeu
- * PLT_Plateau modélise un plateau de jeu par un tableau de C_Case, de taille LARGEUR_PLATEAU x HAUTEUR_PLATEAU
+ * PLT_Plateau modélise un plateau de jeu par un tableau de C_Case,
+  de taille LARGEUR_PLATEAU x HAUTEUR_PLATEAU
  */
 typedef struct {
-    C_Case tabPlateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ; /**< Tableau de C_Case représentant le plateau */
+    C_Case tabPlateau[LARGEUR_PLATEAU][HAUTEUR_PLATEAU] ; 
+    /**< Tableau de C_Case représentant le plateau */
 } PLT_Plateau ;
 
 /**
@@ -63,7 +65,8 @@ PN_Pion PLT_obtenirPion(PLT_Plateau plateau, POS_Position pos);
 
 /**
 * \fn int PLT_estCaseVide(PLT_Plateau plateau , POS_Position pos);
-* \brief Fonction qui permet de savoir si une case est vide en retournant un booleen (ici un entier)
+* \brief Fonction qui permet de savoir si une case
+ est vide en retournant un booleen (ici un entier)
 * \param plateau Plateau de jeu
 * \param position Position de la case voulu
 * \return bool (1 si la case est vide, 0 sinon)

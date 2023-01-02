@@ -19,7 +19,8 @@
 * \brief Obtention d'un coup par l'IA
 * \param unPlateau représente le plateau de jeu
 * \param joueur représente la couleur pour laquelle l'IA doit chercher le meilleur coup
-* \param profondeur représente le nombre d'étape que l'IA doit anticiper pour chercher le meilleur coup
+* \param profondeur représente le nombre d'étape que l'IA doit 
+anticiper pour chercher le meilleur coup
 * \return CP_Coup
 */
 CP_Coup obtenirCoup(PLT_Plateau unPlateau, CLR_Couleur joueur, int profondeur);

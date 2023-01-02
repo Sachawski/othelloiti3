@@ -15,7 +15,8 @@
 /**
  * \struct CP_Coup
  * \brief Modélise un coup
- * CP_Coup est un type qui définit un coup dans le jeu, c'est-à-dire la position et le pion qu'on pose
+ * CP_Coup est un type qui définit un coup dans le jeu,
+  c'est-à-dire la position et le pion qu'on pose
 */
 typedef struct {
    PN_Pion pion ; /**< Le pion qui est joué*/

@@ -52,7 +52,8 @@ int compteurCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
         for (j=0;j<HAUTEUR_PLATEAU;j++) 
         {
             pos = POS_position(i,j);
-            if (!PLT_estCaseVide(plateau,pos) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
+            if (!PLT_estCaseVide(plateau,pos) &&
+             (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur))
             {
                 compteur = compteur + 1 ;
             }
@@ -106,7 +107,8 @@ int score(PLT_Plateau plateau, CLR_Couleur joueur)
         for (j=0;j<HAUTEUR_PLATEAU;j++) 
         {
             tempPos = POS_position(i,j) ;
-            if ((!PLT_estCaseVide(plateau,tempPos)) && (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,tempPos)) == joueur ))
+            if ((!PLT_estCaseVide(plateau,tempPos)) &&
+             (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,tempPos)) == joueur ))
             {
                 sommePonderation = sommePonderation + ponderation[j][i];
             }
@@ -151,7 +153,8 @@ CPS_Coups obtenirCoupsPossibles(PLT_Plateau unPlateau, CLR_Couleur joueurRef) {
  */
 int  plateauBloque(PLT_Plateau plateau)
 {
-    return plateauBloquePourUneCouleur(plateau,NOIR) || plateauBloquePourUneCouleur(plateau,BLANC);
+    return plateauBloquePourUneCouleur(plateau,NOIR) ||
+     plateauBloquePourUneCouleur(plateau,BLANC);
 }
 
 /**
@@ -179,7 +182,8 @@ int plateauBloquePourUneCouleur(PLT_Plateau plateau, CLR_Couleur couleur)
  * \param beta Alpha-beta pruning
  * \return Score d'un coup
  */
-int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCourant, CP_Coup unCoup, int profondeur, int alpha, int beta) {
+int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef,
+ CLR_Couleur joueurCourant, CP_Coup unCoup, int profondeur, int alpha, int beta) {
     PLT_Plateau copieUnPlateau;
     copierPlateau(unPlateau,&copieUnPlateau);
     jouer(&copieUnPlateau,unCoup);
@@ -197,7 +201,8 @@ int scoreDUnCoup(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueu
 /**
  * \brief Calcul du meilleur coup à jouer en utilisant l'algorithme Alpha-Beta.
  *
- * Cette fonction calcule le meilleur coup à jouer pour le joueur donné à l'aide de l'algorithme Alpha-Beta. 
+ * Cette fonction calcule le meilleur coup à jouer pour le joueur donné à l'aide
+  de l'algorithme Alpha-Beta. 
  *
  * \param unPlateau Le plateau sur lequel le calcul est effectué.
  * \param joueurRef Le joueur pour lequel on calcule le meilleur coup.
@@ -213,9 +218,11 @@ int alphaBeta(PLT_Plateau unPlateau, CLR_Couleur joueurRef, CLR_Couleur joueurCo
     int resultat, score, i;
 
     coupsPossibles = obtenirCoupsPossibles(unPlateau,joueurCourant);
-    resultat = scoreDUnCoup(unPlateau,joueurRef,joueurCourant,CPS_iemeCoup(coupsPossibles,1),profondeur,alpha,beta);
+    resultat = scoreDUnCoup(unPlateau,joueurRef,joueurCourant,CPS_iemeCoup(coupsPossibles,
+    1),profondeur,alpha,beta);
     for(i=2; i<=CPS_nbCoups(coupsPossibles); i++) {
-        score = scoreDUnCoup(unPlateau,joueurRef,joueurCourant,CPS_iemeCoup(coupsPossibles,i),profondeur,alpha,beta);
+        score = scoreDUnCoup(unPlateau,joueurRef,joueurCourant,CPS_iemeCoup(coupsPossibles,i)
+        ,profondeur,alpha,beta);
         if(joueurRef == joueurCourant) {
             resultat = MAX(resultat,score);
             if(resultat<=alpha) {
@@ -250,10 +257,12 @@ CP_Coup obtenirCoup(PLT_Plateau plateau, CLR_Couleur joueur, int profondeur)
     
     cps = obtenirCoupsPossibles(plateau,joueur);
     resultat = CPS_iemeCoup(cps,1) ;
-    meilleurScore = scoreDUnCoup(plateau,joueur,joueur,resultat,profondeur,INF_NEGATIF,INF_POSITIF) ;
+    meilleurScore = scoreDUnCoup(plateau,joueur,joueur
+    ,resultat,profondeur,INF_NEGATIF,INF_POSITIF) ;
     for (i=2; i<=cps.nbTotalCoups;i++)
     {
-        score = scoreDUnCoup(plateau,joueur,joueur,CPS_iemeCoup(cps,i),profondeur,INF_NEGATIF,INF_POSITIF) ;
+        score = scoreDUnCoup(plateau,joueur,joueur,
+        CPS_iemeCoup(cps,i),profondeur,INF_NEGATIF,INF_POSITIF) ;
         if ( score > meilleurScore ) 
         {
             resultat = CPS_iemeCoup(cps,i);

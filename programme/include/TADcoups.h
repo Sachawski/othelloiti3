@@ -18,7 +18,8 @@
  * CPS_Coups est un type qui modélise une liste de coups (CP_COUP)
 */
 typedef struct {
-    CP_Coup lesCoups[LARGEUR_PLATEAU*HAUTEUR_PLATEAU] ; /**< Tableau contenant les différents coups*/
+    CP_Coup lesCoups[LARGEUR_PLATEAU*HAUTEUR_PLATEAU] ; 
+    /**< Tableau contenant les différents coups*/
     int nbTotalCoups ; /**< Nombre de coups dans le tableau*/
 } CPS_Coups ;
 

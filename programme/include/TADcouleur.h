@@ -35,7 +35,8 @@ CLR_Couleur CLR_blanc();
 
 /**
  * \fn int CLR_estBlanc(CLR_Couleur couleur)
- * \brief Fonction qui retourne un booleen. Si la couleur est BLANC alors le booleen retourne Vrai, sinon il retourne Faux.
+ * \brief Fonction qui retourne un booleen.
+  Si la couleur est BLANC alors le booleen retourne Vrai, sinon il retourne Faux.
  * \return bool (1 si est BLANC, 0 sinon)
  */
 int CLR_estBlanc(CLR_Couleur couleur);

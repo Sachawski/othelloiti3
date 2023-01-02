@@ -27,7 +27,10 @@ typedef enum{partieGagnee, partieEnCours, partieEgal} EtatPartie;
 
 
 /**
-* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)(PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
+* \fn faireUnePartie(obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau),
+ obtenirCoupEnFctDuJoueur (*obtenirCoupBlanc)(PLT_Plateau plateau), affichagePlateau (*afficher)
+ (PLT_Plateau), EtatPartie (*etatPartie)(PLT_Plateau plateau), CLR_Couleur couleur)
+ 
 * \brief Procédure permettant de faire une partie du jeu d'Othello
 * \param obtenirCoupEnFctDuJoueur
 * \param obtenirCoupEnFctDuJoueur
@@ -35,7 +38,10 @@ typedef enum{partieGagnee, partieEnCours, partieEgal} EtatPartie;
 * \param EtatPartie
 * \param CLR_Couleur
 */
-void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), void (*sortie)(PLT_Plateau plateau,CP_Coup coup, int possibilite), EtatPartie *etat, CLR_Couleur *couleurGagnant);
+void faireUnePartie(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int
+ profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur),
+  void (*sortie)(PLT_Plateau plateau,CP_Coup coup, int possibilite), EtatPartie *etat, CLR_Couleur
+   *couleurGagnant);
 
 
 /**
@@ -50,7 +56,8 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup);
 
 /**
 * \fn CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup)
-* \brief Trouve les pions (les stocke dans une liste de Coups) dans le carré autour du pion (Coup) joué. Adapte le carré lorsque le pion est  aux bords du plateau.
+* \brief Trouve les pions (les stocke dans une liste de Coups) dans le carré autour du pion (Coup)
+ joué. Adapte le carré lorsque le pion est  aux bords du plateau.
 * \param PLT_Plateau
 * \param CP_Coup
 * \return CPS_Coups
@@ -61,7 +68,9 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup);
 
 /**
 * \fn CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups coups)
-* \brief Parcourt les directions horizontale, verticale et diagonale au pion (Coup) joué et renvoie le premier pion de la même couleur dans chaque direction (en les stockant dans la liste de Coups).
+* \brief Parcourt les directions horizontale, verticale et diagonale
+ au pion (Coup) joué et renvoie le premier pion de la même couleur dans chaque
+  direction (en les stockant dans la liste de Coups).
 * \param PLT_Plateau
 * \param CP_Coup
 * \param CPS_Coups
@@ -90,7 +99,8 @@ void retournerPionsEmprisonnes(PLT_Plateau *plateau, CP_Coup coup);
 
 /**
 * \fn etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *egalite)
-* \brief Permet de définir l'état de la partie (EtatPartie) et la couleur gagnante si il y en a une.
+* \brief Permet de définir l'état de la partie (EtatPartie) et la
+ couleur gagnante si il y en a une.
 * \param PLT_Plateau
 * \param CLR_Couleur
 * \param EtatPartie
@@ -116,7 +126,10 @@ PLT_Plateau initialiserPlateau(void);
 int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 
 /**
-* \fn CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau, Joueur joueur1, Joueur joueur2)
+* \fn CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau,
+ Joueur joueur, CLR_Couleur couleur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau,
+  Joueur joueur, CLR_Couleur couleur), CLR_Couleur couleur, PLT_Plateau plateau,
+   Joueur joueur1, Joueur joueur2)
 * \brief Retourne le coup de "obtenirCoupEnFctDuJoueur" en fonction de la couleur donnée en entrée.
 * \param obtenirCoupEnFctDuJoueur
 * \param obtenirCoupEnFctDuJoueur
@@ -127,6 +140,8 @@ int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur);
 * \return CP_Coup
 */
 
-CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur), CLR_Couleur couleur, PLT_Plateau plateau);
+CP_Coup coupEnFctJoueur(CP_Coup (*obtenirCoupBlanc)(PLT_Plateau plateau, CLR_Couleur couleur, int
+ profondeur), CP_Coup (*obtenirCoupNoir)(PLT_Plateau plateau,
+  CLR_Couleur couleur, int profondeur), CLR_Couleur couleur, PLT_Plateau plateau);
 #endif
 
