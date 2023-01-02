@@ -50,9 +50,9 @@ void test_CPS_iemeCoup(void){
   CPS_Coups varCoupsTest=CPS_coups();
   varCoupsTest.lesCoups[i]=cp;
   CP_Coup resultatObtenu = CPS_iemeCoup(varCoupsTest,i);
-  CU_ASSERT_EQUAL(resultatObtenu.pion.couleur,cp.pion.couleur);
-  CU_ASSERT_EQUAL(resultatObtenu.position.x,cp.position.x);
-  CU_ASSERT_EQUAL(resultatObtenu.position.y,cp.position.y);
+  CU_ASSERT_EQUAL(resultatObtenu.pion.couleur,coups.lesCoups[i].pion.couleur);
+  CU_ASSERT_EQUAL(resultatObtenu.position.x,coups.lesCoups[i].position.x);
+  CU_ASSERT_EQUAL(resultatObtenu.position.y,coups.lesCoups[i].position.y);
 }
 
 
