@@ -20,10 +20,9 @@ PLT_Plateau initialiserPlateau(void){
 }
 
 CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
-    int recherche, minx, miny, maxx, maxy, x, y;
+    int minx, miny, maxx, maxy, x, y;
     POS_Position position, positionTemp;
     CPS_Coups coupsLegals;
-    recherche= 1;
     coupsLegals= CPS_coups();
     position=CP_position(coup);
     minx= fmax(0, POS_obtenirX(position)- 1);
@@ -31,9 +30,9 @@ CPS_Coups adversairesAdjacents(PLT_Plateau plateau, CP_Coup coup){
     maxx= fmin(7, POS_obtenirX(position)+ 1);
     maxy= fmin(7, POS_obtenirY(position)+ 1);
     y=miny;
-    while ((y<= maxy)&& recherche== 1) {
+    while ((y<= maxy)) {
         x=minx;
-        while ((x<= maxx)&& recherche== 1){
+        while ((x<= maxx)){
             positionTemp= POS_position(x, y);
             if (!(PLT_estCaseVide(plateau, positionTemp))&& 
             !(POS_obtenirY(position)==POS_obtenirY(positionTemp)&&
@@ -75,17 +74,16 @@ CPS_Coups pionMemeCouleur(PLT_Plateau plateau, CP_Coup coup, CPS_Coups pionLegal
             if (x>= 0&& x<=7&& y>= 0&& y<=7){
                 pos= POS_position(x, y);
                 if (PLT_estCaseVide(plateau, pos))
-                    break;
-                if (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))==
-                 PN_obtenirCouleurSuperieure(CP_pion(coup)) ){
+                    recherche=1;
+                else if(PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau, pos))==
+                PN_obtenirCouleurSuperieure(CP_pion(coup)) ){
                     CPS_ajouterCoups(&lesPionsMemeCouleur, CP_coup(PLT_obtenirPion
                     (plateau, pos), pos));
-                    break;
+                    recherche=1;
                 }
             }
-            else{
-                break;
-            }
+            else
+                recherche=1;
         }
     }
     return lesPionsMemeCouleur;
@@ -95,7 +93,6 @@ int coupLegal(PLT_Plateau plateau, CP_Coup coup) {
     POS_Position position;
     CPS_Coups pionLegals;
     position= CP_position(coup);
-    pionLegals= CPS_coups();
     if (PLT_estCaseVide(plateau, position)){
         if (CPS_nbCoups(adversairesAdjacents(plateau, coup))!=0){
             pionLegals= adversairesAdjacents(plateau, coup);
