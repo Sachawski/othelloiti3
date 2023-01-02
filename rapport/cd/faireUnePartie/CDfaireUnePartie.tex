@@ -28,9 +28,8 @@
         recherche: \booleen\\
         coupsLegal: \textbf{Coups}\\
         ldelta, cdelta: \entier\\
-        minx, miny, maxx, maxy: \entier\\
+        minx, miny, maxx, maxy, x, y: \entier\\
         pos,postemp: \textbf{Position}\\
-        x, y: \entier\\
       }
       {
         \affecter{coupsLegal}{coups()}
@@ -96,18 +95,22 @@
                          \sialorssinon{x$\geq$ 1 et x$\leq$ 8 et y$\geq$ 1 et y$\leq$ 8}
                                       {
                                         \affecter{pos}{position(x, y)}
-                                        \sialors{estCaseVide(plateau, pos)}
+                                        \sialorssinon{estCaseVide(plateau, pos)}
                                                 {
-                                                  \affecter{recherche}{1}
+                                                  \affecter{recherche}{VRAI}
                                                 }
-                                        \sialors{obtenirCouleurSuperieure(obtenirPion(pos, plateau))$\neq$= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
+                                                {
+                                                                                        			\sialors{obtenirCouleurSuperieure(obtenirPion(pos, plateau)) = obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
                                                 {
                                                   \instruction{ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, plateau), pos))}\\
-                                                  \affecter{recherche}{1}
+                                                  \affecter{recherche}{VRAI}
                                                 }
+                                                
+                                                }
+
                                       }
                                       {
-                                        \affecter{recherche}{1}
+                                        \affecter{recherche}{VRAI}
                                       }
                        }
              }
@@ -157,9 +160,9 @@
 
 \begin{algorithme}
   \small
-  \procedure{etatPartie}{\paramEntree{plateau : \textbf{Plateau}}, \paramEntreeSortie{couleur: \textbf{Couleur}}, \paramEntreeSortie{etat: \textbf{EtatPartie}}}
+  \procedure{etatPartie}{\paramEntree{plateau : \textbf{Plateau}}, \paramSortie{couleur: \textbf{Couleur}, etat: \textbf{EtatPartie}}}
             {
-              scoreBlanc: \entier
+              scoreBlanc: \entier,
               scoreNoir: \entier
             }
             {
@@ -252,7 +255,7 @@
   \small
   \procedure
   {faireUnePartie}
-  {\paramEntree{obtenirCoupBlanc,obtenirCoupNoir : \textbf{ObtenirCoupEnFctDuJoueur}}, \paramEntree{sortie : \textbf{Sortie}} \paramSortie{couleurGagnant: \textbf{Couleur}}, \paramSortie{etat : \textbf{EtatPartie}}}
+  {\paramEntree{obtenirCoupBlanc,obtenirCoupNoir : \textbf{ObtenirCoupEnFctDuJoueur}, sortie : \textbf{Sortie}} \paramSortie{couleurGagnant: \textbf{Couleur}, etat : \textbf{EtatPartie}}}
   {
     plateau: \textbf{Plateau}
     joueurCourant: \textbf{Pion}
