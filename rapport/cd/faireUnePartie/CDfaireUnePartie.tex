@@ -240,13 +240,17 @@
 \vspace{10mm}
 
 \begin{algorithme}
-  \procedureAvecPreconditions{jouer}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{coup : Coup}}
-                             {coupLegal(coup)}
-                             {}
-                             {
-                               \instruction{retournerPionsEmprisonnes(plateau,coup)}
-                               \instruction{Plateau.poserPion(plateau,CP.position(coup), CP.pion(coup))} 
-                             }
+  \procedureAvecPreconditions
+      {jouer}
+      {\paramEntreeSortie{plateau : Plateau} , \paramEntree{coup : Coup}}
+      {coupLegal(coup)}
+      {}
+      {
+        \instruction{retournerPionsEmprisonnes(plateau,coup)}
+        \instruction{Plateau.poserPion(plateau,CP.position(coup), CP.pion(coup))} 
+      }
+\end{algorithme}
+                             
 
 \begin{algorithme}
   \small
