@@ -13,17 +13,15 @@
 \end{algorithme}
 
 \begin{algorithme}
-	\signatureprocedure{faireUnePartie}{\paramEntree{obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramEntreeSortie{couleurGagnant: Couleur} }
+	\signatureprocedure{faireUnePartie}{\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramEntreeSortie{couleurGagnant: Couleur}, \paramEntreeSortie{etat : EtatPartie}}
 	\signaturefonction{initialiserPlateau}{}{Plateau}
 	\signatureprocedure{etatPartie}{\paramEntree{plateau:Plateau}, \paramEntreeSortie{couleur: Couleur}, \paramEntreeSortie{etat: EtatPartie}}
-	\signaturefonction{plateauTotalementRempli}{plateau:Plateau}{\booleen}
-	\signaturefonction{plateauBloque}{plateau:Plateau}{\booleen}
-	\signaturefonction{evaluer}{p:Plateau,couleurAEvaluer:Couleur}{\entier}
+	\signaturefonction{evaluerNb}{plateau:Plateau,couleur:Couleur}{\entier}
 	\signatureprocedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup}}
 	\signaturefonction{coupLegal}{plateau:Plateau , coup : Coup}{\booleen}
-	\signatureprocedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup, coups : Coups }}
+	\signatureprocedure{retournerPionsEmprisonnes}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup}}
 	\signaturefonction{adversairesAdjacents}{plateau:Plateau , coup : Coup}{Coups}
-	\signaturefonction{pionMemeCouleur}{plateau:Plateau , coup : Coup, coups : Coups}{Coups}
-	\signaturefonction{coupEnFctJoueur}{couleurJoueur : Couleur,obtenirCoupJoueurNoir,obtenirCoupJoueurBlanc : ObtenirCoupEnFctDuJoueur}{Coup}
+	\signaturefonction{pionMemeCouleur}{plateau:Plateau , coup : Coup, pionsLegals : Coups}{Coups}
+	\signaturefonction{coupEnFctJoueur}{obtenirCoupBlanc,obtenirCoupNoir : ObtenirCoupEnFctDuJoueur, couleur : Couleur, plateau : Plateau}{Coup}
 \end{algorithme}
 
