@@ -7,7 +7,7 @@
 
 \begin{algorithme}
   \small
-  \fonction{couleurBlanc}{}{Couleur}
+  \fonction{blanc}{}{Couleur}
   {}
     {\retourner{Blanc}}
 
@@ -18,7 +18,7 @@
 
 \begin{algorithme}
   \small
-  \fonction{couleurNoir}{}{Couleur}
+  \fonction{noir}{}{Couleur}
   {}
    {\retourner{Noir}}
 
@@ -28,7 +28,7 @@
 
 \begin{algorithme}
   \small
-  \fonction{couleurEstBlanc}{couleur:Couleur}{\booleen}
+  \fonction{estBlanc}{couleur:Couleur}{\booleen}
   {}
   {\retourner{couleur=Blanc}}
 
@@ -38,8 +38,8 @@
 
 \begin{algorithme}
   \small
-  \fonction{couleurChangerCouleur}{couleur:Couleur}{Couleur}
+  \fonction{changerCouleur}{couleur:Couleur}{Couleur}
   {}
-  {\sialorssinon{couleurEstBlanc(couleur)}{\affecter{couleur}{Noir} \retourner{couleur}}{\affecter{couleur}{Blanc} \retourner{couleur}}}
+  {\sialorssinon{estBlanc(couleur)}{\affecter{couleur}{Noir} \retourner{couleur}}{\affecter{couleur}{Blanc} \retourner{couleur}}}
 
 \end{algorithme}
