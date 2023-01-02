@@ -36,8 +36,8 @@
 \begin{algorithme}
   \small
   \fonction
-      {adversairesAdjacent}
-      {p: Plateau, coup: Coup}
+      {adversairesAdjacents}
+      {plateau: Plateau, coup: Coup}
       {Coups}
       {
         recherche: \booleen\\
@@ -62,11 +62,11 @@
                   \tantque{x$\leq$ maxx et recherche}
                           {
                             \affecter{postemp}{postion(x,y)}
-                            \sialors{non(estCaseVide(p,postemp) et postemp$\neq$ pos)}
+                            \sialors{non(estCaseVide(plateau,postemp) et postemp$\neq$ pos)}
                                     {
-                                      \sialors{obtenirCouleurSuperieur(obtenirPion(p,postemp))$\neq$ obtenirCouleurSuperieur(obtenirPionCoup(coup))}
+                                      \sialors{obtenirCouleurSuperieur(obtenirPion(plateau,postemp))$\neq$ obtenirCouleurSuperieur(obtenirPionCoup(coup))}
                                               {
-                                                \instruction{ajouterCoups(coupslegal,obtenirPion(p,postemp))}
+                                                \instruction{ajouterCoups(coupslegal,obtenirPion(plateau,postemp))}
                                               }
                                     }
                                     \affecter{x}{x+1}
@@ -83,7 +83,7 @@
   \small
   \fonction
       {pionMemeCouleur}
-      {p: Plateau, coup: Coup, pionLegal: Coups}
+      {plateau: Plateau, coup: Coup, pionLegals: Coups}
       {Coups}
       {
         pionMCouleur: Coups\\
@@ -96,11 +96,11 @@
       }
       {
         \affecter{pionMCouleur}{coups()}
-        \affecter{nb}{nbCoups(pionLegal)}
+        \affecter{nb}{nbCoups(pionLegals)}
         \pour{i}{1}{nb}{}
              {
                \affecter{recherche}{FAUX}
-               \affecter{couptemp}{iemeCoup(pionLegal, i)}
+               \affecter{couptemp}{iemeCoup(pionLegals, i)}
                \affecter{x}{obtenirX(obtenirPositionCoup(couptemp))}
                \affecter{y}{obtenirY(obtenirPositionCoup(couptemp))}
                \affecter{directionX}{x-obtenirX(coup)}
@@ -112,13 +112,13 @@
                          \sialorssinon{x$\geq$ 1 et x$\leq$ 8 et y$\geq$ 1 et y$\leq$ 8}
                                       {
                                         \affecter{pos}{position(x, y)}
-                                        \sialors{estCaseVide(p, pos)}
+                                        \sialors{estCaseVide(plateau, pos)}
                                                 {
                                                   \affecter{recherche}{1}
                                                 }
-                                        \sialors{obtenirCouleurSuperieure(obtenirPion(pos, p))$\neq$= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
+                                        \sialors{obtenirCouleurSuperieure(obtenirPion(pos, plateau))$\neq$= obtenirCouleurSuperieure(coupObtenirPionCoup(coup))}
                                                 {
-                                                  \instruction{ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, p), pos))}\\
+                                                  \instruction{ajouterCoups(pionMCouleur,coupCoup(obtenirPion(pos, plateau), pos))}\\
                                                   \affecter{recherche}{1}
                                                 }
                                       }
@@ -136,21 +136,21 @@
   \small
   \fonction
       {coupLegal}
-      {p: Plateau,coup: Coup}
+      {plateau: Plateau,coup: Coup}
       {\booleen}
       {
         pos: Position\\
-        pionLegal: Coups\\
+        pionLegals: Coups\\
       }
       {
 
         \affecter{pos}{coupObtenirPositionCoup(coup)}
-        \sialorssinon{caseVide(p, pos)}
+        \sialorssinon{caseVide(plateau, pos)}
                      {
-                       \sialorssinon{nbCoups(adversairesAdjacent(p, coup))$\neq$ 0}
+                       \sialorssinon{nbCoups(adversairesAdjacents(plateau, coup))$\neq$ 0}
                                     {
-                                      \affecter{pionLegal}{adversairesAdjacent(p, coup)}
-                                      \sialorssinon{nbCoups(pionMêmeCouleur(p, coup, pionLegal))$\neq$ 0}
+                                      \affecter{pionLegals}{adversairesAdjacents(plateau, coup)}
+                                      \sialorssinon{nbCoups(pionMemeCouleur(plateau, coup, pionLegals))$\neq$ 0}
                                                    {
                                                      \retourner{VRAI}
                                                    }
@@ -204,14 +204,14 @@
 \vspace{10mm}
 
 \begin{algorithme}
-  \procedure{retournerPionEmprisonnes}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{coup : Coup}}
+  \procedure{retournerPionsEmprisonnes}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{coup : Coup}}
             {coupTemp : Coup , x, y, xCoup, yCoup ,directionX, directionY, i :\naturel, coupsEmprisonnants : Coups, pos : Position}
             {
               \affecter{xCoup}{obtenirX(obtenirPositionCoup(coup))}
               \affecter{yCoup}{obtenirY(obtenirPositionCoup(coup))}
-              \affecter{coupsEmprisonnants}{pionMemeCouleur(plateau,coup,coupsAdjacentsAdversaires(plateau,coup))}
+              \affecter{coupsEmprisonnants}{pionMemeCouleur(plateau,coup,adversairesAdjacents(plateau,coup))}
               \pour{i}{1}{nbCoups(coupsEmprisonnants)}{}{
-                \affecter{coupTemp}{iemeCoup(coupsEmprisonnant,i)}
+                \affecter{coupTemp}{iemeCoup(coupsEmprisonnants,i)}
                 \affecter{x}{obtenirX(obtenirPositionCoup(coupTemp))}
                 \affecter{y}{obtenirY(obtenirPositionCoup(coupTemp))}
                 \sialorssinon{x-xCoup=0}{\affecter{directionX}{0}
@@ -227,7 +227,7 @@
                              \tantque{x$\neq$xCoup || y$\neq$yCoup}
                                      {
 	                               \affecter{pos}{position(x,y)}
-	                               \instruction{Plateau.retournerPion(plateau,pos)}
+	                               \instruction{retournerPion(plateau,pos)}
 	                               \affecter{x}{x+directionX}
 	                               \affecter{y}{y+directionY}
 	                               
@@ -247,7 +247,7 @@
       {}
       {
         \instruction{retournerPionsEmprisonnes(plateau,coup)}
-        \instruction{Plateau.poserPion(plateau,CP.position(coup), CP.pion(coup))} 
+        \instruction{poserPion(plateau,position(coup), pion(coup))} 
       }
 \end{algorithme}
                              
@@ -256,7 +256,7 @@
   \small
   \procedure
   {faireUnePartie}
-  {\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : Sortie} \paramEntreeSortie{couleurGagnant: Couleur}, \paramEntreeSortie{etat : EtatPartie, couleurGagnant : Couleur}}
+  {\paramEntree{obtenirCoupBlanc,obtenirCoupNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : Sortie} \paramSortie{couleurGagnant: Couleur}, \paramSortie{etat : EtatPartie}}
   {
     plateau: Plateau
     joueurCourant: Pion
