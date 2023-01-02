@@ -35,28 +35,6 @@
       }
 \end{algorithme}
 
-\vspace*{5mm}	
-
-\begin{algorithme}
-  \small
-  \fonction
-      {initialiser}
-      {}
-      {\textbf{Plateau}}
-      {plateau : \textbf{Plateau} , pion : \textbf{Pion}, blanc :\textbf{Couleur}}
-      {
-	\affecter{plateau}{plateau()}
-	\affecter{blanc}{couleurBlanc()}
-	\affecter{pion}{creerPion(blanc)}       
-    	\instruction{poserPion(plateau,position(4,4),pion)}
-    	\instruction{poserPion(plateau,position(5,5),pion)}
-    	\instruction{Pion.retournerPion(pion)}
-    	\instruction{poserPion(plateau,position(4,5),pion)}
-    	\instruction{poserPion(plateau,position(5,4),pion)}
-    	\retourner{p}
-      }
-\end{algorithme}
-
 \vspace*{5mm}
 
 \begin{algorithme}
