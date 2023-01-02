@@ -1,0 +1,68 @@
+\begin{algorithme}
+
+	\small
+	\fonction
+	{interactionBroker}
+	{plateau : \textbf{Plateau}, couleur : \textbf{Couleur}, profondeur \entier}{\textbf{Coup}}
+	{coupBroker : \textbf{Coup}
+          pionBroker : \textbf{Pion}
+          coorTemp : \textbf{Position}
+          buffer : \chaine
+          x : \caractere
+          y : \entier
+        }
+	{fgets(buffer,sizeof(buffer),stdin)
+          \affecter{x}{buffer[0]}
+          \affecter{y}{buffer[1]}
+          \affecter{coorTemp}{position(x-97,y-1)}
+          \affecter{pionBroker}{pion(couleur)}
+          \affecter{coupBroker}{coup(pionBroker,coorTemp)}
+          \retourner{coupBroker}}
+                
+	\vspace*{1cm}
+
+        \small
+	\procedure
+	{envoiBroker}
+	{\paramEntree{plateau : \textbf{Plateau}}, \paramEntree{coup : \textbf{Coup}}, possibilite : \booleen}
+	{x : \entier
+          y : \entier
+          w : \entier
+          buffer : \chaine
+          xChar : \caractere
+          yChar : \caractere
+        }
+	{\sialorssinon{possibilite}{
+            \affecter{x}{obtenirX(position(coup))}
+            \affecter{y}{obtenirY(position(coup))}
+            \affecter{xChar}{x+'a'}
+            \affecter{yChar}{y+'1'}
+            \affecter{buffer[0]}{xChar}
+            \affecter{buffer[1]}{yChar}
+            \affecter{buffer[2]}{'\n'}
+            \affecter{w}{ecrireDansBuffer(STDOUT_FILENO, buffer, longueur(buffer))}
+            \sialors{w $<$ 0}{perror("Erreur lors de l'ecriture : ")}
+          
+          }{\affecter{w}{ecrireDansBuffer(STDOUT_FILENO, "passe\n", longueur(passe\n))}
+            \sialors{w $<$ 0}{perror("Erreur lors de l'ecriture : ")}
+          }
+                
+	\vspace*{1cm}
+
+
+        \small
+	\procedure
+	{finDePartieBroker}
+	{\paramEntree{couleurGagnante : \textbf{Couleur}}, \paramEntree{etat : \textbf{EtatPartie}}}
+	{}
+	{\sialorssinon{etat=partieGagnee}
+          {\sialorssinon{couleurGagnante = NOIR}
+            {\ecrire{"noir\n"}}
+            {\ecrire{"blanc\n"}}
+          }
+          {\ecrire{"nulle\n"}}
+        }
+                
+	\vspace*{1cm}
+        
+\end{algorithme}
