@@ -12,13 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
-* \fn afficherPlateau(PLT_Plateau plateau, CP_Coup coup, int possibilite)
-* \brief Affiche le plateau actuel dans le terminal.
-* \param plateau Représente le plateau de jeu.
-* \param coup Inutile de cette procédure.
-* \param possibilite Indique si le joueur à la possibilité de jouer.
-*/
+
 void afficherPlateau(PLT_Plateau plateau, CP_Coup coup,int possibilite){
     system("clear");
     printf("\n      [OTHELLO]\n\n     a  b  c  d  e  f  g  h\n  |-------------------------|\n");
@@ -45,12 +39,7 @@ void afficherPlateau(PLT_Plateau plateau, CP_Coup coup,int possibilite){
 }
 
 
-/**
-* \fn afficherFinDePartie(CLR_Couleur couleurGagnante, EtatPartie etat)
-* \brief Affiche L'état de fin de partie dans le terminal.
-* \param couleurGagnante La couleur gagnate en cas de victoire.
-* \param etat Etat du plateau de la partie en fin de jeu : Victoire | Egalite.
-*/
+
 void afficherFinDePartie(CLR_Couleur couleurGagnante, EtatPartie etat){
   system("clear");
   char *gagnant;
@@ -71,13 +60,7 @@ void afficherFinDePartie(CLR_Couleur couleurGagnante, EtatPartie etat){
 }
 
 
-/**
-* \fn interractionJoueur(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur)
-* \brief Permet d'obtenir un coup de la part d'un Humain
-* \param plateau Représente le plateau de jeu.
-* \param couleur Couleur du joueur humain.
-* \param profondeur Inutile dans cette fonction.
-*/
+
 CP_Coup interactionJoueur(PLT_Plateau plateau, CLR_Couleur couleur, int profondeur){
   CP_Coup coupJoueur;
   PN_Pion pionJoueur;
