@@ -87,16 +87,23 @@ breakable
 \title{RAPPORT PROJET OTHELLO}                         
 \author{Victorin Turnel, Paul Thulliez,Chen Yang, Ahmed Zarki, Sacha Wojciechowski}
 
+
+
 \begin{document}
 \maketitle
+\newpage
 \tableofcontents
+
+\newpage
 
 \section{Introduction}
 Le jeu d'Othello, également connu sous le nom de Reversi, est un jeu de stratégie abstraite qui a été inventé au milieu du XIXe siècle. Bien que les règles du jeu soient simples, les possibilités de jeu sont infinies, ce qui en fait un défi stimulant pour les joueurs de tous niveaux.
 
+\vspace{5mm}
 
 C'est ainsi que dans le cadre du cours d'Algorithmique avancée, nous avons eu à réaliser le développement d'un jeu d'Othello. Nous détaillerons dans ce rapport les différentes étapes qui nous ont permis de parvenir à ce résultat. Pour cela, ce document détaillera chaque étape du cycle en V dans l'ordre. 
 
+\vspace{5mm}
 
 Pour continuer, nous allons détailler les principaux objectifs de ce projet. Le but de ce projet était le développement d'un jeu d'Othello ayant plusieurs fonctionnalités :
 \begin{itemize}
@@ -109,11 +116,20 @@ Pour continuer, nous allons détailler les principaux objectifs de ce projet. Le
     \item Des tests unitaires
 \end{itemize}
 
+\vspace{5mm}
+
+
 Enfin, rappelons les règles de l'Othello. Le jeu se joue sur un plateau de huit rangées et huit colonnes, avec deux joueurs qui s'affrontent. Les joueurs ont chacun des pions de couleur, généralement noirs et blancs. Le but du jeu est de finir avec le plus de pions de sa couleur sur le plateau.
+
+\vspace{5mm}
 
 Le joueur qui commence le jeu place son pion au centre du plateau, et les joueurs jouent à tour de rôle. À chaque tour, un joueur doit placer son pion sur le plateau de manière à ce qu'il encercle au moins un pion adverse, formant ainsi une chaîne de pions de sa couleur. Les pions encerclés sont alors retournés pour prendre la couleur du joueur qui vient de jouer. Si un joueur ne peut pas jouer, il doit passer son tour.
 
+\vspace{5mm}
+
 Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lorsque aucun joueur ne peut plus jouer. Le joueur qui a le plus de pions de sa couleur sur le plateau à la fin du jeu est déclaré vainqueur. Si le nombre de pions de chaque couleur est égal, la partie est déclarée nulle.
+
+\newpage
 
 \section{Analyse}
 
@@ -150,7 +166,9 @@ Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lors
     \rotatebox{90}{\includegraphics[width=23cm,height=10cm]{analyse/ADobtenirCoup.pdf}}                                                                                                               
     \caption{Analyse descendante de obtenirCoup}                                                                                                                          
     \label{un-identifiant2}                                                                                                                                                                                 
-\end{figure}       
+\end{figure} 
+
+\newpage      
 
 \section{Conception préliminaire}
 
@@ -175,7 +193,7 @@ Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lors
 \subsection{obtenirCoup}
 \input{cp/obtenirCoup/CPobtenirCoup}
 
-
+\newpage
 
 \section{Conception détaillée}
 \subsection{Conception détaillée des fonctions des TAD :}
@@ -205,7 +223,7 @@ Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lors
 \input{cd/faireUnePartie/CDfaireUnePartie}
 
 
-
+\newpage
 
 \section{Code}
 
@@ -276,12 +294,14 @@ Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lors
 \subsection{Interface Machine-Broker}                                                                                                                                                                    
 \lstinputlisting[language = C]{../programme/src/IMB.c}                                                                                                                                                
                                                             
-
+\newpage
 
 \section{Conclusion}
 \subsection{Rétrospective}
 
 En conclusion, notre projet de programmation d'un jeu d'Othello en C a été un défi intéressant qui nous a permis de mettre en pratique nos compétences en programmation C et en intelligence artificielle. Nous avons développé une intelligence artificielle qui utilise l'algorithme min-max avec élagage alpha-bêta, capable de jouer de manière compétitive au jeu en utilisant des techniques de recherche en profondeur et d'évaluation de l'état du jeu.
+
+\vspace{5mm}
 
 Nous avons rencontré plusieurs défis au cours de ce projet :
 \begin{itemize}
@@ -293,7 +313,11 @@ Nous avons rencontré plusieurs défis au cours de ce projet :
 \item Respecter les délais
 \end{itemize}
 
+\vspace{5mm}
+
 Nous avons réussi à les surmonter grâce à notre persévérance et à notre capacité à trouver des solutions créatives. Les résultats de notre travail ont été concluants, et nous avons réussi à atteindre notre objectif avec un programme parfaitement fonctionnel.
+
+\vspace{5mm}
 
 En fin de compte, ce projet a été une expérience très enrichissante qui nous a permis de nous améliorer en tant que programmeurs et de découvrir de nouvelles techniques de programmation. De plus, nous avons appris à utiliser de nouveaux outils qui nous seront très utiles dans le futur.
 
