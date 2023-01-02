@@ -91,6 +91,30 @@ breakable
 \maketitle
 \tableofcontents
 
+\section{Introduction}
+Le jeu d'Othello, également connu sous le nom de Reversi, est un jeu de stratégie abstraite qui a été inventé au milieu du XIXe siècle. Bien que les règles du jeu soient simples, les possibilités de jeu sont infinies, ce qui en fait un défi stimulant pour les joueurs de tous niveaux.
+
+
+C'est ainsi que dans le cadre du cours d'Algorithmique avancée, nous avons eu à réaliser le développement d'un jeu d'Othello. Nous détaillerons dans ce rapport les différentes étapes qui nous ont permis de parvenir à ce résultat. Pour cela, ce document détaillera chaque étape du cycle en V dans l'ordre. 
+
+
+Pour continuer, nous allons détailler les principaux objectifs de ce projet. Le but de ce projet était le développement d'un jeu d'Othello ayant plusieurs fonctionnalités :
+\begin{itemize}
+    \item Un programme de base permettant de jouer à l'Othello
+    \item Une interface Homme-Machine fonctionnelle
+    \item Une intelligence artificielle
+    \item Un programme permettant l'intégration d'un mode tournois
+    \item Une interface Machine-Machine
+    \item Une documentation
+    \item Des tests unitaires
+\end{itemize}
+
+Enfin, rappelons les règles de l'Othello. Le jeu se joue sur un plateau de huit rangées et huit colonnes, avec deux joueurs qui s'affrontent. Les joueurs ont chacun des pions de couleur, généralement noirs et blancs. Le but du jeu est de finir avec le plus de pions de sa couleur sur le plateau.
+
+Le joueur qui commence le jeu place son pion au centre du plateau, et les joueurs jouent à tour de rôle. À chaque tour, un joueur doit placer son pion sur le plateau de manière à ce qu'il encercle au moins un pion adverse, formant ainsi une chaîne de pions de sa couleur. Les pions encerclés sont alors retournés pour prendre la couleur du joueur qui vient de jouer. Si un joueur ne peut pas jouer, il doit passer son tour.
+
+Le jeu se termine lorsque tous les emplacements du plateau sont occupés ou lorsque aucun joueur ne peut plus jouer. Le joueur qui a le plus de pions de sa couleur sur le plateau à la fin du jeu est déclaré vainqueur. Si le nombre de pions de chaque couleur est égal, la partie est déclarée nulle.
+
 \section{Analyse}
 
 \subsection{TAD COULEUR :}
@@ -254,7 +278,26 @@ breakable
                                                             
 
 
-\section{Repartition des tâches}
+\section{Conclusion}
+\subsection{Rétrospective}
+
+En conclusion, notre projet de programmation d'un jeu d'Othello en C a été un défi intéressant qui nous a permis de mettre en pratique nos compétences en programmation C et en intelligence artificielle. Nous avons développé une intelligence artificielle qui utilise l'algorithme min-max avec élagage alpha-bêta, capable de jouer de manière compétitive au jeu en utilisant des techniques de recherche en profondeur et d'évaluation de l'état du jeu.
+
+Nous avons rencontré plusieurs défis au cours de ce projet :
+\begin{itemize}
+\item Avoir une bonne communication dans le groupe
+\item Utiliser correctement Git
+\item Utiliser un langage de programmation qui nous était inconnu
+\item Utiliser une méthode de développement rigoureuse
+\item Savoir faire preuve d'autonomie et de gestion de groupe
+\item Respecter les délais
+\end{itemize}
+
+Nous avons réussi à les surmonter grâce à notre persévérance et à notre capacité à trouver des solutions créatives. Les résultats de notre travail ont été concluants, et nous avons réussi à atteindre notre objectif avec un programme parfaitement fonctionnel.
+
+En fin de compte, ce projet a été une expérience très enrichissante qui nous a permis de nous améliorer en tant que programmeurs et de découvrir de nouvelles techniques de programmation. De plus, nous avons appris à utiliser de nouveaux outils qui nous seront très utiles dans le futur.
+
+\subsection{Repartition des tâches}
 \begin{tabular}{|l|c|c|c|c|c|}
   \hline
   Tâches & Ahmed Zarki & Victorin Turnel & Chen Yang & Paul Thulliez & Sacha Wojciechowski \\
