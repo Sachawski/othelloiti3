@@ -1,47 +1,58 @@
 \begin{algorithme}
-	
-	\begin{enregistrement}{Coups}
-		\champEnregistrement{lesCoups}{\textbf{Tableau[1..LARGEUR\_PLATEAU*HAUTEUR\_PLATEAU] de Coup}}
-		\champEnregistrement{nbTotalCoups}{\naturel}
-	\end{enregistrement}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{coups}
-	{}
-	{\textbf{Coups}}
-	{resultat : Coups}
-	{\affecter{resultat.nbTotalCoups}{0}
-		\retourner {resultat}}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{nbCoups}
-	{cps : \textbf{Coups}}
-	{\naturel}
-	{}
-	{\retourner {cps.nbTotalCoups}}
-	
-	\vspace*{5mm} 
-	
-	\procedure
-	{ajouterCoups}
-	{\paramEntreeSortie{cps : \textbf{Coups}},\paramEntree{unCoup : \textbf{Coup}}}
-	{}
-	{\affecter{cps.nbTotalCoups}{cps.nbTotalCoups+1}
-		\affecter{cps.lesCoups[cps.nbTotalCoups]}{unCoup}}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{iemeCoup}
-	{cps : \textbf{Coups}, place : \textbf{NNN} }
-	{\textbf{Coup}
-		\preconditions{place $\leq$ nbCoups(coups)}}
-	{}
-	{\retourner {cps.lesCoups[place]}}
-	
-	
+  
+  \begin{enregistrement}{Coups}
+    \champEnregistrement{lesCoups}{\textbf{Tableau[1..LARGEUR\_PLATEAU*HAUTEUR\_PLATEAU] de Coup}}
+    \champEnregistrement{nbTotalCoups}{\naturel}
+  \end{enregistrement}
+\end{algorithme}
+
+\vspace*{5mm}
+
+\begin{algorithme}
+  \small
+  \fonction
+      {coups}
+      {}
+      {\textbf{Coups}}
+      {coups : \textbf{Coups}}
+      {\affecter{coups.nbTotalCoups}{0}
+	\retourner {coups}}
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \fonction
+      {nbCoups}
+      {coups : \textbf{Coups}}
+      {\naturel}
+      {}
+      {\retourner {coups.nbTotalCoups}}
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \procedure
+      {ajouterCoups}
+      {\paramEntreeSortie{coups : \textbf{Coups}},\paramEntree{coup : \textbf{Coup}}}
+      {}
+      {\affecter{coups.nbTotalCoups}{coups.nbTotalCoups+1}
+	\affecter{coups.lesCoups[coups.nbTotalCoups]}{coup}}
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \fonction
+      {iemeCoup}
+      {coups : \textbf{Coups}, place : \textbf{NNN} }
+      {\textbf{Coup}
+	\preconditions{place $\leq$ nbCoups(coups)}}
+      {}
+      {\retourner {coups.lesCoups[place]}}
+      
 \end{algorithme}

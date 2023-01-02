@@ -1,41 +1,53 @@
 \begin{algorithme}
-  \begin{enregistrement}{Coup}
-    \champEnregistrement{pion}{Pion}
-    \champEnregistrement{position}{Position}
+  \begin{enregistrement}{\textbf{Coup}}
+    \champEnregistrement{pion}{\textbf{Pion}}
+    \champEnregistrement{position}{\textbf{Position}}
   \end{enregistrement}
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{coupCoup}{pion:Pion,pos:Position}{Coup}
-           {}
-           {\affecter{coup.position}{pos}
-            \affecter{coup.pion}{pion}
-            \retourner{coup}
-           }
- 
+  \fonction
+      {coupCoup}
+      {pion :\textbf{Pion}, pos : \textbf{Position}}
+      {\textbf{Coup}}
+      {}
+      {
+        \affecter{coup.position}{pos}
+        \affecter{coup.pion}{pion}
+        \retourner{coup}
+      }
+      
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{coupObtenirPionCoup}{coup:Coup}{Pion}
-           {}
-           {\retourner{coup.pion} 
-           }
-  
+  \fonction
+      {coupObtenirPionCoup}
+      {coup : \textbf{Coup}}
+      {\textbf{Pion}}
+      {}
+      {
+        \retourner{coup.pion} 
+      }
+      
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{coupObtenirPositionCoup}{coup:Coup}{Position}
-           {}
-           {\retourner{coup.position}
-           }
-  
+  \fonction
+      {coupObtenirPositionCoup}
+      {coup : \textbf{Coup}}
+      {\textbf{Position}}
+      {}
+      {
+        \retourner{coup.position}
+      }
+      
 \end{algorithme}

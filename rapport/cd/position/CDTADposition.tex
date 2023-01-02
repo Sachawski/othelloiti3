@@ -1,38 +1,55 @@
 \begin{algorithme}
-	
-	\begin{enregistrement}{Pion}
-		\champEnregistrement{x}{\textbf{1..LARGEUR\_PLATEAU}}
-		\champEnregistrement{y}{\textbf{1..HAUTEUR\_PLATEAU}}
-	\end{enregistrement}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{position}
-	{largeur : \textbf{1..LARGEUR\_PLATEAU}, hauteur : \textbf{1..HAUTEUR\_PLATEAU}}
-	{\textbf{Position}}
-	{resultat : Position}
-	{\affecter{resultat.x}{largeur}
-		\affecter{resultat.y}{hauteur}
-		\retourner {resultat}}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{obtenirX}
-	{unePosition : \textbf{Position}}
-	{\textbf{1..LARGEUR\_PLATEAU}}
-	{}
-	{\retourner {pion.x}}
-	
-	\vspace*{5mm} 
-	
-	\fonction
-	{obtenirY}
-	{unePosition : \textbf{Position}}
-	{\textbf{1..HAUTEUR\_PLATEAU}}
-	{}
-	{\retourner {pion.y}}
-	
-	
+  
+  \begin{enregistrement}{Pion}
+    \champEnregistrement{x}{\textbf{1..LARGEUR\_PLATEAU}}
+    \champEnregistrement{y}{\textbf{1..HAUTEUR\_PLATEAU}}
+  \end{enregistrement}
+  
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \fonction
+      {position}
+      {largeur : \textbf{1..LARGEUR\_PLATEAU}, hauteur : \textbf{1..HAUTEUR\_PLATEAU}}
+      {\textbf{Position}}
+      {resultat : \textbf{Position}}
+      {\affecter{resultat.x}{largeur}
+	\affecter{resultat.y}{hauteur}
+	\retourner {resultat}
+      }
+      
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \fonction
+      {obtenirX}
+      {unePosition : \textbf{Position}}
+      {\textbf{1..LARGEUR\_PLATEAU}}
+      {}
+      {
+        \retourner {pion.x}
+      }
+      
+\end{algorithme}
+
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
+  \fonction
+      {obtenirY}
+      {unePosition : \textbf{Position}}
+      {\textbf{1..HAUTEUR\_PLATEAU}}
+      {}
+      {
+        \retourner {pion.y}
+      }
+      
+      
 \end{algorithme}

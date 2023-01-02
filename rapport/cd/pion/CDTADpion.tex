@@ -1,35 +1,42 @@
 \begin{algorithme}
-
-  \begin{enregistrement}{Pion}
-    \champEnregistrement{couleur : Couleur}
+  \begin{enregistrement}{\textbf{Pion}}
+    \champEnregistrement{couleur : \textbf{Couleur}}
   \end{enregistrement}
+\end{algorithme}
 
-  \vspace*{5mm} 
-  
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
   \fonction
       {creerPion}
-      {couleur : Couleur}
-      {Pion}
-      {pion : Pion}
+      {couleur : \textbf{Couleur}}
+      {\textbf{Pion}}
+      {pion : \textbf{Pion}}
       {{\affecter{pion.Couleur}{couleur}}
 
-       {\retourner {pion}}}
+        {\retourner {pion}}}
+\end{algorithme}
 
-  \vspace*{5mm} 
-      
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
   \fonction
       {obtenirCouleurSuperieure}
-      {pion : Pion}
-      {Couleur}
-      {couleur : Couleur}
+      {pion : \textbf{Pion}}
+      {\textbf{Couleur}}
+      {couleur : \textbf{Couleur}}
       {\retourner {pion.Couleur}}
+\end{algorithme}
 
-  \vspace*{5mm} 
-      
+\vspace*{5mm} 
+
+\begin{algorithme}
+  \small
   \procedure
       {retournerPion}
-      {\paramEntreeSortie{pion : Pion}}
+      {\paramEntreeSortie{pion : \textbf{Pion}}}
       {}
       {\instruction{changeCouleur(pion.Couleur)}}
-
 \end{algorithme}

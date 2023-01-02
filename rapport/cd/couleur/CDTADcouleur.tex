@@ -1,45 +1,62 @@
 \begin{algorithme}
-  \type{Couleur}{\{Blanc,Noir\}}
+  \type{\textbf{Couleur}}{\{Blanc,Noir\}}
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 
 \begin{algorithme}
   \small
-  \fonction{blanc}{}{Couleur}
-  {}
-    {\retourner{Blanc}}
+  \fonction
+      {blanc}
+      {}
+      {\textbf{Couleur}}
+      {}
+      {\retourner{Blanc}}
 
 \end{algorithme}
 
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{noir}{}{Couleur}
-  {}
-   {\retourner{Noir}}
+  \fonction
+      {noir}
+      {}
+      {\textbf{Couleur}}
+      {}
+      {\retourner{Noir}}
 
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{estBlanc}{couleur:Couleur}{\booleen}
-  {}
-  {\retourner{couleur=Blanc}}
+  \fonction
+      {estBlanc}
+      {couleur : \textbf{Couleur}}
+      {\booleen}
+      {}
+      {\retourner{couleur=Blanc}}
 
 \end{algorithme}
 
-  \vspace*{5mm}
+\vspace*{5mm}
 
 \begin{algorithme}
   \small
-  \fonction{changerCouleur}{couleur:Couleur}{Couleur}
-  {}
-  {\sialorssinon{estBlanc(couleur)}{\affecter{couleur}{Noir} \retourner{couleur}}{\affecter{couleur}{Blanc} \retourner{couleur}}}
+  \fonction{changerCouleur}{couleur : \textbf{Couleur}}{\textbf{Couleur}}
+           {}
+           {\sialorssinon{estBlanc(couleur)}
+             {
+               \affecter{couleur}{Noir}
+               \retourner{couleur}
+             }
+             {\affecter{couleur}{Blanc}
+               \retourner{couleur}
+             }
+           }
 
 \end{algorithme}
