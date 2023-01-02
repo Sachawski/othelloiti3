@@ -23,6 +23,11 @@
 #define MAX(i, j) (((i) > (j)) ? (i) : (j))
 
 
+/** 
+ * \brief Procédure permettant la copie d'un tableau
+ * \param plateau_src Plateau source (à copier)
+ * \param plateau_dst Plateau destination (la copie)
+ */
 void copierPlateau(PLT_Plateau plateau_src, PLT_Plateau *plateau_dst) {
   for (int i = 0; i < LARGEUR_PLATEAU; i++) {
     for (int j = 0; j < HAUTEUR_PLATEAU; j++) {
