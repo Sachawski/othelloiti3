@@ -1,0 +1,58 @@
+\begin{algorithme}
+
+	\small
+	\procedure
+	{afficherPlateau}
+	{\paramEntree{plateau : \textbf{Plateau}}, \paramEntree{coup : \textbf{Coup}}, \paramEntree{possibilite : \booleen}}
+	{i : \entier}
+	{\ecrire{"\n      [OTHELLO]\n\n     a  b  c  d  e  f  g  h\n  |-------------------------|\n"}
+		\pour{i}{0}{63}{}{
+		  \sialors{i mod 8 = 0}{\ecrire{"|"}}
+                  \sialorssinon{plateau.tabPlateau[i/8][i mod 8].estVide=1}{\ecrire{"+"}}{cas ou{}}
+                  \sialors{i mod 8 = 7}{\ecrire{"|"}}
+                }
+                \ecrire{"  |-------------------------|\n"}
+                \sialors{non(possibilite)}{\ecrire{"Vous ne pouvez pas jouer\n"}}
+        }
+                
+	\vspace*{1cm}
+	
+	\small
+	\procedure
+	{afficherFinDePartie}
+	{\paramEntree{couleurGagnante: \textbf{Couleur}}, \paramEntree{etat: \textbf{EtatPartie}}}
+	{gagnant : \caractere}
+	{\sialorssinon{etat=partieGagnee}{
+            \sialorssinon{couleurGagnante=NOIR}
+                         {gagnant="NOIRS"}
+                         {gagnant="BLANCS"}
+                         \ecrire{"  |-------------------------|\n"}
+                         \ecrire{"  |   Victoire des ",gagnant,"  |\n"}
+                         \ecrire{"  |-------------------------|\n"}
+          }
+          {\ecrire{"  |-------------------------|\n"}
+              \ecrire{"  |         Egalité         |\n"}
+              \ecrire{"  |-------------------------|\n"}
+          }
+          
+	\vspace*{1cm}
+	
+	\small
+	\fonction
+	{interactionJoueur}
+	{plateau : \textbf{Plateau}, couleur  : \textbf{Couleur}, profondeur : \entier}
+	{\textbf{Coup}}
+	{coupJoueur : \textbf{Coup}, pionJoueur : \textbf{Pion}, coorTemp : \textbf{Position}, x : \caractere, y : \entier}
+	{\affecter{pionJoueur}{pion(couleur)}
+          \tantque{non(('a' $\leq$ x) et (x $\leq$ 'h') et (1 $\leq$ y) et (y $\leq$ 8))}
+                  {afficherPlateau(plateau,coupJoueur,1)
+                    \ecrire{"  Position :"}
+                    \lire{x}
+                    \lire{y}
+                    \affecter{coorTemp}{position(x-97,y-1)}
+                    \affecter{coupJoueur}{coup(pionJoueur,coorTemp)}}
+                  \retourner{coupJoueur}  
+        }
+	
+	
+\end{algorithme}
