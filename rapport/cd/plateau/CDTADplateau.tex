@@ -4,11 +4,14 @@
 		\champEnregistrement{estVide}{\booleen}
 		\champEnregistrement{pion}{Pion}
 	\end{enregistrement}
+        
 	\vspace*{5mm}
+        
 \end{algorithme}
 \begin{algorithme}
 	\type{Plateau}{Tableau[8][8] de \textbf{Case}}
 \end{algorithme}
+
 	\vspace*{5mm}
 		
 \begin{algorithme}
@@ -19,64 +22,88 @@
 		}
 	\retourner {plateau}
 	}
+
+
 	\vspace*{5mm}	
-	\fonction{initialiser}{}{Plateau}{plateau : Plateau , pion : Pion , blanc : Couleur}{
-	\affecter{plateau}{plateau()}
-	\affecter{blanc}{couleurBlanc()}
-	\affecter{pion}{creerPion(blanc)}       
-    	\instruction{poserPion(plateau,position(4,4),pion)}
-    	\instruction{poserPion(plateau,position(5,5),pion)}
-    	\instruction{Pion.retournerPion(pion)}
-    	\instruction{poserPion(plateau,position(4,5),pion)}
-    	\instruction{poserPion(plateau,position(5,4),pion)}
-    	\retourner{p}
-    	}
+
+        \fonction
+            {initialiser}
+            {}
+            {Plateau}
+            {plateau : Plateau , pion : Pion , blanc : Couleur}
+            {
+	      \affecter{plateau}{plateau()}
+	      \affecter{blanc}{couleurBlanc()}
+	      \affecter{pion}{creerPion(blanc)}       
+    	      \instruction{poserPion(plateau,position(4,4),pion)}
+    	      \instruction{poserPion(plateau,position(5,5),pion)}
+    	      \instruction{Pion.retournerPion(pion)}
+    	      \instruction{poserPion(plateau,position(4,5),pion)}
+    	      \instruction{poserPion(plateau,position(5,4),pion)}
+    	      \retourner{p}
+    	    }
+        
     	\vspace*{5mm}
-    	\procedureAvecPreconditions{poserPion}
-    	{\paramEntreeSortie {plateau : Plateau} , \paramEntree {pos : Position , pion : Pion}}
-    	{estCaseVide(pos,plateau)}
-    	{x,y : \textbf{1...8}}
-    	{\affecter{x}{obtenirX(pos)}
-    	\affecter{y}{obtenirY(pos)}
-    	\affecter{plateau[x][y].pion}{pion}
-    	\affecter{plateau[x][y].estVide}{Faux}}
+
+        \procedureAvecPreconditions
+            {poserPion}
+    	    {\paramEntreeSortie {plateau : Plateau} , \paramEntree {pos : Position , pion : Pion}}
+    	    {estCaseVide(pos,plateau)}
+    	    {x,y : \textbf{1...8}}
+    	    {\affecter{x}{obtenirX(pos)}
+    	      \affecter{y}{obtenirY(pos)}
+    	      \affecter{plateau[x][y].pion}{pion}
+    	      \affecter{plateau[x][y].estVide}{Faux}}
+        
     	\vspace*{5mm}
-    	\fonctionAvecPreconditions{obtenirPion}
-    	{pos : Position , plateau : Plateau}
-    	{Pion}
-    	{non estCaseVide(plateau,pos)}
-    	{x,y : \textbf{1...8}}
-    	{\affecter{x}{obtenirX(pos)}
-    	\affecter{y}{obtenirY(pos)}
-    	\retourner {plateau[x][y].pion}
-    	}
+
+        \fonctionAvecPreconditions
+            {obtenirPion}
+    	    {pos : Position , plateau : Plateau}
+    	    {Pion}
+    	    {non estCaseVide(plateau,pos)}
+    	    {x,y : \textbf{1...8}}
+    	    {\affecter{x}{obtenirX(pos)}
+    	      \affecter{y}{obtenirY(pos)}
+    	      \retourner {plateau[x][y].pion}
+    	    }
+        
     	\vspace*{5mm}
-    	\procedureAvecPreconditions{retournerPion}
-    	{\paramEntreeSortie {plateau : Plateau} , \paramEntree{pos : Position}}
-    	{non estCaseVide(plateau,pos)}
-    	{pion : Pion}
-    	{
-    	\affecter{pion}{obtenirPion(pos , plateau)}
-    	\instruction{Pion.retournerPion(pion)}
-    	\instruction{enleverPion(plateau,pos)}
-    	\instruction{poserPion(plateau,pos,pion)}
-  	}
+
+        \procedureAvecPreconditions
+            {retournerPion}
+    	    {\paramEntreeSortie {plateau : Plateau} , \paramEntree{pos : Position}}
+    	    {non estCaseVide(plateau,pos)}
+    	    {pion : Pion}
+    	    {
+    	      \affecter{pion}{obtenirPion(pos , plateau)}
+    	      \instruction{Pion.retournerPion(pion)}
+    	      \instruction{enleverPion(plateau,pos)}
+    	      \instruction{poserPion(plateau,pos,pion)}
+  	    }
+        
   	\vspace*{5mm}
-  	\fonction{estCaseVide}{plateau : Plateau , pos : Position}{\booleen}
-  	{x,y : \textbf{1...8}}
-  	{\affecter{x}{obtenirX(pos)}
-    	\affecter{y}{obtenirY(pos)}
-    	\retourner {plateau[x][y].estVide}
-    	}
+        
+  	\fonction
+            {estCaseVide}{plateau : Plateau , pos : Position}
+            {\booleen}
+  	    {x,y : \textbf{1...8}}
+  	    {\affecter{x}{obtenirX(pos)}
+    	      \affecter{y}{obtenirY(pos)}
+    	      \retourner {plateau[x][y].estVide}
+    	    }
+            
     	\vspace*{5mm}
-    	\procedureAvecPreconditions{enleverPion}
-    	{\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position}}
-    	{non estCaseVide(plateau,pos)}
-    	{x,y : \textbf{1...8}}
-    	{\affecter{x}{obtenirX(pos)
-    	\affecter{y}{obtenirY(pos)}
-    	\affecter{plateau[x][y].estVide}{Vrai}}
-    	}
+
+        \procedureAvecPreconditions
+            {enleverPion}
+    	    {\paramEntreeSortie{plateau : Plateau} , \paramEntree{pos : Position}}
+    	    {non estCaseVide(plateau,pos)}
+    	    {x,y : \textbf{1...8}}
+    	    {\affecter{x}{obtenirX(pos)
+    	        \affecter{y}{obtenirY(pos)}
+    	        \affecter{plateau[x][y].estVide}{Vrai}}
+    	    }
      
 \end{algorithme}
 
