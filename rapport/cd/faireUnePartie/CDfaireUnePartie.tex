@@ -6,25 +6,13 @@
       {\textbf{Plateau}}
       {plateau : \textbf{Plateau}, pion : \textbf{Pion}, i,j : \naturel, pos : \textbf{Position}}
       { 
-        \affecter{p}{plateau()}
-        \pour{i}{4}{5}{}
-             {
-               \pour{j}{4}{5}{}
-                    {
-                      \sialorssinon{i=j}
-                                   {
-                                     \affecter{pion}{creerPion(blanc())}
-                                     \affecter{pos}{position(i,j)}\\
-                                     \instruction{poserPion(pos,pion,plateau)}
-                                   }
-                                   {
-                                     \affecter{pion}{creerPion(noir())}
-                                     \affecter{pos}{position(i,j)}\\
-                                     \instruction{poserPion(pos,pion,plateau)}
-                                   }
-                    }
-             }
-             \retourner{plateau}
+        \affecter{plateau}{plateau()}
+
+        poserPion(plateau,Position(3,3),creerPion(BLANC))\\
+        poserPion(plateau,Position(3,4),creerPion(NOIR))\\
+        poserPion(plateau,Position(4,3),creerPion(NOIR))\\
+        poserPion(plateau,Position(4,4),creerPion(BLANC))\\
+        \retourner{plateau}
       }
 \end{algorithme}
 
