@@ -124,8 +124,8 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *etat){
         *etat=partieEnCours;
     }
     if (plateauBloque(plateau) ){
-        scoreBlanc= evaluerNb(plateau, BLANC);
-        scoreNoir= evaluerNb(plateau, NOIR);
+        scoreBlanc= compteurCouleur(plateau, BLANC);
+        scoreNoir= compteurCouleur(plateau, NOIR);
         if (scoreBlanc> scoreNoir){
             *etat=partieGagnee;
             *couleur=BLANC;
@@ -141,23 +141,6 @@ void etatPartie(PLT_Plateau plateau, CLR_Couleur *couleur, EtatPartie *etat){
         }
     }
 }
-
-int evaluerNb(PLT_Plateau plateau, CLR_Couleur couleur){
-    int compteur,i,j;
-    POS_Position pos ;
-    compteur = 0 ;
-    for (i=0;i<=7;i++) {
-        for (j=0;j<=7;j++) {
-            pos = POS_position(i,j);
-            if (!PLT_estCaseVide(plateau,pos) &&
-             (PN_obtenirCouleurSuperieure(PLT_obtenirPion(plateau,pos)) == couleur)){
-                compteur = compteur + 1 ;
-            }
-        }
-    }
-    return compteur ;
-}
-
 
 void retournerPionsEmprisonnes(PLT_Plateau *plateau , CP_Coup coup ) {
     CP_Coup coupTemp;
