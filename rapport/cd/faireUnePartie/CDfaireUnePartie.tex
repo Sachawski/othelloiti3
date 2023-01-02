@@ -1,8 +1,22 @@
 \begin{algorithme}
+  \type{EtatPartie}{[TERMINE,ENCOURS]}
+\end{algorithme}
+
+\begin{algorithme}
+\signatureprocedure{afficherPlateau}{\paramSortie{p:Plateau}}
+	\type{AffichagePlateau}{afficherPlateau}
+\end{algorithme}
+
+\begin{algorithme}
+  \signaturefonction{obtenirCoupEnFctDuJoueur}{p : Plateau, joueur : Couleur}{Coup}
+	\type{ObtenirCoupEnFctDuJoueur}{obtenirCoupEnFctDuJoueur}
+\end{algorithme}
+
+\begin{algorithme}
   \small
   \procedure
-  {FaireUnePartie}
-  {\paramEntree{coupEnFctJoueur: \typePointeur{fonction}},\paramEntree{coupEnFctJoueur: \typePointeur{fonction}}, \paramEntree{ afficherPlateau: \typePointeur{procedure}},\paramEntreeSortie{etat: EtatPartie}, \paramEntreeSortie{couleurGagnant: Couleur}}
+  {faireUnePartie}
+  {\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramEntreeSortie{couleurGagnant: Couleur}, \paramEntreeSortie{etat : EtatPartie}}
   {
   plateau: Plateau;
   joueurCourant: Pion;
@@ -14,9 +28,9 @@
     \affecter{joueurCourant}{creerPion(BLANC)}
     \affecter{plateau}{initialiserPlateau()}
     \repeter{
-      \affecter{time(NULL)}{start}
+      \affecter{start}{time(NULL)}
       \repeter{
-        \affecter{prochainCoup}{coupEnFctJoueur(obtenirCouleurSuperieure(joueurCourant), plateau)}
+        \affecter{prochainCoup}{coupEnFctJoueur(obtenirCoupBlanc, obtenirCoupNoir, obtenirCouleurSuperieure(joueurCourant), plateau)}
       }
       {non(coupLegal(plateau,prochainCoup))}
       jouer(plateau, prochainCoup)\\
