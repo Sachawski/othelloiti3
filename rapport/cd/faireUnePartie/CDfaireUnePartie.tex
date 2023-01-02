@@ -2,10 +2,6 @@
   \type{EtatPartie}{[TERMINE,ENCOURS]}
 \end{algorithme}
 
-\begin{algorithme}
-\signatureprocedure{afficherPlateau}{\paramSortie{p:Plateau}}
-	\type{AffichagePlateau}{afficherPlateau}
-\end{algorithme}
 
 \begin{algorithme}
   \signaturefonction{obtenirCoupEnFctDuJoueur}{p : Plateau, joueur : Couleur}{Coup}
@@ -16,7 +12,7 @@
   \small
   \procedure
   {faireUnePartie}
-  {\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramEntreeSortie{couleurGagnant: Couleur}, \paramEntreeSortie{etat : EtatPartie}}
+  {\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : afficherPlateau} \paramEntreeSortie{couleurGagnant: Couleur}, \paramEntreeSortie{etat : EtatPartie}}
   {
   plateau: Plateau;
   joueurCourant: Pion;
