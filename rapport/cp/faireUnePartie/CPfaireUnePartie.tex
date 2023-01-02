@@ -1,31 +1,31 @@
 \begin{algorithme}
-  \type{EtatPartie}{[TERMINE,ENCOURS]}
+  \type{EtatPartie}{[TERMINE,ENCOURS,EGALITE]}
 \end{algorithme}
 
 \vspace*{5mm}
 
 \begin{algorithme}
-  \type{Sortie}{\signatureprocedure{}{\paramEntree{plateau : Plateau}, \paramEntree{coup : Coup}, \paramEntree{possibilite : \entier}}}
+  \type{Sortie}{\signatureprocedure{}{\paramEntree{plateau : \textbf{Plateau}, coup : \textbf{Coup}, possibilite : \booleen}}}
 \end{algorithme}
 
 \vspace*{5mm}
 
 \begin{algorithme}
-  \type{ObtenirCoupEnFctDuJoueur}{\signaturefonction{}{plateau : Plateau, joueur : Couleur, profondeur:\naturel}}{Coup}
+  \type{ObtenirCoupEnFctDuJoueur}{\signaturefonction{}{plateau : \textbf{Plateau}, joueur : \textbf{Couleur}, profondeur:\naturel}}{\textbf{Coup}}
 \end{algorithme}
 
 \vspace*{5mm}
 
 \begin{algorithme}
-  \signatureprocedure{faireUnePartie}{\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : ObtenirCoupEnFctDuJoueur}, \paramEntree{sortie : AffichagePlateau} \paramSortie{couleurGagnant : Couleur}, \paramSortie{etat : EtatPartie}}
+  \signatureprocedure{faireUnePartie}{\paramEntree{obtenirCoupBlanc,obtenirCoupJoueurNoir : \textbf{ObtenirCoupEnFctDuJoueur}, sortie : \textbf{Sortie}} \paramSortie{couleurGagnant : \textbf{Couleur}, etat : \textbf{EtatPartie}}}
   
   \vspace*{5mm}
   
-  \signaturefonction{initialiserPlateau}{}{Plateau}
+  \signaturefonction{initialiserPlateau}{}{\textbf{Plateau}}
 
   \vspace*{5mm}
   
-  \signatureprocedure{etatPartie}{\paramEntree{plateau : Plateau}, \paramSortie{couleur: Couleur}, \paramSortie{etat: EtatPartie}}
+  \signatureprocedure{etatPartie}{\paramEntree{plateau : \textbf{Plateau}}, \paramSortie{couleur: \textbf{Couleur}, etat: \textbf{EtatPartie}}}
 
   \vspace*{5mm}
   
@@ -37,25 +37,25 @@
 
   \vspace*{5mm}
   
-  \signatureprocedure{jouer}{\paramEntreeSortie {plateau : Plateau} , \paramEntree{coup : Coup}}
+  \signatureprocedure{jouer}{\paramEntreeSortie {plateau : \textbf{Plateau}} , \paramEntree{coup : \textbf{Coup}}}
   
   \vspace*{5mm}
   
-  \signaturefonction{coupLegal}{plateau : Plateau , coup : Coup}{\booleen}
+  \signaturefonction{coupLegal}{plateau : \textbf{Plateau} , coup : \textbf{Coup}}{\booleen}
 
   \vspace*{5mm}
-  \signatureprocedure{retournerPionsEmprisonnes}{\paramEntreeSortie{plateau : Plateau} , \paramEntree{coup : Coup}}
-
-  \vspace*{5mm}
-  
-  \signaturefonction{adversairesAdjacents}{plateau : Plateau , coup : Coup}{Coups}
+  \signatureprocedure{retournerPionsEmprisonnes}{\paramEntreeSortie{plateau : \textbf{Plateau}} , \paramEntree{coup : \textbf{Coup}}}
 
   \vspace*{5mm}
   
-  \signaturefonction{pionMemeCouleur}{plateau : Plateau , coup : Coup, pionsLegals : Coups}{Coups}
+  \signaturefonction{adversairesAdjacents}{plateau : \textbf{Plateau} , coup : \textbf{Coup}}{\textbf{Coups}}
 
   \vspace*{5mm}
   
-  \signaturefonction{coupEnFctJoueur}{obtenirCoupBlanc,obtenirCoupNoir : ObtenirCoupEnFctDuJoueur, couleur : Couleur, plateau : Plateau}{Coup}
+  \signaturefonction{pionMemeCouleur}{plateau : \textbf{Plateau} , coup : \textbf{Coup}, pionsLegals : \textbf{Coups}}{\textbf{Coups}}
+
+  \vspace*{5mm}
+  
+  \signaturefonction{coupEnFctJoueur}{obtenirCoupBlanc,obtenirCoupNoir : \textbf{ObtenirCoupEnFctDuJoueur}, couleur : \textbf{Couleur}, plateau : \textbf{Plateau}}{\textbf{Coup}}
 \end{algorithme}
 
