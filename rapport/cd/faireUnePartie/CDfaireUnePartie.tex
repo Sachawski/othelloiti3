@@ -284,8 +284,10 @@
               \instruction{retournerPion(joueurCourant)}
                           {
                             \sialors{plateauBloquePourUneCouleur(plateau,obtenirCouleurSuperieure(joueurCourant))}
-                            \instruction{retournerPion(joueurCourant)}
-                            \instruction{sortie(plateau,prochainCoup,0)}
+                                    {
+                                      \instruction{retournerPion(joueurCourant)}
+                                      \instruction{sortie(plateau,prochainCoup,0)}
+                                    }
                           }
                           \instruction{etatPartie(plateau,couleurGagnant,etat)}
     }{non(etat = partieEnCours)}
